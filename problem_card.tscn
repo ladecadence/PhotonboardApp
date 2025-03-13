@@ -75,21 +75,21 @@ layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="Nombre" type="Label" parent="Fondo/HBoxContainer/Descr"]
+[node name="Name" type="Label" parent="Fondo/HBoxContainer/Descr"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_qoj3j")
 theme_override_font_sizes/font_size = 60
 text = "La muerte"
 
-[node name="Resumen" type="Label" parent="Fondo/HBoxContainer/Descr"]
+[node name="Description" type="Label" parent="Fondo/HBoxContainer/Descr"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_rxi5p")
 theme_override_font_sizes/font_size = 40
 text = "Bloque que flipas de duro"
 
-[node name="Estrellas" type="Label" parent="Fondo/HBoxContainer/Descr"]
+[node name="Stars" type="Label" parent="Fondo/HBoxContainer/Descr"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
@@ -98,25 +98,25 @@ theme_override_fonts/font = ExtResource("4_wy6tj")
 theme_override_font_sizes/font_size = 30
 text = "⭐⭐⭐⭐⭐"
 
-[node name="Datos" type="VBoxContainer" parent="Fondo/HBoxContainer"]
+[node name="Data" type="VBoxContainer" parent="Fondo/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 20
 alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="Fondo/HBoxContainer/Datos"]
+[node name="MarginContainer" type="MarginContainer" parent="Fondo/HBoxContainer/Data"]
 layout_mode = 2
 size_flags_horizontal = 8
 
-[node name="CenterContainer" type="CenterContainer" parent="Fondo/HBoxContainer/Datos/MarginContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="Fondo/HBoxContainer/Data/MarginContainer"]
 layout_mode = 2
 
-[node name="Panel" type="Panel" parent="Fondo/HBoxContainer/Datos/MarginContainer/CenterContainer"]
+[node name="Panel" type="Panel" parent="Fondo/HBoxContainer/Data/MarginContainer/CenterContainer"]
 custom_minimum_size = Vector2(200, 80)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_kdcrm")
 
-[node name="Grado" type="Label" parent="Fondo/HBoxContainer/Datos/MarginContainer/CenterContainer/Panel"]
+[node name="Grade" type="Label" parent="Fondo/HBoxContainer/Data/MarginContainer/CenterContainer/Panel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -137,18 +137,18 @@ label_settings = SubResource("LabelSettings_0sn2k")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Sends" type="HBoxContainer" parent="Fondo/HBoxContainer/Datos"]
+[node name="Sends" type="HBoxContainer" parent="Fondo/HBoxContainer/Data"]
 layout_mode = 2
 size_flags_horizontal = 8
 theme_override_constants/separation = 20
 alignment = 1
 
-[node name="Icono" type="TextureRect" parent="Fondo/HBoxContainer/Datos/Sends"]
+[node name="Icon" type="TextureRect" parent="Fondo/HBoxContainer/Data/Sends"]
 layout_mode = 2
 texture = ExtResource("5_t127i")
 expand_mode = 3
 
-[node name="Numero" type="Label" parent="Fondo/HBoxContainer/Datos/Sends"]
+[node name="Number" type="Label" parent="Fondo/HBoxContainer/Data/Sends"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_qoj3j")
