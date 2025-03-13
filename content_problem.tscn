@@ -1,4 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://ci2i2gvdbyciv"]
+[gd_scene load_steps=3 format=3 uid="uid://ci2i2gvdbyciv"]
+
+[ext_resource type="Script" uid="uid://condfdcskejiv" path="res://content_problem.gd" id="1_prbk5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fla8q"]
 bg_color = Color(1, 1, 1, 1)
@@ -10,6 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_prbk5")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -33,3 +36,20 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 20
+
+[node name="MarginContainer" type="MarginContainer" parent="Scroll/Lista"]
+custom_minimum_size = Vector2(0, 1000)
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Image" type="TextureRect" parent="Scroll/Lista/MarginContainer"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="Scroll/Lista"]
+layout_mode = 2
+
+[node name="Description" type="Label" parent="Scroll/Lista"]
+layout_mode = 2
