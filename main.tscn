@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://minkplpia6po"]
 
 [ext_resource type="Texture2D" uid="uid://c0hna8xcjl7wq" path="res://images/title.png" id="1_7mycd"]
-[ext_resource type="PackedScene" uid="uid://c6n48gbwp3vmj" path="res://content_problems.tscn" id="2_272bh"]
+[ext_resource type="PackedScene" uid="uid://c6n48gbwp3vmj" path="res://components/content_problems.tscn" id="2_272bh"]
 [ext_resource type="FontFile" uid="uid://lnhy5j8s4phh" path="res://fonts/Nexa Bold.otf" id="3_5vw27"]
 [ext_resource type="Texture2D" uid="uid://d234w55uw8xu1" path="res://icons/config.svg" id="4_kek77"]
 [ext_resource type="Texture2D" uid="uid://xjgjr86famnv" path="res://icons/wall.svg" id="5_4c57u"]
@@ -121,3 +121,5 @@ flat = true
 icon_alignment = 1
 vertical_icon_alignment = 0
 expand_icon = true
+
+[connection signal="pressed" from="VBoxContainer/Navbar/HBoxContainer/ButtonProblems" to="VBoxContainer/ContentProblems" method="_on_button_problems_pressed"]

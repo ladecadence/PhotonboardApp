@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://eyqahvyds7o3"]
+[gd_scene load_steps=10 format=3 uid="uid://eyqahvyds7o3"]
 
 [ext_resource type="Texture2D" uid="uid://c0hna8xcjl7wq" path="res://images/title.png" id="1_c2v25"]
-[ext_resource type="PackedScene" uid="uid://c6n48gbwp3vmj" path="res://content_problems.tscn" id="2_xva2l"]
+[ext_resource type="Script" uid="uid://d1xme41n1p2wa" path="res://scripts/problem_view.gd" id="1_xva2l"]
 [ext_resource type="FontFile" uid="uid://lnhy5j8s4phh" path="res://fonts/Nexa Bold.otf" id="3_jtt6i"]
+[ext_resource type="PackedScene" uid="uid://ci2i2gvdbyciv" path="res://components/content_problem.tscn" id="3_xva2l"]
 [ext_resource type="Texture2D" uid="uid://d234w55uw8xu1" path="res://icons/config.svg" id="4_ckrv0"]
 [ext_resource type="Texture2D" uid="uid://xjgjr86famnv" path="res://icons/wall.svg" id="5_1sxt3"]
 [ext_resource type="Texture2D" uid="uid://cvymwojed6tmb" path="res://icons/problem.svg" id="6_104qt"]
@@ -19,12 +20,13 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_xva2l")
 
-[node name="Cabecera" type="Control" parent="."]
+[node name="Header" type="Control" parent="."]
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 
-[node name="Panel" type="Panel" parent="Cabecera"]
+[node name="Panel" type="Panel" parent="Header"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -33,7 +35,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_lcpuf")
 
-[node name="TextureRect" type="TextureRect" parent="Cabecera/Panel"]
+[node name="TextureRect" type="TextureRect" parent="Header/Panel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -49,8 +51,9 @@ grow_vertical = 2
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("1_c2v25")
 
-[node name="ContentProblems" parent="." instance=ExtResource("2_xva2l")]
+[node name="ContentProblem" parent="." instance=ExtResource("3_xva2l")]
 layout_mode = 2
+size_flags_vertical = 3
 
 [node name="Navbar" type="Control" parent="."]
 custom_minimum_size = Vector2(0, 200)
@@ -112,3 +115,5 @@ flat = true
 icon_alignment = 1
 vertical_icon_alignment = 0
 expand_icon = true
+
+[connection signal="pressed" from="Navbar/HBoxContainer/ButtonProblems" to="." method="_on_button_problems_pressed"]

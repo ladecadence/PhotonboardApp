@@ -1,6 +1,7 @@
 extends MarginContainer
 
 const Problem = preload("res://scripts/Problem.gd")
+var problem: Problem
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -12,6 +13,7 @@ func _process(delta: float) -> void:
 	pass
 
 func load_data(data: Problem):
+	problem = data
 	$Fondo/HBoxContainer/Descr/Name.text = data.name
 	$Fondo/HBoxContainer/Descr/Description.text = data.description
 	# calculate stars
@@ -22,3 +24,12 @@ func load_data(data: Problem):
 	$Fondo/HBoxContainer/Data/MarginContainer/CenterContainer/Panel/Grade.text = data.grade
 	$Fondo/HBoxContainer/Data/Sends/Number.text = str(data.sends)
 	
+
+func _on_panel_events_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		print(event.position)
+		# load problem scene
+		var scene := preload("res://screens/problem_view.tscn").instantiate()
+		scene.loadData(problem)
+		get_tree().root.add_child(scene)
+		
