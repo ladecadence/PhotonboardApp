@@ -8,13 +8,15 @@ var current_scene = null
 
 
 func _ready() -> void:
-	print("Starting...")
+	# Initial screen
 	load_screen(Screen.PROBLEM_LIST, null)
 
 func load_screen(s: Screen, data):
+	# calls the load function AFTER the current one finishes any running code
 	_deferred_load_screen.call_deferred(s, data)
 
 func _deferred_load_screen(s: Screen, data):
+	# main screen router
 	match (s):
 		Screen.WALL_LIST: 
 			screen_scene = ""
@@ -25,33 +27,16 @@ func _deferred_load_screen(s: Screen, data):
 		_:
 			screen_scene = ""
 	
-	# remove all children
-	var GUI = get_tree().root.get_child(-1)
-	print ("Root: ", GUI)
+	# remove all children from main node
+	var GUI = get_tree().root.get_child(-1) # -1 = last root->GUI <---
+	
 	for c in GUI.get_children():
 		GUI.remove_child(c)
 		c.queue_free()
 		print ("Removed: ", c)
 	
-	# load the scene and add it as new children
+	# load the scene and add it as new children of main node
 	var scene = load(screen_scene).instantiate()
 	if data != null:
 		scene.loadData(data)
 	GUI.add_child(scene)
-
-
-func _deferred_goto_scene(path):
-	# It is now safe to remove the current scene.
-	current_scene.free()
-
-	# Load the new scene.
-	var s = ResourceLoader.load(path)
-
-	# Instance the new scene.
-	current_scene = s.instantiate()
-
-	# Add it to the active scene, as child of root.
-	get_tree().root.add_child(current_scene)
-
-	# Optionally, to make it compatible with the SceneTree.change_scene_to_file() API.
-	get_tree().current_scene = current_scene
