@@ -29,7 +29,5 @@ func _on_panel_events_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		print(event.position)
 		# load problem scene
-		var scene := preload("res://screens/problem_view.tscn").instantiate()
-		scene.loadData(problem)
-		get_tree().root.add_child(scene)
+		AppManager.load_screen(AppManager.Screen.PROBLEM_VIEW, problem)
 		

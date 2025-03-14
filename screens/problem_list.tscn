@@ -1,26 +1,24 @@
-[gd_scene load_steps=10 format=3 uid="uid://eyqahvyds7o3"]
+[gd_scene load_steps=9 format=3 uid="uid://bqp8gn4s1vgqs"]
 
-[ext_resource type="Script" uid="uid://d1xme41n1p2wa" path="res://scripts/problem_view.gd" id="1_dmijy"]
-[ext_resource type="Texture2D" uid="uid://c0hna8xcjl7wq" path="res://images/title.png" id="2_t2cw8"]
-[ext_resource type="PackedScene" uid="uid://ci2i2gvdbyciv" path="res://components/content_problem.tscn" id="3_2edo6"]
-[ext_resource type="FontFile" uid="uid://lnhy5j8s4phh" path="res://fonts/Nexa Bold.otf" id="4_hgdk2"]
-[ext_resource type="Texture2D" uid="uid://d234w55uw8xu1" path="res://icons/config.svg" id="5_tm8gr"]
-[ext_resource type="Texture2D" uid="uid://xjgjr86famnv" path="res://icons/wall.svg" id="6_dlbld"]
-[ext_resource type="Texture2D" uid="uid://cvymwojed6tmb" path="res://icons/problem.svg" id="7_hyfxd"]
+[ext_resource type="Texture2D" uid="uid://c0hna8xcjl7wq" path="res://images/title.png" id="1_ct7u0"]
+[ext_resource type="PackedScene" uid="uid://c6n48gbwp3vmj" path="res://components/content_problems.tscn" id="2_t1cu2"]
+[ext_resource type="FontFile" uid="uid://lnhy5j8s4phh" path="res://fonts/Nexa Bold.otf" id="3_r4575"]
+[ext_resource type="Texture2D" uid="uid://d234w55uw8xu1" path="res://icons/config.svg" id="4_2cpfu"]
+[ext_resource type="Texture2D" uid="uid://xjgjr86famnv" path="res://icons/wall.svg" id="5_eggbf"]
+[ext_resource type="Texture2D" uid="uid://cvymwojed6tmb" path="res://icons/problem.svg" id="6_783sm"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lcpuf"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4hmjt"]
 bg_color = Color(0.994083, 0.881678, 0.657324, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qgtbm"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mhdkq"]
 bg_color = Color(0.994083, 0.881678, 0.657324, 1)
 
-[node name="ProblemView" type="MarginContainer"]
+[node name="ProblemList" type="MarginContainer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_dmijy")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -36,9 +34,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_lcpuf")
+theme_override_styles/panel = SubResource("StyleBoxFlat_4hmjt")
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/Header/Panel"]
+[node name="Logo" type="TextureRect" parent="VBoxContainer/Header/Panel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -52,11 +50,10 @@ offset_bottom = 124.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.75, 0.75)
-texture = ExtResource("2_t2cw8")
+texture = ExtResource("1_ct7u0")
 
-[node name="ContentProblem" parent="VBoxContainer" instance=ExtResource("3_2edo6")]
+[node name="ContentProblems" parent="VBoxContainer" instance=ExtResource("2_t1cu2")]
 layout_mode = 2
-size_flags_vertical = 3
 
 [node name="Navbar" type="Control" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 200)
@@ -69,7 +66,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_qgtbm")
+theme_override_styles/panel = SubResource("StyleBoxFlat_mhdkq")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Navbar"]
 layout_mode = 1
@@ -84,10 +81,10 @@ alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_hgdk2")
+theme_override_fonts/font = ExtResource("3_r4575")
 theme_override_font_sizes/font_size = 30
 text = "Config"
-icon = ExtResource("5_tm8gr")
+icon = ExtResource("4_2cpfu")
 flat = true
 icon_alignment = 1
 vertical_icon_alignment = 0
@@ -97,10 +94,10 @@ expand_icon = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_hgdk2")
+theme_override_fonts/font = ExtResource("3_r4575")
 theme_override_font_sizes/font_size = 30
 text = "Walls"
-icon = ExtResource("6_dlbld")
+icon = ExtResource("5_eggbf")
 flat = true
 icon_alignment = 1
 vertical_icon_alignment = 0
@@ -110,13 +107,13 @@ expand_icon = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_hgdk2")
+theme_override_fonts/font = ExtResource("3_r4575")
 theme_override_font_sizes/font_size = 30
 text = "Problems"
-icon = ExtResource("7_hyfxd")
+icon = ExtResource("6_783sm")
 flat = true
 icon_alignment = 1
 vertical_icon_alignment = 0
 expand_icon = true
 
-[connection signal="pressed" from="VBoxContainer/Navbar/HBoxContainer/ButtonProblems" to="VBoxContainer" method="_on_button_problems_pressed"]
+[connection signal="pressed" from="VBoxContainer/Navbar/HBoxContainer/ButtonProblems" to="VBoxContainer/ContentProblems" method="_on_button_problems_pressed"]
