@@ -119,4 +119,4 @@ icon_alignment = 1
 vertical_icon_alignment = 0
 expand_icon = true
 
-[connection signal="pressed" from="VBoxContainer/Navbar/HBoxContainer/ButtonProblems" to="VBoxContainer" method="_on_button_problems_pressed"]
+[connection signal="pressed" from="VBoxContainer/Navbar/HBoxContainer/ButtonProblems" to="." method="_on_button_problems_pressed"]

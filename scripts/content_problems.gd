@@ -27,6 +27,5 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-
 func _on_button_problems_pressed() -> void:
-	get_tree().change_scene_to_file("res://main.tscn")
+	AppManager.load_screen(AppManager.Screen.PROBLEM_LIST, null)
