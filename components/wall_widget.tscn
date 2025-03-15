@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bx20db8xc8vfv"]
+
+[ext_resource type="Script" uid="uid://buo48ny2wi5rg" path="res://scripts/wall_widget.gd" id="1_m0x0i"]
+
+[node name="WallWidget" type="Node2D"]
+script = ExtResource("1_m0x0i")

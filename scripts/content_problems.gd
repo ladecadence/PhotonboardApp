@@ -29,3 +29,9 @@ func _process(delta: float) -> void:
 
 func _on_button_problems_pressed() -> void:
 	AppManager.load_screen(AppManager.Screen.PROBLEM_LIST, null)
+
+
+func _on_button_walls_pressed() -> void:
+	# TODO: remove after wall widget is ready
+	var tex = ImageTexture.create_from_image(Image.load_from_file("res://images/wall0001.jpg"))
+	AppManager.load_screen(AppManager.Screen.TEST_WALLWIDGET, tex)
