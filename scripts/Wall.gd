@@ -12,6 +12,7 @@ var adjustable : bool
 var deg_min: int
 var deg_max: int
 var image: String
+var holds: Array[Hold]
 
 
 func _init(n, d, a, dmin, dmax, i):
@@ -22,10 +23,17 @@ func _init(n, d, a, dmin, dmax, i):
 	deg_min = dmin
 	deg_max = dmax
 	image = i
+	holds = []
 	
 func updateImage(img):
 	image = img
+
+func addHolds(h: Array[Hold]):
+	holds = h
 	
+func addHold(h: Hold):
+	holds.append(h)
+
 func toJson() -> String:
 	return JSON.stringify(self)
 	
@@ -41,4 +49,8 @@ func fromJson(s):
 		self.deg_min = data["deg_min"]
 		self.deg_max = data["deg_max"]
 		self.image = data["image"]
+		if data.has_key("holds"):
+			self.holds = data["holds"]
+		else:
+			self.holds = []
 		
