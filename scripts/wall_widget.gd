@@ -58,9 +58,9 @@ func _input(event):
 			# if the vector of movement (drag) is very small, it was just a touch
 			if (event.position.abs() - lastTouchedCords.abs()).length() < 2:
 				# check if we can add a hold, if we are inside the image
-				if event.position > origin && event.position < origin + imageSize:
-					# add the hold, beware of zoom level TODO: FIX THIS
-					wall.holds.append(Hold.new(lastHold, wall.id, (event.position.x-origin.x) / zoom, (event.position.y-origin.y) / zoom, Hold.HOLD_TYPE.DESIGN, Hold.HOLD_SIZE.SMALL))
+				if event.position > origin && event.position < origin + (imageSize*zoom):
+					# add the hold, beware of zoom level
+					wall.holds.append(Hold.new(lastHold, wall.id, (event.position.x/zoom)-origin.x, (event.position.y/zoom)-origin.y, Hold.HOLD_TYPE.DESIGN, Hold.HOLD_SIZE.SMALL))
 					lastHold+=1
 					queue_redraw()
 			
