@@ -1,8 +1,11 @@
 extends Node2D
 
-const Hold = preload("res://scripts/Hold.gd")
-const Wall = preload("res://scripts/Wall.gd")
+#const Hold = preload("res://scripts/Hold.gd")
+#const Wall = preload("res://scripts/Wall.gd")
 
+enum WALL_MODE {CREATE, EDIT, SHOW}
+
+var mode: WALL_MODE = WALL_MODE.CREATE
 var image: Texture2D = null
 var zoom: float = 1.0
 var origin: Vector2 = Vector2(0,0)
@@ -11,10 +14,10 @@ var lastTouchedCords: Vector2
 var lastHold: int = 0
 var wall: Wall
 
-func loadData(wall: Wall):
-	self.wall = wall
-	lastHold = len(wall.holds) # for counting the holds added (their ID)
-	image = ImageTexture.create_from_image(Image.load_from_file(wall.image))
+func loadData(w: Wall):
+	self.wall = w
+	lastHold = len(w.holds) # for counting the holds added (their ID)
+	image = ImageTexture.create_from_image(Image.load_from_file(self.wall.image))
 	imageSize = image.get_size()
 	queue_redraw()
 	
@@ -32,7 +35,7 @@ func _draw() -> void:
 
 # process events
 func _input(event):
-	# zoom
+	# zoom: TODO: Fix zoom centered in pointer position
 	if event is InputEventMouseButton:
 		if event.is_pressed():
 			# zoom in
@@ -55,19 +58,24 @@ func _input(event):
 			# save for when the touch is released
 			lastTouchedCords = event.position
 		else: # released
-			# if the vector of movement (drag) is very small, it was just a touch
-			if (event.position.abs() - lastTouchedCords.abs()).length() < 2:
-				# check if we can add a hold, if we are inside the image
-				if event.position > origin && event.position < origin + (imageSize*zoom):
-					# add the hold, beware of zoom level
-					wall.holds.append(Hold.new(lastHold, wall.id, (event.position.x/zoom)-origin.x, (event.position.y/zoom)-origin.y, Hold.HOLD_TYPE.DESIGN, Hold.HOLD_SIZE.SMALL))
-					lastHold+=1
-					queue_redraw()
+			# check mode
+			if mode != WALL_MODE.SHOW:
+				# if the vector of movement (drag) is very small, it was just a touch
+				if (event.position.abs() - lastTouchedCords.abs()).length() < 2:
+					# check if we can add a hold, if we are inside the image
+					if event.position > origin && event.position < origin + (imageSize*zoom):
+						# add the hold, beware of zoom level
+						wall.holds.append(Hold.new(lastHold, wall.id, (event.position.x/zoom)-origin.x, (event.position.y/zoom)-origin.y, Hold.HOLD_TYPE.DESIGN, Hold.HOLD_SIZE.SMALL))
+						lastHold+=1
+						queue_redraw()
 			
-		
+
 	# drag
 	if event is InputEventScreenDrag and event.pressure != 0:
 		# check if the drag vector was as least 2 units
 		if event.relative.length() > 2:
 			origin = origin + event.relative
 			queue_redraw()
+
+func get_wall() -> Wall:
+	return wall

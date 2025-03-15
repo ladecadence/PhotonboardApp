@@ -11,13 +11,13 @@ var id: int
 var wallid: int
 var x: float
 var y: float
-var type: HOLD_TYPE
-var size: HOLD_SIZE
+var type: HOLD_TYPE = HOLD_TYPE.DESIGN
+var size: HOLD_SIZE = HOLD_SIZE.SMALL
 
-func _init(i, w, x, y, t, s):
+func _init(i, w, _x, _y, t, s):
 	id = i
 	wallid = w
-	self.x = x
-	self.y = y
+	x = _x
+	y = _y
 	type = t
 	size = s

@@ -2,7 +2,7 @@ extends MarginContainer
 
 class_name ProblemView
 
-const Problem = preload("res://scripts/Problem.gd")
+#const Problem = preload("res://scripts/Problem.gd")
 
 func loadData(data):
 	$VBoxContainer/ContentProblem.loadData(data)

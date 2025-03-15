@@ -3,7 +3,7 @@ extends Control
 @onready var lista = $Scroll/Lista
 @onready var card = preload("res://components/problem_card.tscn")
 
-const Wall = preload("res://scripts/Wall.gd")
+#const Wall = preload("res://scripts/Wall.gd")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -26,7 +26,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 func _on_button_problems_pressed() -> void:
@@ -35,5 +35,5 @@ func _on_button_problems_pressed() -> void:
 
 func _on_button_walls_pressed() -> void:
 	# TODO: remove after wall widget is ready
-	var wall = Wall.new("Rocuadramo", "Best wall", true, 5, 40, "res://images/wall0001.jpg")
+	var wall = Wall.new("Rocuadramo", "Best wall", true, 5, 40, "user://wall01.jpg")
 	AppManager.load_screen(AppManager.Screen.TEST_WALLWIDGET, wall)

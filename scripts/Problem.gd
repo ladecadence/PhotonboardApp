@@ -2,7 +2,7 @@ extends Object
 
 class_name Problem
 
-const Hold = preload("res://scripts/Hold.gd")
+#const Hold = preload("res://scripts/Hold.gd")
 
 var id: int
 var wallid: int
@@ -30,10 +30,8 @@ func toJson() -> String:
 	return JSON.stringify(self)
 	
 func fromJson(s):
-	var json = JSON.new()
-	var error = json.parse_string(s)
-	if error == OK:
-		var data = json.data
+	var data = JSON.parse_string(s)
+	if data != null:
 		self.id = data["id"]
 		self.wallid = data["wallid"]
 		self.name = data["name"]

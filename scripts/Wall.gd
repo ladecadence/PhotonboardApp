@@ -2,8 +2,8 @@ extends Object
 
 class_name Wall
 
-const Hold = preload("res://scripts/Hold.gd")
-const Problem = preload("res://scripts/Problem.gd")
+#const Hold = preload("res://scripts/Hold.gd")
+#const Problem = preload("res://scripts/Problem.gd")
 
 var id: int
 var name : String
@@ -38,10 +38,8 @@ func toJson() -> String:
 	return JSON.stringify(self)
 	
 func fromJson(s):
-	var json = JSON.new()
-	var error = json.parse_string(s)
-	if error == OK:
-		var data = json.data
+	var data = JSON.parse_string(s)
+	if data != null:
 		self.id = data["id"]
 		self.name = data["name"]
 		self.description = data["description"]
