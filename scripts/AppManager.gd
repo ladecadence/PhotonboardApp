@@ -39,6 +39,7 @@ func _deferred_load_screen(s: Screen, data):
 	
 	# load the scene and add it as new children of main node
 	var scene = load(screen_scene).instantiate()
-	if data != null:
+	# if we are passing some data, try to load it (the scene should have a loadData method...)
+	if data != null and scene.has_method("loadData"):
 		scene.loadData(data)
 	GUI.add_child(scene)

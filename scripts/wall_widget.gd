@@ -13,7 +13,7 @@ var wall: Wall
 
 func loadData(wall: Wall):
 	self.wall = wall
-	lastHold = len(wall.holds)
+	lastHold = len(wall.holds) # for counting the holds added (their ID)
 	image = ImageTexture.create_from_image(Image.load_from_file(wall.image))
 	imageSize = image.get_size()
 	queue_redraw()
@@ -23,9 +23,12 @@ func _draw() -> void:
 	draw_texture(image, origin)
 	var default_font = ThemeDB.fallback_font
 	for h in wall.holds:
+		# draw the circle
 		draw_circle(Vector2(h.x, h.y)+origin, 30, Hold.holdColors[h.type], false, 5, true)
+		# get the size of the string we are going to draw so we can center it
 		var size = default_font.get_string_size(str(h.id),HORIZONTAL_ALIGNMENT_CENTER, -1, 20)
-		draw_string(default_font, Vector2(h.x-size.x/2, h.y+10)+origin, str(h.id), HORIZONTAL_ALIGNMENT_CENTER, -1, 20, Hold.holdColors[h.type])
+		# and draw the string of the ID
+		draw_string(default_font, Vector2(h.x-size.x/2, h.y+size.y/2)+origin, str(h.id), HORIZONTAL_ALIGNMENT_CENTER, -1, 20, Hold.holdColors[h.type])
 
 # process events
 func _input(event):
@@ -44,24 +47,27 @@ func _input(event):
 				if zoom < 1:
 					zoom = 1
 				queue_redraw()
+				
 	# touch
 	if event is InputEventScreenTouch:
 		# check if we moved
 		if event.pressed:
+			# save for when the touch is released
 			lastTouchedCords = event.position
-		else:
+		else: # released
 			# if the vector of movement (drag) is very small, it was just a touch
 			if (event.position.abs() - lastTouchedCords.abs()).length() < 2:
-				print ("Single touch!") # add hold
-				# check if we can add hold
+				# check if we can add a hold, if we are inside the image
 				if event.position > origin && event.position < origin + imageSize:
-					wall.holds.append(Hold.new(lastHold, wall.id, event.position.x-origin.x, event.position.y-origin.y, Hold.HOLD_TYPE.DESIGN, Hold.HOLD_SIZE.SMALL))
+					# add the hold, beware of zoom level TODO: FIX THIS
+					wall.holds.append(Hold.new(lastHold, wall.id, (event.position.x-origin.x) / zoom, (event.position.y-origin.y) / zoom, Hold.HOLD_TYPE.DESIGN, Hold.HOLD_SIZE.SMALL))
 					lastHold+=1
 					queue_redraw()
 			
 		
 	# drag
 	if event is InputEventScreenDrag and event.pressure != 0:
+		# check if the drag vector was as least 2 units
 		if event.relative.length() > 2:
 			origin = origin + event.relative
 			queue_redraw()
