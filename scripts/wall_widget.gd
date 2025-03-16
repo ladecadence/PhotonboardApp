@@ -43,15 +43,29 @@ func _input(event):
 				zoom=zoom+0.1
 				if zoom > 2:
 					zoom = 2
-				queue_redraw()
+				else: 
+					# move origin to zoom over cursor TODO fix this
+					var mouseinimagex = (event.position.x/zoom)-origin.x
+					var mouseinimagey = (event.position.y/zoom)-origin.y
+					origin.x -= mouseinimagex * 0.1
+					origin.y -= mouseinimagey * 0.1
+					queue_redraw()
 			# zoom out
 			if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
 				zoom=zoom-0.1
 				if zoom < 1:
 					zoom = 1
-				queue_redraw()
+				else: 
+					# move origin to zoom over cursor TODO fix this
+					var mouseinimagex = (event.position.x/zoom)-origin.x
+					var mouseinimagey = (event.position.y/zoom)-origin.y
+					origin.x += mouseinimagex * 0.1
+					origin.y += mouseinimagey * 0.1
+					queue_redraw()
+			# TEST, TODO: remove
 			if event.button_index == MOUSE_BUTTON_MIDDLE:
-				print (wall.toJson())
+				origin = Vector2.ZERO
+				queue_redraw()
 	# touch
 	if event is InputEventScreenTouch:
 		# check if we moved
@@ -70,11 +84,11 @@ func _input(event):
 						lastHold+=1
 						queue_redraw()
 			
-
 	# drag
 	if event is InputEventScreenDrag and event.pressure != 0:
 		# check if the drag vector was as least 2 units
 		if event.relative.length() > 2:
+			# TODO constrain drag
 			origin = origin + event.relative
 			queue_redraw()
 
