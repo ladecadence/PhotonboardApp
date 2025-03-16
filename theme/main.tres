@@ -1,0 +1,39 @@
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://cc6pd6kgs8ds2"]
+
+[ext_resource type="FontFile" uid="uid://ipbtnoe5klya" path="res://fonts/Nexa Light.otf" id="1_i0ir6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i0ir6"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.154876, 0.154876, 0.154876, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pcump"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.122252, 0.122252, 0.122252, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[resource]
+default_font = ExtResource("1_i0ir6")
+default_font_size = 20
+LineEdit/colors/caret_color = Color(0.165655, 0.165657, 0.165656, 1)
+LineEdit/colors/font_color = Color(0, 0, 0, 1)
+LineEdit/fonts/font = ExtResource("1_i0ir6")
+LineEdit/styles/focus = null
+LineEdit/styles/normal = SubResource("StyleBoxFlat_i0ir6")
+TextEdit/colors/caret_color = Color(0.0962048, 0.0962048, 0.0962046, 1)
+TextEdit/colors/font_color = Color(0, 0, 0, 1)
+TextEdit/styles/normal = SubResource("StyleBoxFlat_pcump")
