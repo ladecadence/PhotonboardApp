@@ -64,6 +64,7 @@ func _input(event):
 					queue_redraw()
 			# TEST, TODO: remove
 			if event.button_index == MOUSE_BUTTON_MIDDLE:
+				print(wall.toJson())
 				origin = Vector2.ZERO
 				queue_redraw()
 	# touch
