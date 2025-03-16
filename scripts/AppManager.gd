@@ -9,8 +9,10 @@ var current_scene = null
 
 func _ready() -> void:
 	# Copy wall image to user dir. JUST FOR TESTS. TODO remove this
-	#var image = Image.load_from_file("res://images/wall0001.jpg")
-	#image.save_jpg("user://wall01.jpg")
+	var img_texture_path := "res://images/wall0001.jpg"
+	var img_texture := load(img_texture_path)
+	var image = img_texture.get_image()
+	image.save_jpg("user://wall01.jpg")
 	
 	# Initial screen
 	load_screen(Screen.PROBLEM_LIST, null)
