@@ -2,5 +2,6 @@
 
 [ext_resource type="Script" uid="uid://buo48ny2wi5rg" path="res://scripts/wall_widget.gd" id="1_m0x0i"]
 
-[node name="WallWidget" type="Node2D"]
+[node name="WallWidget" type="Panel"]
+clip_contents = true
 script = ExtResource("1_m0x0i")

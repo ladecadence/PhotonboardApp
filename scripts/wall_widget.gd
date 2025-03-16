@@ -1,4 +1,4 @@
-extends Node2D
+extends Panel
 
 #const Hold = preload("res://scripts/Hold.gd")
 #const Wall = preload("res://scripts/Wall.gd")
@@ -25,13 +25,14 @@ func _draw() -> void:
 	draw_set_transform(Vector2.ZERO, 0.0, Vector2(zoom, zoom))
 	draw_texture(image, origin)
 	var default_font = ThemeDB.fallback_font
-	for h in wall.holds:
-		# draw the circle
-		draw_circle(Vector2(h.x, h.y)+origin, 30, Hold.holdColors[h.type], false, 5, true)
-		# get the size of the string we are going to draw so we can center it
-		var size = default_font.get_string_size(str(h.id),HORIZONTAL_ALIGNMENT_CENTER, -1, 20)
-		# and draw the string of the ID
-		draw_string(default_font, Vector2(h.x-size.x/2, h.y+size.y/2)+origin, str(h.id), HORIZONTAL_ALIGNMENT_CENTER, -1, 20, Hold.holdColors[h.type])
+	if wall.holds != null:
+		for h in wall.holds:
+			# draw the circle
+			draw_circle(Vector2(h.x, h.y)+origin, 30, Hold.holdColors[h.type], false, 5, true)
+			# get the size of the string we are going to draw so we can center it
+			var size = default_font.get_string_size(str(h.id),HORIZONTAL_ALIGNMENT_CENTER, -1, 20)
+			# and draw the string of the ID
+			draw_string(default_font, Vector2(h.x-size.x/2, h.y+size.y/2)+origin, str(h.id), HORIZONTAL_ALIGNMENT_CENTER, -1, 20, Hold.holdColors[h.type])
 
 # process events
 func _input(event):

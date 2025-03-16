@@ -1,6 +1,26 @@
-[gd_resource type="Theme" load_steps=4 format=3 uid="uid://cc6pd6kgs8ds2"]
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://cc6pd6kgs8ds2"]
 
 [ext_resource type="FontFile" uid="uid://ipbtnoe5klya" path="res://fonts/Nexa Light.otf" id="1_i0ir6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lw8ei"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.114897, 0.114897, 0.114897, 1)
+border_blend = true
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+shadow_color = Color(0, 0, 0, 0.188235)
+shadow_size = 2
+shadow_offset = Vector2(2, 2)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i0ir6"]
 bg_color = Color(1, 1, 1, 1)
@@ -13,6 +33,12 @@ corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_klomd"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5l6cs"]
+bg_color = Color(1, 1, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pcump"]
 bg_color = Color(1, 1, 1, 1)
@@ -29,11 +55,20 @@ corner_radius_bottom_left = 3
 [resource]
 default_font = ExtResource("1_i0ir6")
 default_font_size = 20
+Button/colors/font_color = Color(0, 0, 0, 1)
+Button/colors/font_focus_color = Color(0, 0, 0, 1)
+Button/colors/font_hover_color = Color(0.136825, 0.136826, 0.136826, 1)
+Button/styles/normal = SubResource("StyleBoxFlat_lw8ei")
+Label/colors/font_color = Color(0, 0, 0, 1)
+Label/colors/font_outline_color = Color(0.877616, 0.877616, 0.877616, 1)
+Label/colors/font_shadow_color = Color(0.160784, 0.160784, 0.160784, 0.756863)
 LineEdit/colors/caret_color = Color(0.165655, 0.165657, 0.165656, 1)
 LineEdit/colors/font_color = Color(0, 0, 0, 1)
 LineEdit/fonts/font = ExtResource("1_i0ir6")
 LineEdit/styles/focus = null
 LineEdit/styles/normal = SubResource("StyleBoxFlat_i0ir6")
+Panel/styles/panel = SubResource("StyleBoxFlat_klomd")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_5l6cs")
 TextEdit/colors/caret_color = Color(0.0962048, 0.0962048, 0.0962046, 1)
 TextEdit/colors/font_color = Color(0, 0, 0, 1)
 TextEdit/styles/normal = SubResource("StyleBoxFlat_pcump")
