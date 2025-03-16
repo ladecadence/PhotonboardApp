@@ -8,15 +8,21 @@ enum WALL_MODE {CREATE, EDIT, SHOW}
 var mode: WALL_MODE = WALL_MODE.CREATE
 var image: Texture2D = null
 var zoom: float = 1.0
+var offset: Vector2 = Vector2(0,0)
 var origin: Vector2 = Vector2(0,0)
 var imageSize: Vector2
 var lastTouchedCords: Vector2
 var lastHold: int = 0
 var wall: Wall
 
+# offset from where the widget is drawn on the screen
+func setOffset(o: Vector2):
+	print("Offset: ", o)
+	offset = o
+
 func loadData(w: Wall):
 	self.wall = w
-	lastHold = len(w.holds) # for counting the holds added (their ID)
+	lastHold = len(w.holds) # for counting the holds already added 
 	image = ImageTexture.create_from_image(Image.load_from_file(self.wall.image))
 	imageSize = image.get_size()
 	queue_redraw()
@@ -27,12 +33,12 @@ func _draw() -> void:
 	var default_font = ThemeDB.fallback_font
 	if wall.holds != null:
 		for h in wall.holds:
-			# draw the circle
-			draw_circle(Vector2(h.x, h.y)+origin, 30, Hold.holdColors[h.type], false, 5, true)
+			# draw the outline and the circle
+			draw_circle(Vector2(h.x, h.y)+origin, h.size, Hold.holdColors[h.type], false, 5, true)
 			# get the size of the string we are going to draw so we can center it
-			var size = default_font.get_string_size(str(h.id),HORIZONTAL_ALIGNMENT_CENTER, -1, 20)
+			var font_size = default_font.get_string_size(str(h.id),HORIZONTAL_ALIGNMENT_CENTER, -1, 20)
 			# and draw the string of the ID
-			draw_string(default_font, Vector2(h.x-size.x/2, h.y+size.y/2)+origin, str(h.id), HORIZONTAL_ALIGNMENT_CENTER, -1, 20, Hold.holdColors[h.type])
+			draw_string(default_font, Vector2(h.x-font_size.x/2, h.y+font_size.y/2)+origin, str(h.id), HORIZONTAL_ALIGNMENT_CENTER, -1, 20, Hold.holdColors[h.type])
 
 # process events
 func _input(event):
@@ -80,10 +86,19 @@ func _input(event):
 				# if the vector of movement (drag) is very small, it was just a touch
 				if (event.position.abs() - lastTouchedCords.abs()).length() < 2:
 					# check if we can add a hold, if we are inside the image
-					if event.position > origin && event.position < origin + (imageSize*zoom):
+					var mouseinimage = (event.position/zoom)-origin-offset
+					print("Image coordinates", mouseinimage)
+					if mouseinimage.x > 0 and mouseinimage.y > 0 and mouseinimage.x < imageSize.x and mouseinimage.y < imageSize.y:
 						# add the hold, beware of zoom level
-						wall.holds.append(Hold.new(lastHold, wall.id, (event.position.x/zoom)-origin.x, (event.position.y/zoom)-origin.y, Hold.HOLD_TYPE.DESIGN, Hold.HOLD_SIZE.SMALL))
-						lastHold+=1
+						if mode == WALL_MODE.CREATE:
+							# add new hold
+							print("Cursor position; ", event.position)
+							wall.holds.append(Hold.new(lastHold, wall.id, (event.position.x/zoom)-origin.x-offset.x, (event.position.y/zoom)-origin.y-offset.y, Hold.HOLD_TYPE.DESIGN, Hold.HOLD_SIZE.SMALL))
+							lastHold+=1
+						else:
+							# change existing holds
+							# check if we are inside a hold
+							pass 
 						queue_redraw()
 			
 	# drag
@@ -92,7 +107,13 @@ func _input(event):
 		if event.relative.length() > 2:
 			# TODO constrain drag
 			origin = origin + event.relative
+			print("Origin:", origin)
 			queue_redraw()
+
+func remove_last():
+	if len(wall.holds) > 0:
+		wall.holds.remove_at(-1)
+		queue_redraw()
 
 func get_wall() -> Wall:
 	return wall
