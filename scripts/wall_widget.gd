@@ -50,7 +50,8 @@ func _input(event):
 				if zoom < 1:
 					zoom = 1
 				queue_redraw()
-				
+			if event.button_index == MOUSE_BUTTON_MIDDLE:
+				print (wall.toJson())
 	# touch
 	if event is InputEventScreenTouch:
 		# check if we moved
