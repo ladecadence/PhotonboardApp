@@ -1,10 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://cgg3p4y0yferl"]
+[gd_scene load_steps=13 format=3 uid="uid://cgg3p4y0yferl"]
 
 [ext_resource type="Script" uid="uid://l6286vihg1au" path="res://components/wall_new_2.gd" id="1_xobvf"]
 [ext_resource type="Texture2D" uid="uid://c0hna8xcjl7wq" path="res://images/title.png" id="2_kjd36"]
 [ext_resource type="PackedScene" uid="uid://bx20db8xc8vfv" path="res://components/wall_widget.tscn" id="3_ukg4v"]
 [ext_resource type="FontFile" uid="uid://lnhy5j8s4phh" path="res://fonts/Nexa Bold.otf" id="4_32ddd"]
+[ext_resource type="Theme" uid="uid://cc6pd6kgs8ds2" path="res://theme/main.tres" id="4_kjd36"]
 [ext_resource type="Texture2D" uid="uid://d234w55uw8xu1" path="res://icons/config.svg" id="5_kce18"]
+[ext_resource type="Texture2D" uid="uid://c8k0on32gf6u5" path="res://icons/undo.png" id="5_ukg4v"]
 [ext_resource type="Texture2D" uid="uid://xjgjr86famnv" path="res://icons/wall.svg" id="6_qg8pd"]
 [ext_resource type="Texture2D" uid="uid://cvymwojed6tmb" path="res://icons/problem.svg" id="7_uedxn"]
 
@@ -13,6 +15,8 @@ bg_color = Color(0.994083, 0.881678, 0.657324, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mhdkq"]
 bg_color = Color(0.994083, 0.881678, 0.657324, 1)
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_kjd36"]
 
 [node name="WallNew" type="MarginContainer"]
 anchors_preset = 15
@@ -61,11 +65,11 @@ size_flags_vertical = 3
 [node name="WallWidget" parent="VBoxContainer/MarginContainer" instance=ExtResource("3_ukg4v")]
 layout_mode = 2
 
-[node name="Navbar" type="Control" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 200)
+[node name="NavbarWall" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 
-[node name="Panel" type="Panel" parent="VBoxContainer/Navbar"]
+[node name="Panel" type="Panel" parent="VBoxContainer/NavbarWall"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -74,7 +78,66 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_mhdkq")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Navbar"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/NavbarWall/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/NavbarWall/Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/NavbarWall/Panel/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="CheckBoxSmall" type="CheckBox" parent="VBoxContainer/NavbarWall/Panel/MarginContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_kjd36")
+button_pressed = true
+button_group = SubResource("ButtonGroup_kjd36")
+text = "Small"
+
+[node name="CheckMedium" type="CheckBox" parent="VBoxContainer/NavbarWall/Panel/MarginContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_kjd36")
+button_group = SubResource("ButtonGroup_kjd36")
+text = "Medium"
+
+[node name="CheckBoxBig" type="CheckBox" parent="VBoxContainer/NavbarWall/Panel/MarginContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_kjd36")
+button_group = SubResource("ButtonGroup_kjd36")
+text = "Big"
+
+[node name="Button" type="Button" parent="VBoxContainer/NavbarWall/Panel/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("4_kjd36")
+text = "Undo"
+icon = ExtResource("5_ukg4v")
+
+[node name="NavbarApp" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="VBoxContainer/NavbarApp"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_mhdkq")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/NavbarApp"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -83,7 +146,7 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="ButtonConfig" type="Button" parent="VBoxContainer/Navbar/HBoxContainer"]
+[node name="ButtonConfig" type="Button" parent="VBoxContainer/NavbarApp/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -96,7 +159,7 @@ icon_alignment = 1
 vertical_icon_alignment = 0
 expand_icon = true
 
-[node name="ButtonWalls" type="Button" parent="VBoxContainer/Navbar/HBoxContainer"]
+[node name="ButtonWalls" type="Button" parent="VBoxContainer/NavbarApp/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -109,7 +172,7 @@ icon_alignment = 1
 vertical_icon_alignment = 0
 expand_icon = true
 
-[node name="ButtonProblems" type="Button" parent="VBoxContainer/Navbar/HBoxContainer"]
+[node name="ButtonProblems" type="Button" parent="VBoxContainer/NavbarApp/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -121,3 +184,8 @@ flat = true
 icon_alignment = 1
 vertical_icon_alignment = 0
 expand_icon = true
+
+[connection signal="pressed" from="VBoxContainer/NavbarWall/Panel/MarginContainer/HBoxContainer/HBoxContainer/CheckBoxSmall" to="." method="_on_check_box_small_pressed"]
+[connection signal="pressed" from="VBoxContainer/NavbarWall/Panel/MarginContainer/HBoxContainer/HBoxContainer/CheckMedium" to="." method="_on_check_medium_pressed"]
+[connection signal="pressed" from="VBoxContainer/NavbarWall/Panel/MarginContainer/HBoxContainer/HBoxContainer/CheckBoxBig" to="." method="_on_check_box_big_pressed"]
+[connection signal="pressed" from="VBoxContainer/NavbarWall/Panel/MarginContainer/HBoxContainer/Button" to="." method="_on_button_pressed"]

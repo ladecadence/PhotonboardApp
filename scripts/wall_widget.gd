@@ -10,6 +10,7 @@ const ZOOM_FACTOR = 0.1
 var mode: WALL_MODE = WALL_MODE.CREATE
 var image: Texture2D = null
 var widget_size: Vector2 = Vector2(0, 0)
+var widget_pos: Vector2 = Vector2(0, 0)
 var zoom: float = 1.0
 var offset: Vector2 = Vector2(0, 0)
 var origin: Vector2 = Vector2(0, 0)
@@ -17,10 +18,10 @@ var imageSize: Vector2
 var lastTouchedCords: Vector2
 var lastHold: int = 0
 var wall: Wall
+var holdSize: Hold.HOLD_SIZE = Hold.HOLD_SIZE.SMALL
 
 func _ready() -> void:
-	widget_size = get_parent().get_global_rect().size
-	print("Widget size: ", widget_size)
+	pass
 
 # offset from where the widget is drawn on the screen
 func setOffset(o: Vector2):
@@ -59,14 +60,9 @@ func _input(event):
 					zoom = 2
 				else: 
 					# move origin to zoom over cursor TODO fix this
-					#var mouseinimagex = (event.position.x/zoom)-origin.x
-					#var mouseinimagey = (event.position.y/zoom)-origin.y
-					#origin.x -= mouseinimagex * ZOOM_FACTOR
-					#origin.y -= mouseinimagey * ZOOM_FACTOR
 					var mouseinimage = (event.position/zoom)-origin
 					origin -= mouseinimage * ZOOM_FACTOR
 					queue_redraw()
-				print("Zoom: ", zoom)
 				
 			# zoom out
 			if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
@@ -76,13 +72,9 @@ func _input(event):
 				else: 
 					# move origin to zoom over cursor TODO fix this
 					var mouseinimage = (event.position/zoom)-origin
-					#var mouseinimagex = (event.position.x/zoom)-origin.x
-					#var mouseinimagey = (event.position.y/zoom)-origin.y
-					#origin.x += mouseinimagex * ZOOM_FACTOR
-					#origin.y += mouseinimagey * ZOOM_FACTOR
 					origin += mouseinimage * ZOOM_FACTOR
 					queue_redraw()
-				print("Zoom: ", zoom)
+
 			# TEST, TODO: remove
 			if event.button_index == MOUSE_BUTTON_MIDDLE:
 				print(wall.toJson())
@@ -103,17 +95,24 @@ func _input(event):
 					var mouseinimage = (event.position/zoom)-origin-offset
 					if mouseinimage.x > 0 and mouseinimage.y > 0 and mouseinimage.x < imageSize.x and mouseinimage.y < imageSize.y:
 						# add the hold, beware of zoom level
-						if mode == WALL_MODE.CREATE:
-							# add new hold
-							# TODO: This is a fix I don't understand, I calculated this using empirical data and it works, but I don't know
-							# why I need to multiply the Y offset (a constant value) by the inverse of the zoom when zooming 
-							wall.holds.append(Hold.new(lastHold, wall.id, (event.position.x/zoom)-origin.x-offset.x, (event.position.y/zoom)-origin.y-(offset.y*(1/zoom)), Hold.HOLD_TYPE.DESIGN, Hold.HOLD_SIZE.SMALL))
-							lastHold+=1
-						else:
-							# TODO: change existing holds
-							# check if we are inside a hold
-							pass 
-						queue_redraw()
+						widget_size = get_global_rect().size
+						widget_pos = get_global_rect().position
+						print ("Pos: ", widget_pos, " Size: ", widget_size)
+						print(event.position)
+						# check also that we are inside the widget
+						if event.position.x > widget_pos.x and event.position.y > widget_pos.y and event.position.x < widget_pos.x+widget_size.x and event.position.y < widget_pos.y+widget_size.y:
+							if mode == WALL_MODE.CREATE:
+								# add new hold
+								# TODO: This is a fix I don't understand, I calculated this using empirical data and it works, but I don't know
+								# why I need to multiply the Y offset (a constant value) by the inverse of the zoom when zooming
+								# I suspect it has to do with the matrix transform of the scene, but well...
+								wall.holds.append(Hold.new(lastHold, wall.id, (event.position.x/zoom)-origin.x-offset.x, (event.position.y/zoom)-origin.y-(offset.y*(1/zoom)), Hold.HOLD_TYPE.DESIGN, holdSize))
+								lastHold+=1
+							else:
+								# TODO: change existing holds
+								# check if we are inside a hold
+								pass 
+							queue_redraw()
 			
 	# drag
 	if event is InputEventScreenDrag and event.pressure != 0:
@@ -125,8 +124,12 @@ func _input(event):
 
 func remove_last():
 	if len(wall.holds) > 0:
-		wall.holds.remove_at(-1)
+		wall.holds.resize(wall.holds.size()-1)
+		lastHold -= 1
 		queue_redraw()
+		
+func set_hold_size(size: Hold.HOLD_SIZE ):
+	holdSize = size
 
 func get_wall() -> Wall:
 	return wall
