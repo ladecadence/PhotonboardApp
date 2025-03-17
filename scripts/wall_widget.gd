@@ -5,19 +5,25 @@ extends Panel
 
 enum WALL_MODE {CREATE, EDIT, SHOW}
 
+const ZOOM_FACTOR = 0.1
+
 var mode: WALL_MODE = WALL_MODE.CREATE
 var image: Texture2D = null
+var widget_size: Vector2 = Vector2(0, 0)
 var zoom: float = 1.0
-var offset: Vector2 = Vector2(0,0)
-var origin: Vector2 = Vector2(0,0)
+var offset: Vector2 = Vector2(0, 0)
+var origin: Vector2 = Vector2(0, 0)
 var imageSize: Vector2
 var lastTouchedCords: Vector2
 var lastHold: int = 0
 var wall: Wall
 
+func _ready() -> void:
+	widget_size = get_parent().get_global_rect().size
+	print("Widget size: ", widget_size)
+
 # offset from where the widget is drawn on the screen
 func setOffset(o: Vector2):
-	print("Offset: ", o)
 	offset = o
 
 func loadData(w: Wall):
@@ -34,6 +40,7 @@ func _draw() -> void:
 	if wall.holds != null:
 		for h in wall.holds:
 			# draw the outline and the circle
+			# we don't need the offset, cause we draw relative to the widget
 			draw_circle(Vector2(h.x, h.y)+origin, h.size, Hold.holdColors[h.type], false, 5, true)
 			# get the size of the string we are going to draw so we can center it
 			var font_size = default_font.get_string_size(str(h.id),HORIZONTAL_ALIGNMENT_CENTER, -1, 20)
@@ -47,28 +54,35 @@ func _input(event):
 		if event.is_pressed():
 			# zoom in
 			if event.button_index == MOUSE_BUTTON_WHEEL_UP:
-				zoom=zoom+0.1
+				zoom=zoom+ZOOM_FACTOR
 				if zoom > 2:
 					zoom = 2
 				else: 
 					# move origin to zoom over cursor TODO fix this
-					var mouseinimagex = (event.position.x/zoom)-origin.x
-					var mouseinimagey = (event.position.y/zoom)-origin.y
-					origin.x -= mouseinimagex * 0.1
-					origin.y -= mouseinimagey * 0.1
+					#var mouseinimagex = (event.position.x/zoom)-origin.x
+					#var mouseinimagey = (event.position.y/zoom)-origin.y
+					#origin.x -= mouseinimagex * ZOOM_FACTOR
+					#origin.y -= mouseinimagey * ZOOM_FACTOR
+					var mouseinimage = (event.position/zoom)-origin
+					origin -= mouseinimage * ZOOM_FACTOR
 					queue_redraw()
+				print("Zoom: ", zoom)
+				
 			# zoom out
 			if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
-				zoom=zoom-0.1
+				zoom=zoom-ZOOM_FACTOR
 				if zoom < 1:
 					zoom = 1
 				else: 
 					# move origin to zoom over cursor TODO fix this
-					var mouseinimagex = (event.position.x/zoom)-origin.x
-					var mouseinimagey = (event.position.y/zoom)-origin.y
-					origin.x += mouseinimagex * 0.1
-					origin.y += mouseinimagey * 0.1
+					var mouseinimage = (event.position/zoom)-origin
+					#var mouseinimagex = (event.position.x/zoom)-origin.x
+					#var mouseinimagey = (event.position.y/zoom)-origin.y
+					#origin.x += mouseinimagex * ZOOM_FACTOR
+					#origin.y += mouseinimagey * ZOOM_FACTOR
+					origin += mouseinimage * ZOOM_FACTOR
 					queue_redraw()
+				print("Zoom: ", zoom)
 			# TEST, TODO: remove
 			if event.button_index == MOUSE_BUTTON_MIDDLE:
 				print(wall.toJson())
@@ -87,16 +101,16 @@ func _input(event):
 				if (event.position.abs() - lastTouchedCords.abs()).length() < 2:
 					# check if we can add a hold, if we are inside the image
 					var mouseinimage = (event.position/zoom)-origin-offset
-					print("Image coordinates", mouseinimage)
 					if mouseinimage.x > 0 and mouseinimage.y > 0 and mouseinimage.x < imageSize.x and mouseinimage.y < imageSize.y:
 						# add the hold, beware of zoom level
 						if mode == WALL_MODE.CREATE:
 							# add new hold
-							print("Cursor position; ", event.position)
-							wall.holds.append(Hold.new(lastHold, wall.id, (event.position.x/zoom)-origin.x-offset.x, (event.position.y/zoom)-origin.y-offset.y, Hold.HOLD_TYPE.DESIGN, Hold.HOLD_SIZE.SMALL))
+							# TODO: This is a fix I don't understand, I calculated this using empirical data and it works, but I don't know
+							# why I need to multiply the Y offset (a constant value) by the inverse of the zoom when zooming 
+							wall.holds.append(Hold.new(lastHold, wall.id, (event.position.x/zoom)-origin.x-offset.x, (event.position.y/zoom)-origin.y-(offset.y*(1/zoom)), Hold.HOLD_TYPE.DESIGN, Hold.HOLD_SIZE.SMALL))
 							lastHold+=1
 						else:
-							# change existing holds
+							# TODO: change existing holds
 							# check if we are inside a hold
 							pass 
 						queue_redraw()
@@ -107,7 +121,6 @@ func _input(event):
 		if event.relative.length() > 2:
 			# TODO constrain drag
 			origin = origin + event.relative
-			print("Origin:", origin)
 			queue_redraw()
 
 func remove_last():
