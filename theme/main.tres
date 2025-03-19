@@ -123,7 +123,7 @@ corner_radius_bottom_left = 3
 
 [resource]
 default_font = ExtResource("2_pcump")
-default_font_size = 30
+default_font_size = 40
 Button/colors/font_color = Color(0, 0, 0, 1)
 Button/colors/font_focus_color = Color(0, 0, 0, 1)
 Button/colors/font_hover_color = Color(0.136825, 0.136826, 0.136826, 1)
@@ -143,7 +143,6 @@ CheckBox/styles/normal = SubResource("StyleBoxFlat_x6fvb")
 CheckBox/styles/pressed = SubResource("StyleBoxFlat_owg8w")
 Label/colors/font_color = Color(0, 0, 0, 1)
 Label/colors/font_outline_color = Color(0.877616, 0.877616, 0.877616, 1)
-Label/colors/font_shadow_color = Color(0.160784, 0.160784, 0.160784, 0.756863)
 LineEdit/colors/caret_color = Color(0.165655, 0.165657, 0.165656, 1)
 LineEdit/colors/font_color = Color(0, 0, 0, 1)
 LineEdit/styles/focus = null

@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://s2hj2dh5a18l"]
 
-[ext_resource type="FontFile" uid="uid://ipbtnoe5klya" path="res://fonts/Nexa Light.otf" id="1_d1bhe"]
 [ext_resource type="Script" uid="uid://cancjgfg5v2us" path="res://components/content_wall_new.gd" id="1_sbr81"]
 [ext_resource type="FontFile" uid="uid://lnhy5j8s4phh" path="res://fonts/Nexa Bold.otf" id="2_3akd0"]
+[ext_resource type="Theme" uid="uid://cc6pd6kgs8ds2" path="res://theme/main.tres" id="2_sbr81"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ofblv"]
 bg_color = Color(1, 1, 1, 1)
@@ -75,14 +75,13 @@ alignment = 1
 
 [node name="LabelName" type="Label" parent="MarginContainer/Scroll/Lista/HBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("1_d1bhe")
-theme_override_font_sizes/font_size = 30
+theme = ExtResource("2_sbr81")
 text = "Name"
 
 [node name="LineEditName" type="LineEdit" parent="MarginContainer/Scroll/Lista/HBoxContainer"]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
+theme = ExtResource("2_sbr81")
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/Scroll/Lista"]
 layout_mode = 2
@@ -91,14 +90,13 @@ alignment = 1
 
 [node name="LabelDescription" type="Label" parent="MarginContainer/Scroll/Lista/HBoxContainer2"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("1_d1bhe")
-theme_override_font_sizes/font_size = 30
+theme = ExtResource("2_sbr81")
 text = "Description"
 
 [node name="TextEdit" type="TextEdit" parent="MarginContainer/Scroll/Lista/HBoxContainer2"]
 custom_minimum_size = Vector2(400, 100)
 layout_mode = 2
+theme = ExtResource("2_sbr81")
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/Scroll/Lista"]
 layout_mode = 2
@@ -107,13 +105,12 @@ alignment = 1
 
 [node name="LabelAdjustable" type="Label" parent="MarginContainer/Scroll/Lista/HBoxContainer3"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("1_d1bhe")
-theme_override_font_sizes/font_size = 30
+theme = ExtResource("2_sbr81")
 text = "Adjustable"
 
 [node name="CheckBoxAdjustable" type="CheckBox" parent="MarginContainer/Scroll/Lista/HBoxContainer3"]
 layout_mode = 2
+theme = ExtResource("2_sbr81")
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="MarginContainer/Scroll/Lista"]
 layout_mode = 2
@@ -122,13 +119,12 @@ alignment = 1
 
 [node name="LabelMin" type="Label" parent="MarginContainer/Scroll/Lista/HBoxContainer4"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("1_d1bhe")
-theme_override_font_sizes/font_size = 30
+theme = ExtResource("2_sbr81")
 text = "Min degrees"
 
 [node name="SpinBoxMin" type="SpinBox" parent="MarginContainer/Scroll/Lista/HBoxContainer4"]
 layout_mode = 2
+theme = ExtResource("2_sbr81")
 max_value = 90.0
 step = 0.5
 suffix = "º"
@@ -140,13 +136,12 @@ alignment = 1
 
 [node name="LabelMax" type="Label" parent="MarginContainer/Scroll/Lista/HBoxContainer6"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("1_d1bhe")
-theme_override_font_sizes/font_size = 30
+theme = ExtResource("2_sbr81")
 text = "Max degrees"
 
 [node name="SpinBoxMax" type="SpinBox" parent="MarginContainer/Scroll/Lista/HBoxContainer6"]
 layout_mode = 2
+theme = ExtResource("2_sbr81")
 max_value = 90.0
 step = 0.5
 suffix = "º"
@@ -158,13 +153,12 @@ alignment = 1
 
 [node name="LabelImages" type="Label" parent="MarginContainer/Scroll/Lista/HBoxContainer5"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("1_d1bhe")
-theme_override_font_sizes/font_size = 30
+theme = ExtResource("2_sbr81")
 text = "Image"
 
 [node name="Button" type="Button" parent="MarginContainer/Scroll/Lista/HBoxContainer5"]
 layout_mode = 2
+theme = ExtResource("2_sbr81")
 text = "Select..."
 
 [node name="HBoxContainer7" type="HBoxContainer" parent="MarginContainer/Scroll/Lista"]
