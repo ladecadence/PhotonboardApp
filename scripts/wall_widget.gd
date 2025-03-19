@@ -55,24 +55,30 @@ func _input(event):
 		if event.is_pressed():
 			# zoom in
 			if event.button_index == MOUSE_BUTTON_WHEEL_UP:
+				# get current mouse position inside the image
+				var mouseinimage = (event.position/zoom)-origin
 				zoom=zoom+ZOOM_FACTOR
 				if zoom > 2:
 					zoom = 2
 				else: 
-					# move origin to zoom over cursor TODO fix this
-					var mouseinimage = (event.position/zoom)-origin
-					origin -= mouseinimage * ZOOM_FACTOR
+					# get new mouse position inside the image
+					var mouseinimagenew = (event.position/zoom)-origin
+					# move origin to zoom over cursor
+					origin -= mouseinimage-mouseinimagenew
 					queue_redraw()
 				
 			# zoom out
 			if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+				# get current mouse position inside the image
+				var mouseinimage = (event.position/zoom)-origin
 				zoom=zoom-ZOOM_FACTOR
 				if zoom < 1:
 					zoom = 1
 				else: 
-					# move origin to zoom over cursor TODO fix this
-					var mouseinimage = (event.position/zoom)-origin
-					origin += mouseinimage * ZOOM_FACTOR
+					# get new mouse position inside the image
+					var mouseinimagenew = (event.position/zoom)-origin
+					# move origin to zoom over cursor
+					origin += mouseinimagenew-mouseinimage
 					queue_redraw()
 
 			# TEST, TODO: remove
