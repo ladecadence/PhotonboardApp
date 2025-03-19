@@ -6,6 +6,8 @@ extends Panel
 enum WALL_MODE {CREATE, EDIT, SHOW}
 
 const ZOOM_FACTOR = 0.1
+const ZOOM_MIN = 1
+const ZOOM_MAX = 4
 
 var mode: WALL_MODE = WALL_MODE.CREATE
 var image: Texture2D = null
@@ -19,6 +21,10 @@ var lastTouchedCords: Vector2
 var lastHold: int = 0
 var wall: Wall
 var holdSize: Hold.HOLD_SIZE = Hold.HOLD_SIZE.SMALL
+
+var touch_points: Dictionary = {}
+var start_zoom: float
+var start_dist: float
 
 func _ready() -> void:
 	pass
@@ -50,7 +56,7 @@ func _draw() -> void:
 
 # process events
 func _input(event):
-	# zoom: TODO: Fix zoom centered in pointer position
+	# zoom: 
 	if event is InputEventMouseButton:
 		if event.is_pressed():
 			# zoom in
@@ -58,8 +64,8 @@ func _input(event):
 				# get current mouse position inside the image
 				var mouseinimage = (event.position/zoom)-origin
 				zoom=zoom+ZOOM_FACTOR
-				if zoom > 2:
-					zoom = 2
+				if zoom > ZOOM_MAX:
+					zoom = ZOOM_MAX
 				else: 
 					# get new mouse position inside the image
 					var mouseinimagenew = (event.position/zoom)-origin
@@ -72,8 +78,8 @@ func _input(event):
 				# get current mouse position inside the image
 				var mouseinimage = (event.position/zoom)-origin
 				zoom=zoom-ZOOM_FACTOR
-				if zoom < 1:
-					zoom = 1
+				if zoom < ZOOM_MIN:
+					zoom = ZOOM_MIN
 				else: 
 					# get new mouse position inside the image
 					var mouseinimagenew = (event.position/zoom)-origin
@@ -88,23 +94,30 @@ func _input(event):
 				queue_redraw()
 	# touch
 	if event is InputEventScreenTouch:
+		touch_points[event.index] = event.position
+		# check if we have more tah one touch point (zoom)
+		if touch_points.size() >= 2:
+			var touch_point_positions = touch_points.values()
+			start_dist = touch_point_positions[0].distance_to(touch_point_positions[1])
+			start_zoom = zoom
 		# check if we moved
 		if event.pressed:
 			# save for when the touch is released
 			lastTouchedCords = event.position
 		else: # released
+			touch_points.erase(event.index)
 			# check mode
 			if mode != WALL_MODE.SHOW:
 				# if the vector of movement (drag) is very small, it was just a touch
 				if (event.position.abs() - lastTouchedCords.abs()).length() < 2:
 					# check if we can add a hold, if we are inside the image
-					var mouseinimage = (event.position/zoom)-origin-offset
+					var mouseinimage = (event.position/zoom)-origin-(offset/zoom)
 					if mouseinimage.x > 0 and mouseinimage.y > 0 and mouseinimage.x < imageSize.x and mouseinimage.y < imageSize.y:
 						# add the hold, beware of zoom level
 						widget_size = get_global_rect().size
 						widget_pos = get_global_rect().position
-						print ("Pos: ", widget_pos, " Size: ", widget_size)
-						print(event.position)
+						#print ("Pos: ", widget_pos, " Size: ", widget_size)
+						#print(event.position)
 						# check also that we are inside the widget
 						if event.position.x > widget_pos.x and event.position.y > widget_pos.y and event.position.x < widget_pos.x+widget_size.x and event.position.y < widget_pos.y+widget_size.y:
 							if mode == WALL_MODE.CREATE:
@@ -119,13 +132,45 @@ func _input(event):
 								# check if we are inside a hold
 								pass 
 							queue_redraw()
-			
-	# drag
+					else:
+						print("Out: ", mouseinimage)
+	# drag an zoom with gestures TODO: zoom on mobile
 	if event is InputEventScreenDrag and event.pressure != 0:
-		# check if the drag vector was as least 2 units
-		if event.relative.length() > 2:
-			# TODO constrain drag
-			origin = origin + event.relative
+		touch_points[event.index] = event.position
+		# Handle 1 touch point (drag)
+		if touch_points.size() == 1:
+			# check if the drag vector was as least 2 units
+			if event.relative.length() > 2:
+				# TODO constrain drag
+				origin = origin + (event.relative/zoom)
+				queue_redraw()
+				
+		# Handle 2 touch points
+		elif touch_points.size() == 2:
+			var touch_point_positions = touch_points.values()
+			var current_dist = touch_point_positions[0].distance_to(touch_point_positions[1])
+			var center_point = touch_point_positions[0].lerp(touch_point_positions[1], 0.5); 
+			var mouseinimage = (center_point/zoom)-origin
+
+			if current_dist > start_dist:
+				# zoom in
+				zoom += ZOOM_FACTOR / 2
+				if zoom > ZOOM_MAX:
+					zoom = ZOOM_MAX
+				else: 
+					var mouseinimagenew = (center_point/zoom)-origin
+					origin -= mouseinimage-mouseinimagenew
+				
+			elif current_dist < start_dist:
+				# zoom out
+				zoom -= ZOOM_FACTOR / 2
+				if zoom < ZOOM_MIN:
+					zoom = ZOOM_MIN
+				else: 
+					var mouseinimagenew = (center_point/zoom)-origin
+					origin += mouseinimagenew-mouseinimage
+			
+			start_dist = current_dist
 			queue_redraw()
 
 func remove_last():
@@ -134,8 +179,8 @@ func remove_last():
 		lastHold -= 1
 		queue_redraw()
 		
-func set_hold_size(size: Hold.HOLD_SIZE ):
-	holdSize = size
+func set_hold_size(s: Hold.HOLD_SIZE ):
+	holdSize = s
 
 func get_wall() -> Wall:
 	return wall
