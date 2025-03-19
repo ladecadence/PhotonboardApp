@@ -1,6 +1,9 @@
-[gd_resource type="Theme" load_steps=14 format=3 uid="uid://cc6pd6kgs8ds2"]
+[gd_resource type="Theme" load_steps=17 format=3 uid="uid://cc6pd6kgs8ds2"]
 
 [ext_resource type="FontFile" uid="uid://ipbtnoe5klya" path="res://fonts/Nexa Light.otf" id="1_i0ir6"]
+[ext_resource type="Texture2D" uid="uid://y2w3mx0nonsw" path="res://icons/checkbox-on.png" id="1_klomd"]
+[ext_resource type="Texture2D" uid="uid://bmyosfgvqrhkw" path="res://icons/checkbox-off.png" id="2_lw8ei"]
+[ext_resource type="FontFile" uid="uid://lnhy5j8s4phh" path="res://fonts/Nexa Bold.otf" id="2_pcump"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4uf5d"]
 content_margin_left = 5.0
@@ -119,8 +122,8 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
 [resource]
-default_font = ExtResource("1_i0ir6")
-default_font_size = 20
+default_font = ExtResource("2_pcump")
+default_font_size = 30
 Button/colors/font_color = Color(0, 0, 0, 1)
 Button/colors/font_focus_color = Color(0, 0, 0, 1)
 Button/colors/font_hover_color = Color(0.136825, 0.136826, 0.136826, 1)
@@ -132,7 +135,8 @@ CheckBox/colors/font_color = Color(0, 0, 0, 1)
 CheckBox/colors/font_hover_color = Color(0.144062, 0.144063, 0.144063, 1)
 CheckBox/colors/font_hover_pressed_color = Color(0.0923971, 0.0923971, 0.0923971, 1)
 CheckBox/colors/font_pressed_color = Color(0.0605303, 0.0605303, 0.0605303, 1)
-CheckBox/font_sizes/font_size = 20
+CheckBox/icons/radio_checked = ExtResource("1_klomd")
+CheckBox/icons/radio_unchecked = ExtResource("2_lw8ei")
 CheckBox/styles/focus = SubResource("StyleBoxFlat_tsfsn")
 CheckBox/styles/hover = SubResource("StyleBoxFlat_i7jnv")
 CheckBox/styles/normal = SubResource("StyleBoxFlat_x6fvb")
@@ -142,7 +146,6 @@ Label/colors/font_outline_color = Color(0.877616, 0.877616, 0.877616, 1)
 Label/colors/font_shadow_color = Color(0.160784, 0.160784, 0.160784, 0.756863)
 LineEdit/colors/caret_color = Color(0.165655, 0.165657, 0.165656, 1)
 LineEdit/colors/font_color = Color(0, 0, 0, 1)
-LineEdit/fonts/font = ExtResource("1_i0ir6")
 LineEdit/styles/focus = null
 LineEdit/styles/normal = SubResource("StyleBoxFlat_i0ir6")
 OptionButton/colors/font_color = Color(0, 0, 0, 1)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cgg3p4y0yferl"]
+[gd_scene load_steps=14 format=3 uid="uid://cgg3p4y0yferl"]
 
 [ext_resource type="Script" uid="uid://l6286vihg1au" path="res://components/wall_new_2.gd" id="1_xobvf"]
 [ext_resource type="Texture2D" uid="uid://c0hna8xcjl7wq" path="res://images/title.png" id="2_kjd36"]
@@ -13,10 +13,15 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4hmjt"]
 bg_color = Color(0.994083, 0.881678, 0.657324, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mhdkq"]
-bg_color = Color(0.994083, 0.881678, 0.657324, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ukg4v"]
+bg_color = Color(1, 1, 1, 1)
+border_width_top = 1
+border_color = Color(0, 0, 0, 1)
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_kjd36"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mhdkq"]
+bg_color = Color(0.994083, 0.881678, 0.657324, 1)
 
 [node name="WallNew" type="MarginContainer"]
 anchors_preset = 15
@@ -65,20 +70,20 @@ size_flags_vertical = 3
 [node name="WallWidget" parent="VBoxContainer/MarginContainer" instance=ExtResource("3_ukg4v")]
 layout_mode = 2
 
-[node name="NavbarWall" type="Control" parent="VBoxContainer"]
+[node name="ControlsWall" type="Control" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 
-[node name="Panel" type="Panel" parent="VBoxContainer/NavbarWall"]
+[node name="Panel" type="Panel" parent="VBoxContainer/ControlsWall"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_mhdkq")
+theme_override_styles/panel = SubResource("StyleBoxFlat_ukg4v")
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/NavbarWall/Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/ControlsWall/Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -90,34 +95,35 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/NavbarWall/Panel/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/ControlsWall/Panel/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 50
 alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/NavbarWall/Panel/MarginContainer/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/ControlsWall/Panel/MarginContainer/HBoxContainer"]
 layout_mode = 2
+theme_override_constants/separation = 20
 
-[node name="CheckBoxSmall" type="CheckBox" parent="VBoxContainer/NavbarWall/Panel/MarginContainer/HBoxContainer/HBoxContainer"]
+[node name="CheckBoxSmall" type="CheckBox" parent="VBoxContainer/ControlsWall/Panel/MarginContainer/HBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("4_kjd36")
 button_pressed = true
 button_group = SubResource("ButtonGroup_kjd36")
 text = "Small"
 
-[node name="CheckMedium" type="CheckBox" parent="VBoxContainer/NavbarWall/Panel/MarginContainer/HBoxContainer/HBoxContainer"]
+[node name="CheckMedium" type="CheckBox" parent="VBoxContainer/ControlsWall/Panel/MarginContainer/HBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("4_kjd36")
 button_group = SubResource("ButtonGroup_kjd36")
 text = "Medium"
 
-[node name="CheckBoxBig" type="CheckBox" parent="VBoxContainer/NavbarWall/Panel/MarginContainer/HBoxContainer/HBoxContainer"]
+[node name="CheckBoxBig" type="CheckBox" parent="VBoxContainer/ControlsWall/Panel/MarginContainer/HBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("4_kjd36")
 button_group = SubResource("ButtonGroup_kjd36")
 text = "Big"
 
-[node name="Button" type="Button" parent="VBoxContainer/NavbarWall/Panel/MarginContainer/HBoxContainer"]
+[node name="Button" type="Button" parent="VBoxContainer/ControlsWall/Panel/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("4_kjd36")
@@ -185,7 +191,7 @@ icon_alignment = 1
 vertical_icon_alignment = 0
 expand_icon = true
 
-[connection signal="pressed" from="VBoxContainer/NavbarWall/Panel/MarginContainer/HBoxContainer/HBoxContainer/CheckBoxSmall" to="." method="_on_check_box_small_pressed"]
-[connection signal="pressed" from="VBoxContainer/NavbarWall/Panel/MarginContainer/HBoxContainer/HBoxContainer/CheckMedium" to="." method="_on_check_medium_pressed"]
-[connection signal="pressed" from="VBoxContainer/NavbarWall/Panel/MarginContainer/HBoxContainer/HBoxContainer/CheckBoxBig" to="." method="_on_check_box_big_pressed"]
-[connection signal="pressed" from="VBoxContainer/NavbarWall/Panel/MarginContainer/HBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ControlsWall/Panel/MarginContainer/HBoxContainer/HBoxContainer/CheckBoxSmall" to="." method="_on_check_box_small_pressed"]
+[connection signal="pressed" from="VBoxContainer/ControlsWall/Panel/MarginContainer/HBoxContainer/HBoxContainer/CheckMedium" to="." method="_on_check_medium_pressed"]
+[connection signal="pressed" from="VBoxContainer/ControlsWall/Panel/MarginContainer/HBoxContainer/HBoxContainer/CheckBoxBig" to="." method="_on_check_box_big_pressed"]
+[connection signal="pressed" from="VBoxContainer/ControlsWall/Panel/MarginContainer/HBoxContainer/Button" to="." method="_on_button_pressed"]
