@@ -78,7 +78,7 @@ custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 
 [node name="Panel" type="Panel" parent="VBoxContainer/CenterContainer"]
-custom_minimum_size = Vector2(0, 100)
+custom_minimum_size = Vector2(0, 120)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ct7u0")
 
