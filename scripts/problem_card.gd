@@ -2,6 +2,7 @@ extends MarginContainer
 
 #const Problem = preload("res://scripts/Problem.gd")
 var problem: Problem
+var lastTouchedCords: Vector2
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -22,8 +23,13 @@ func load_data(data: Problem):
 	
 
 func _on_panel_events_gui_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		print(event.position)
-		# load problem scene
-		AppManager.load_screen(AppManager.Screen.PROBLEM_VIEW, problem)
-		
+	# use touch instead of mouse event so we can scroll if it's a drag (no distance moved when released)
+	if event is InputEventScreenTouch:
+		if event.pressed:
+			# save for when the touch is released
+			lastTouchedCords = event.position
+		else: # released
+			# if the vector of movement (drag) is very small, it was just a touch
+			# so load the screen
+			if (event.position.abs() - lastTouchedCords.abs()).length() < 2:
+				AppManager.load_screen(AppManager.Screen.PROBLEM_VIEW, problem)

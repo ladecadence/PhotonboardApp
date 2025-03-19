@@ -165,6 +165,7 @@ layout_mode = 2
 [node name="PanelEvents" type="Panel" parent="."]
 z_index = 10
 layout_mode = 2
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_atstd")
 
 [connection signal="gui_input" from="PanelEvents" to="." method="_on_panel_events_gui_input"]
