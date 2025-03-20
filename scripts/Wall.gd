@@ -5,7 +5,7 @@ class_name Wall
 #const Hold = preload("res://scripts/Hold.gd")
 #const Problem = preload("res://scripts/Problem.gd")
 
-var id: int
+var id: String
 var name : String
 var description : String
 var adjustable : bool
@@ -16,7 +16,7 @@ var holds: Array[Hold]
 
 
 func _init(n, d, a, dmin, dmax, i):
-	id = ResourceUID.create_id()
+	id = AppManager.get_uuid_v4()
 	name = n
 	description = d
 	adjustable = a

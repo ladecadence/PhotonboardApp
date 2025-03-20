@@ -4,7 +4,7 @@ class_name Problem
 
 #const Hold = preload("res://scripts/Hold.gd")
 
-var id: int
+var id: String
 var wallid: int
 var name : String
 var description : String
@@ -15,7 +15,7 @@ var holds: Array[Hold] = []
 
 
 func _init(w, n, d, r, g, s):
-	id = ResourceUID.create_id()
+	id = AppManager.get_uuid_v4()
 	wallid = w
 	name = n
 	description = d
