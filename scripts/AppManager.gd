@@ -3,9 +3,9 @@ extends Node
 enum Screen {WALL_LIST, PROBLEM_LIST, CONFIG, WALL_VIEW, PROBLEM_VIEW, WALL_EDIT, WALL_EDIT_HOLDS, PROBLEM_EDIT, TEST_WALLWIDGET}
 
 var last_data
-var screen_scene: String	
+var screen_scene: String
 var current_scene = null
-
+var wall_ip: String = "127.0.0.1"
 
 func _ready() -> void:
 	# Copy wall image to user dir. JUST FOR TESTS. TODO remove this
@@ -14,6 +14,7 @@ func _ready() -> void:
 	var image = img_texture.get_image()
 	image.save_jpg("user://wall01.jpg")
 	
+	load_config()
 	
 	# Initial screen
 	load_screen(Screen.PROBLEM_LIST, null)
@@ -77,3 +78,34 @@ func get_uuid_v4():
 	# clock
 	b[10], b[11], b[12], b[13], b[14], b[15]
   ]
+
+func save_config():
+	var data = {
+		"wall_ip": wall_ip
+	}
+	var config_file = FileAccess.open("user://config.json", FileAccess.WRITE)
+	var json_string = JSON.stringify(data)
+	config_file.store_string(json_string)
+	
+func load_config():
+	if not FileAccess.file_exists("user://config.json"):
+		return # Error! We don't have a config file to load.
+	# open file
+	var config_file = FileAccess.open("user://config.json", FileAccess.READ)
+	# for each line
+	while config_file.get_position() < config_file.get_length():
+		var json_string = config_file.get_line()
+		# Creates the helper class to interact with JSON.
+		var json = JSON.new()
+
+		# Check if there is any error while parsing the JSON string, skip in case of failure.
+		var parse_result = json.parse(json_string)
+		if not parse_result == OK:
+			print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
+			continue
+
+		# Get the data from the JSON object.
+		var node_data = json.data
+		for i in node_data.keys():
+			if i == "wall_ip":
+				wall_ip = node_data[i]
