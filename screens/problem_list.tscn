@@ -191,5 +191,6 @@ vertical_icon_alignment = 0
 expand_icon = true
 
 [connection signal="gui_input" from="VBoxContainer/CenterContainer/Panel/MarginContainer/CenterContainer/PanelAdd" to="VBoxContainer/ContentProblems" method="_on_panel_add_gui_input"]
+[connection signal="pressed" from="VBoxContainer/Navbar/HBoxContainer/ButtonConfig" to="VBoxContainer/ContentProblems" method="_on_button_config_pressed"]
 [connection signal="pressed" from="VBoxContainer/Navbar/HBoxContainer/ButtonWalls" to="VBoxContainer/ContentProblems" method="_on_button_walls_pressed"]
 [connection signal="pressed" from="VBoxContainer/Navbar/HBoxContainer/ButtonProblems" to="VBoxContainer/ContentProblems" method="_on_button_problems_pressed"]

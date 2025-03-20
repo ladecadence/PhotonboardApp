@@ -26,6 +26,8 @@ func load_screen(s: Screen, data):
 func _deferred_load_screen(s: Screen, data):
 	# main screen router
 	match (s):
+		Screen.CONFIG:
+			screen_scene = "res://screens/Config.tscn"
 		Screen.WALL_LIST: 
 			screen_scene = ""
 		Screen.PROBLEM_LIST:
