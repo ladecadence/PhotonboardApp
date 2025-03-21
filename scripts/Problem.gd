@@ -5,7 +5,7 @@ class_name Problem
 #const Hold = preload("res://scripts/Hold.gd")
 
 var id: String
-var wallid: int
+var wallid: String
 var name : String
 var description : String
 var rating : int

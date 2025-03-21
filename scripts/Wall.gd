@@ -65,7 +65,7 @@ func fromJson(s):
 		self.image = data["image"]
 		if data.has("holds"):
 			for h in data["holds"]:
-				var hold = Hold.new(0,0,0,0,0,0)
+				var hold = Hold.new(0,"",0,0,0,0)
 				hold.fromDict(h)
 				self.holds.append(hold)
 		else:
