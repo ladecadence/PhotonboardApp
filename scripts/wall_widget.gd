@@ -1,5 +1,6 @@
 extends Panel
 
+class_name WallWidget
 #const Hold = preload("res://scripts/Hold.gd")
 #const Wall = preload("res://scripts/Wall.gd")
 
@@ -208,6 +209,9 @@ func remove_last():
 		
 func set_hold_size(s: Hold.HOLD_SIZE ):
 	holdSize = s
+
+func change_mode(m: WALL_MODE):
+	mode = m
 
 func get_wall() -> Wall:
 	return wall
