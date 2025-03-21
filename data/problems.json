@@ -1,7 +1,7 @@
 [
 	{
 		"id": 0,
-		"wallid": 0,
+		"wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
 		"name": "La muerte",
 		"description": "Bloque que flipas de duro",
 		"rating": 5,
@@ -10,7 +10,7 @@
 	},
 	{
 		"id": 1,
-		"wallid": 0,
+		"wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
 		"name": "La vida",
 		"description": "Te llena de alegría",
 		"rating": 3,
@@ -19,7 +19,7 @@
 	},
 	{
 		"id": 2,
-		"wallid": 0,
+		"wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
 		"name": "Endika txistulari",
 		"description": "El clásico de los clásicos",
 		"rating": 4,
@@ -28,7 +28,7 @@
 	},
 	{
 		"id": 3,
-		"wallid": 0,
+		"wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
 		"name": "Sin poleas mejor",
 		"description": "Vas al 100%",
 		"rating": 2,
@@ -37,7 +37,7 @@
 	},
 	{
 		"id": 4,
-		"wallid": 0,
+		"wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
 		"name": "Paseos a caballo",
 		"description": "Al lado de la autopista",
 		"rating": 5,
@@ -46,7 +46,7 @@
 	},
 	{
 		"id": 5,
-		"wallid": 0,
+		"wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
 		"name": "Paseos a caballo",
 		"description": "Al lado de la autopista",
 		"rating": 5,
@@ -55,7 +55,7 @@
 	},
 	{
 		"id": 6,
-		"wallid": 0,
+		"wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
 		"name": "Paseos a caballo",
 		"description": "Al lado de la autopista",
 		"rating": 5,
@@ -64,7 +64,7 @@
 	},
 	{
 		"id": 7,
-		"wallid": 0,
+		"wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
 		"name": "Paseos a caballo",
 		"description": "Al lado de la autopista",
 		"rating": 5,
@@ -73,7 +73,7 @@
 	},
 	{
 		"id": 8,
-		"wallid": 0,
+		"wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
 		"name": "Paseos a caballo",
 		"description": "Al lado de la autopista",
 		"rating": 5,
