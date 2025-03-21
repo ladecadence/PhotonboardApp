@@ -9,7 +9,7 @@ const ZOOM_FACTOR = 0.1
 const ZOOM_MIN = 1
 const ZOOM_MAX = 4
 
-var mode: WALL_MODE = WALL_MODE.CREATE
+var mode: WALL_MODE = WALL_MODE.EDIT
 var image: Texture2D = null
 var widget_size: Vector2 = Vector2(0, 0)
 var widget_pos: Vector2 = Vector2(0, 0)
@@ -127,10 +127,37 @@ func _input(event):
 								# I suspect it has to do with the matrix transform of the scene, but well...
 								wall.holds.append(Hold.new(lastHold, wall.id, (event.position.x/zoom)-origin.x-offset.x, (event.position.y/zoom)-origin.y-(offset.y*(1/zoom)), Hold.HOLD_TYPE.DESIGN, holdSize))
 								lastHold+=1
-							else:
+							else: # EDIT_MODE
 								# TODO: change existing holds
 								# check if we are inside a hold
-								pass 
+								var inside = false
+								var hold_index = 0
+								var holds_detected = []
+								for h in wall.holds:
+									if is_inside(h, mouseinimage):
+										inside = true
+										holds_detected.append(h.id)
+								# if we were inside more than one circle
+								if len(holds_detected) > 1:
+									var min_dist = 0.0
+									for i in range(holds_detected.size()):
+										# get distance to center
+										var dist = sqrt(pow(holds_detected[i].x-mouseinimage.x, 2) + pow(holds_detected[i].y-mouseinimage.y, 2))
+										# if we are starting this is the minimum
+										if i == 0:
+											min_dist = dist
+											hold_index = holds_detected[i]
+										if dist < min_dist:
+											min_dist = dist
+											hold_index = holds_detected[i]
+								elif len(holds_detected) == 1:
+									hold_index = holds_detected[0]
+								# so if we are inside
+								if inside:
+									wall.holds[hold_index].type = wall.holds[hold_index].type + 1
+									if wall.holds[hold_index].type > Hold.HOLD_TYPE.TOP:
+										wall.holds[hold_index].type = Hold.HOLD_TYPE.DESIGN
+								
 							queue_redraw()
 					else:
 						print("Out: ", mouseinimage)
@@ -184,3 +211,6 @@ func set_hold_size(s: Hold.HOLD_SIZE ):
 
 func get_wall() -> Wall:
 	return wall
+
+func is_inside(h: Hold, pos: Vector2):
+	return sqrt((pos.x-h.x)*(pos.x-h.x)+(pos.y-h.y)*(pos.y-h.y)) < h.size
