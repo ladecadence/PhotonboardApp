@@ -3,3 +3,4 @@
 /android/
 *.apk
 *.apk.idsig
+addons/*
