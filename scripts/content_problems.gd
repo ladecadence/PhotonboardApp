@@ -18,8 +18,10 @@ func _ready() -> void:
 	
 	for p in jsonData:
 		var c = card.instantiate()
-		var problem = Problem.new(p["wallid"], p["name"], p["description"],
-		 p["rating"], p["grade"], p["sends"])
+		#var problem = Problem.new(p["wallid"], p["name"], p["description"],
+		# p["rating"], p["grade"], p["sends"])
+		var problem = Problem.new("", "", "", 0, "", 0)
+		problem.fromJson(JSON.stringify(p))
 		
 		c.load_data(problem)
 		lista.add_child(c)
