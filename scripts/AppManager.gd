@@ -7,12 +7,21 @@ var screen_scene: String
 var current_scene = null
 var wall_ip: String = "127.0.0.1"
 
+# database
+var db : SQLite = null
+const verbosity_level : int = SQLite.VERBOSE
+var db_file := "user://database.sqlite"
+
 func _ready() -> void:
 	# Copy wall image to user dir. JUST FOR TESTS. TODO remove this
-	var img_texture_path := "res://images/wall0001.jpg"
+	var img_texture_path := "res://images/wall0002.jpg"
 	var img_texture := load(img_texture_path)
 	var image = img_texture.get_image()
-	image.save_jpg("user://wall01.jpg")
+	image.save_jpg("user://wall02.jpg")
+	
+	# database
+	if not FileAccess.file_exists(db_file):
+		init_database()
 	
 	load_config()
 	
@@ -111,3 +120,46 @@ func load_config():
 		for i in node_data.keys():
 			if i == "wall_ip":
 				wall_ip = node_data[i]
+
+func send_problem(p: Problem):
+	var endpoint = "http://" + wall_ip + "/load"
+	var data = []
+	for h in p.holds:
+		data.append({"number": h.id, "color:": h.type})
+	print(JSON.stringify(data))
+	
+func init_database():
+	db = SQLite.new()
+	db.path = db_file
+	db.verbosity_level = verbosity_level
+	# Open the database using the db_name found in the path variable
+	db.open_db()
+	
+	# walls
+	var table_walls : Dictionary = Dictionary()
+	table_walls["_id"] = {"data_type":"int", "primary_key": true, "not_null": true}
+	table_walls["id"] = {"data_type":"text", "not_null": true}
+	table_walls["name"] = {"data_type":"text", "not_null": true}
+	table_walls["description"] = {"data_type":"text", "not_null": true}
+	table_walls["adjustable"] = {"data_type":"int", "not_null": true}
+	table_walls["deg_min"] = {"data_type":"real"}
+	table_walls["deg_max"] = {"data_type":"real"}
+	table_walls["image"] = {"data_type":"blob", "not_null": true}
+	table_walls["holds"] = {"data_type":"string", "not_null": true}
+	db.create_table("walls", table_walls)
+	
+	# problems
+	var table_problems : Dictionary = Dictionary()
+	table_problems["_id"] = {"data_type":"int", "primary_key": true, "not_null": true}
+	table_problems["id"] = {"data_type":"text", "not_null": true}
+	table_problems["wallid"] = {"data_type":"text", "not_null": true}
+	table_problems["name"] = {"data_type":"text", "not_null": true}
+	table_problems["description"] = {"data_type":"text", "not_null": true}
+	table_problems["rating"] = {"data_type":"real", "not_null": true}
+	table_problems["grade"] = {"data_type":"text", "not_null": true}
+	table_problems["sends"] = {"data_type":"int", "not_null": true}
+	table_problems["holds"] = {"data_type":"string", "not_null": true}
+	db.create_table("problems", table_problems)
+	
+	# Close the current database
+	db.close_db()
