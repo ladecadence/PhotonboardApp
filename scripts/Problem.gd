@@ -27,7 +27,23 @@ func addHold(h: Hold):
 	holds.append(h)
 	
 func toJson() -> String:
-	return JSON.stringify(self)
+	var data = {}
+	data["id"] = self.id
+	data["wallid"] = self.wallid
+	data["name"] = self.name
+	data["description"] = self.description
+	data["rating"] = self.rating
+	data["grade"] = self.grade
+	data["sends"] = self.sends 
+	
+	# holds
+	var hold_array = []
+	for h in self.holds:
+		hold_array.append(h.toDict())
+		
+	data["holds"] = hold_array
+	
+	return JSON.stringify(data)
 	
 func fromJson(s):
 	var data = JSON.parse_string(s)
@@ -38,5 +54,11 @@ func fromJson(s):
 		self.description = data["description"]
 		self.grade = data["grade"]
 		self.sends = data["sends"]
-		self.holds = data["holds"]
+		if data.has("holds"):
+			for h in data["holds"]:
+				var hold = Hold.new(0,"",0,0,0,0)
+				hold.fromDict(h)
+				self.holds.append(hold)
+		else:
+			self.holds = []
 		
