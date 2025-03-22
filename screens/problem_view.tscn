@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://eyqahvyds7o3"]
+[gd_scene load_steps=13 format=3 uid="uid://eyqahvyds7o3"]
 
 [ext_resource type="Script" uid="uid://d1xme41n1p2wa" path="res://scripts/problem_view.gd" id="1_dmijy"]
 [ext_resource type="Texture2D" uid="uid://c0hna8xcjl7wq" path="res://images/title.png" id="2_t2cw8"]
@@ -10,6 +10,27 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lcpuf"]
 bg_color = Color(0.994083, 0.881678, 0.657324, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dmijy"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t2cw8"]
+bg_color = Color(0.994083, 0.881678, 0.657324, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color(0.295867, 0.295866, 0.295866, 0.6)
+shadow_size = 10
+shadow_offset = Vector2(2, 2)
+
+[sub_resource type="LabelSettings" id="LabelSettings_2edo6"]
+font = ExtResource("4_hgdk2")
+font_size = 50
+font_color = Color(0, 0, 0, 1)
+shadow_size = 10
+shadow_color = Color(0, 0, 0, 0.243137)
+shadow_offset = Vector2(3, 3)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qgtbm"]
 bg_color = Color(0.994083, 0.881678, 0.657324, 1)
@@ -53,6 +74,59 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("2_t2cw8")
+
+[node name="CenterContainer" type="MarginContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="VBoxContainer/CenterContainer"]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dmijy")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/CenterContainer/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -40.0
+offset_right = 100.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 8
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/CenterContainer/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="PanelSend" type="Panel" parent="VBoxContainer/CenterContainer/Panel/MarginContainer/CenterContainer"]
+custom_minimum_size = Vector2(100, 80)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_t2cw8")
+
+[node name="Send" type="Label" parent="VBoxContainer/CenterContainer/Panel/MarginContainer/CenterContainer/PanelSend"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -41.0
+offset_top = -25.5
+offset_right = 41.0
+offset_bottom = 25.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_hgdk2")
+theme_override_font_sizes/font_size = 40
+text = "💡"
+label_settings = SubResource("LabelSettings_2edo6")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="ContentProblem" parent="VBoxContainer" instance=ExtResource("3_2edo6")]
 layout_mode = 2
@@ -119,4 +193,5 @@ icon_alignment = 1
 vertical_icon_alignment = 0
 expand_icon = true
 
+[connection signal="gui_input" from="VBoxContainer/CenterContainer/Panel/MarginContainer/CenterContainer/PanelSend" to="." method="_on_panel_send_gui_input"]
 [connection signal="pressed" from="VBoxContainer/Navbar/HBoxContainer/ButtonProblems" to="." method="_on_button_problems_pressed"]
