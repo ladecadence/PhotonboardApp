@@ -6,118 +6,270 @@
   "holds": [
 	{
 	  "id": 0,
-	  "size": 20,
+	  "size": 30,
 	  "type": 0,
 	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
-	  "x": 30,
-	  "y": 53
-	},
-	{
-	  "id": 1,
-	  "size": 20,
-	  "type": 0,
-	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
-	  "x": 141,
-	  "y": 75
-	},
-	{
-	  "id": 2,
-	  "size": 20,
-	  "type": 0,
-	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
-	  "x": 356,
-	  "y": 43
-	},
-	{
-	  "id": 3,
-	  "size": 20,
-	  "type": 0,
-	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
-	  "x": 469,
-	  "y": 41
-	},
-	{
-	  "id": 4,
-	  "size": 20,
-	  "type": 0,
-	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
-	  "x": 567,
-	  "y": 48
-	},
-	{
-	  "id": 5,
-	  "size": 20,
-	  "type": 0,
-	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
-	  "x": 732,
-	  "y": 28
-	},
-	{
-	  "id": 6,
-	  "size": 20,
-	  "type": 0,
-	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
-	  "x": 85,
-	  "y": 111
-	},
-	{
-	  "id": 7,
-	  "size": 20,
-	  "type": 0,
-	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
-	  "x": 256,
-	  "y": 106
-	},
-	{
-	  "id": 8,
-	  "size": 20,
-	  "type": 0,
-	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
-	  "x": 341,
-	  "y": 100
-	},
-	{
-	  "id": 9,
-	  "size": 20,
-	  "type": 0,
-	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
-	  "x": 508,
-	  "y": 91
-	},
-	{
-	  "id": 10,
-	  "size": 20,
-	  "type": 0,
-	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
-	  "x": 587,
+	  "x": 243,
 	  "y": 105
 	},
 	{
-	  "id": 11,
-	  "size": 20,
+	  "id": 1,
+	  "size": 30,
 	  "type": 0,
 	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
-	  "x": 663,
-	  "y": 86
+	  "x": 357,
+	  "y": 96
+	},
+	{
+	  "id": 2,
+	  "size": 30,
+	  "type": 0,
+	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
+	  "x": 462,
+	  "y": 98
+	},
+	{
+	  "id": 3,
+	  "size": 30,
+	  "type": 0,
+	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
+	  "x": 569,
+	  "y": 101
+	},
+	{
+	  "id": 4,
+	  "size": 30,
+	  "type": 0,
+	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
+	  "x": 676,
+	  "y": 101
+	},
+	{
+	  "id": 5,
+	  "size": 30,
+	  "type": 0,
+	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
+	  "x": 246,
+	  "y": 219
+	},
+	{
+	  "id": 6,
+	  "size": 30,
+	  "type": 0,
+	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
+	  "x": 354,
+	  "y": 221
+	},
+	{
+	  "id": 7,
+	  "size": 30,
+	  "type": 0,
+	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
+	  "x": 461,
+	  "y": 225
+	},
+	{
+	  "id": 8,
+	  "size": 30,
+	  "type": 0,
+	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
+	  "x": 569,
+	  "y": 227
+	},
+	{
+	  "id": 9,
+	  "size": 30,
+	  "type": 0,
+	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
+	  "x": 675,
+	  "y": 219
+	},
+	{
+	  "id": 10,
+	  "size": 30,
+	  "type": 0,
+	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
+	  "x": 243,
+	  "y": 342
+	},
+	{
+	  "id": 11,
+	  "size": 30,
+	  "type": 0,
+	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
+	  "x": 353,
+	  "y": 337
 	},
 	{
 	  "id": 12,
-	  "size": 20,
+	  "size": 30,
 	  "type": 0,
 	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
-	  "x": 771,
-	  "y": 86
+	  "x": 463,
+	  "y": 340
 	},
 	{
 	  "id": 13,
-	  "size": 20,
+	  "size": 30,
 	  "type": 0,
 	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
-	  "x": 184,
-	  "y": 195
+	  "x": 569,
+	  "y": 342
+	},
+	{
+	  "id": 14,
+	  "size": 30,
+	  "type": 0,
+	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
+	  "x": 680,
+	  "y": 338
+	},
+	{
+	  "id": 15,
+	  "size": 30,
+	  "type": 0,
+	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
+	  "x": 247,
+	  "y": 454
+	},
+	{
+	  "id": 16,
+	  "size": 30,
+	  "type": 0,
+	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
+	  "x": 356,
+	  "y": 457
+	},
+	{
+	  "id": 17,
+	  "size": 30,
+	  "type": 0,
+	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
+	  "x": 464,
+	  "y": 453
+	},
+	{
+	  "id": 18,
+	  "size": 30,
+	  "type": 0,
+	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
+	  "x": 568,
+	  "y": 456
+	},
+	{
+	  "id": 19,
+	  "size": 30,
+	  "type": 0,
+	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
+	  "x": 678,
+	  "y": 454
+	},
+	{
+	  "id": 20,
+	  "size": 30,
+	  "type": 0,
+	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
+	  "x": 247,
+	  "y": 570
+	},
+	{
+	  "id": 21,
+	  "size": 30,
+	  "type": 0,
+	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
+	  "x": 358,
+	  "y": 571
+	},
+	{
+	  "id": 22,
+	  "size": 30,
+	  "type": 0,
+	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
+	  "x": 466,
+	  "y": 570
+	},
+	{
+	  "id": 23,
+	  "size": 30,
+	  "type": 0,
+	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
+	  "x": 570,
+	  "y": 572
+	},
+	{
+	  "id": 24,
+	  "size": 30,
+	  "type": 0,
+	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
+	  "x": 677,
+	  "y": 571
+	},
+	{
+	  "id": 25,
+	  "size": 40,
+	  "type": 0,
+	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
+	  "x": 251,
+	  "y": 699
+	},
+	{
+	  "id": 26,
+	  "size": 30,
+	  "type": 0,
+	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
+	  "x": 358,
+	  "y": 689
+	},
+	{
+	  "id": 27,
+	  "size": 30,
+	  "type": 0,
+	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
+	  "x": 464,
+	  "y": 689
+	},
+	{
+	  "id": 28,
+	  "size": 30,
+	  "type": 0,
+	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
+	  "x": 569,
+	  "y": 687
+	},
+	{
+	  "id": 29,
+	  "size": 30,
+	  "type": 0,
+	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
+	  "x": 678,
+	  "y": 686
+	},
+	{
+	  "id": 30,
+	  "size": 30,
+	  "type": 0,
+	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
+	  "x": 466,
+	  "y": 784
+	},
+	{
+	  "id": 31,
+	  "size": 30,
+	  "type": 0,
+	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
+	  "x": 572,
+	  "y": 807
+	},
+	{
+	  "id": 32,
+	  "size": 30,
+	  "type": 0,
+	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
+	  "x": 681,
+	  "y": 795
 	}
   ],
   "id": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
-  "image": "user://wall01.jpg",
-  "name": "Rocuadramo"
+  "image": "user://wall02.jpg",
+  "name": "WallTBK"
 }
