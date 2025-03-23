@@ -21,6 +21,8 @@ var imageSize: Vector2
 var lastTouchedCords: Vector2
 var lastHold: int = 0
 var wall: Wall
+var problem: Problem
+var holds: Array[Hold]
 var holdSize: Hold.HOLD_SIZE = Hold.HOLD_SIZE.SMALL
 
 var touch_points: Dictionary = {}
@@ -36,25 +38,36 @@ func setOffset(o: Vector2):
 
 func loadData(w: Wall):
 	self.wall = w
+	holds = w.holds
 	lastHold = len(w.holds) # for counting the holds already added 
 	image = ImageTexture.create_from_image(w.image)
 	imageSize = image.get_size()
 	queue_redraw()
-	
+
+func loadProblem(p: Problem):
+	problem = p
+	holds = p.holds
+	lastHold = len(holds)
+	queue_redraw()
+
 func _draw() -> void:
 	draw_set_transform(Vector2.ZERO, 0.0, Vector2(zoom, zoom))
 	draw_texture(image, origin)
 	var default_font = ThemeDB.fallback_font
-	if wall.holds != null:
-		for h in wall.holds:
+	if holds != null:
+		for h in holds:
 			# draw the outline and the circle
 			# we don't need the offset, cause we draw relative to the widget
-			draw_circle(Vector2(h.x, h.y)+origin, h.size, Hold.holdColors[h.type], false, 5, true)
-			# get the size of the string we are going to draw so we can center it
-			var font_size = default_font.get_string_size(str(h.id),HORIZONTAL_ALIGNMENT_CENTER, -1, 20)
-			# and draw the string of the ID
-			draw_string(default_font, Vector2(h.x-font_size.x/2, h.y+font_size.y/2)+origin, str(h.id), HORIZONTAL_ALIGNMENT_CENTER, -1, 20, Hold.holdColors[h.type])
-
+			if mode == WALL_MODE.CREATE:
+				draw_circle(Vector2(h.x, h.y)+origin, h.size, Hold.holdColors[h.type], false, 5, true)
+				# get the size of the string we are going to draw so we can center it
+				var font_size = default_font.get_string_size(str(h.id),HORIZONTAL_ALIGNMENT_CENTER, -1, 20)
+				# and draw the string of the ID
+				draw_string(default_font, Vector2(h.x-font_size.x/2, h.y+font_size.y/2)+origin, str(h.id), HORIZONTAL_ALIGNMENT_CENTER, -1, 20, Hold.holdColors[h.type])
+			else:
+				# just draw "active" holds
+				if h.type != Hold.HOLD_TYPE.DESIGN:
+					draw_circle(Vector2(h.x, h.y)+origin, h.size, Hold.holdColors[h.type], false, 5, true)
 # process events
 func _input(event):
 	# zoom: 

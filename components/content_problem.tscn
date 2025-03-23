@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://ci2i2gvdbyciv"]
+[gd_scene load_steps=10 format=3 uid="uid://ci2i2gvdbyciv"]
 
 [ext_resource type="Script" uid="uid://condfdcskejiv" path="res://scripts/content_problem.gd" id="1_prbk5"]
 [ext_resource type="FontFile" uid="uid://lnhy5j8s4phh" path="res://fonts/Nexa Bold.otf" id="2_gikkm"]
+[ext_resource type="PackedScene" uid="uid://bx20db8xc8vfv" path="res://components/wall_widget.tscn" id="2_onqak"]
 [ext_resource type="FontFile" uid="uid://ipbtnoe5klya" path="res://fonts/Nexa Light.otf" id="3_xd1c2"]
 [ext_resource type="FontFile" uid="uid://bbgpahlkmp2av" path="res://fonts/NotoEmoji-VariableFont_wght.ttf" id="4_lmpaw"]
 [ext_resource type="Texture2D" uid="uid://c6gxo82flq3h6" path="res://icons/sends.svg" id="5_xd1c2"]
@@ -76,8 +77,9 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="Image" type="TextureRect" parent="Scroll/MarginPrincipal/Lista/MarginImage"]
+[node name="WallWidget" parent="Scroll/MarginPrincipal/Lista/MarginImage" instance=ExtResource("2_onqak")]
 layout_mode = 2
+mouse_force_pass_scroll_events = false
 
 [node name="HBoxContainerNombre" type="HBoxContainer" parent="Scroll/MarginPrincipal/Lista"]
 layout_mode = 2
