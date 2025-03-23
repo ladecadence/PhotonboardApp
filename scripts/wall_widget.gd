@@ -37,7 +37,7 @@ func setOffset(o: Vector2):
 func loadData(w: Wall):
 	self.wall = w
 	lastHold = len(w.holds) # for counting the holds already added 
-	image = ImageTexture.create_from_image(Image.load_from_file(self.wall.image))
+	image = ImageTexture.create_from_image(w.image)
 	imageSize = image.get_size()
 	queue_redraw()
 	

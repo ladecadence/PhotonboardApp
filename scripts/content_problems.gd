@@ -40,7 +40,7 @@ func _on_button_walls_pressed() -> void:
 	var file = FileAccess.open("res://data/wall.json", FileAccess.READ)
 	var json = file.get_as_text()
 	# var wall = Wall.new("Rocuadramo", "Best wall", true, 5, 40, "user://wall01.jpg")
-	var wall = Wall.new("", "", true, 0, 0, "")
+	var wall = Wall.new(null, "", "", true, 0, 0, null, 0, 0)
 	wall.fromJson(json)
 	AppManager.load_screen(AppManager.Screen.TEST_WALLWIDGET, wall)
 
