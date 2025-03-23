@@ -2,10 +2,10 @@ extends Object
 
 class_name Hold
 
-enum HOLD_TYPE {DESIGN, START, FOOT, HOLD, TOP}
+enum HOLD_TYPE {DESIGN = 0, START = 1, TOP = 2, HOLD = 3, FEET = 4}
 enum HOLD_SIZE {SMALL = 20, MEDIUM = 30, BIG = 40}
 
-const holdColors = [Color(Color.CRIMSON, 0.5) , Color(Color.AQUAMARINE, 0.8), Color(Color.CORAL, 0.8), Color(Color.DEEP_SKY_BLUE, 0.8), Color(Color.VIOLET, 0.8)]
+const holdColors = [Color(Color.CRIMSON, 0.5), Color(Color.AQUAMARINE, 0.8), Color(Color.VIOLET, 0.8), Color(Color.DEEP_SKY_BLUE, 0.8), Color(Color.CORAL, 0.8)]
 
 var id: int
 var wallid: String

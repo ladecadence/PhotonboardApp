@@ -78,7 +78,7 @@
 		{
 		  "id": 0,
 		  "size": 30,
-		  "type": 4,
+		  "type": 2,
 		  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
 		  "x": 243,
 		  "y": 105
@@ -110,7 +110,7 @@
 		{
 		  "id": 29,
 		  "size": 30,
-		  "type": 2,
+		  "type": 4,
 		  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
 		  "x": 678,
 		  "y": 686
@@ -118,7 +118,7 @@
 		{
 		  "id": 30,
 		  "size": 30,
-		  "type": 2,
+		  "type": 4,
 		  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
 		  "x": 466,
 		  "y": 784
