@@ -96,3 +96,30 @@ func to_dict():
 	data["sends"] = sends
 	data["holds"] = holds_to_json()
 	return data
+	
+func create_problem_image():
+	const sizex = 200
+	const sizey = 200
+	const holdsize = 20
+	
+	var img = Image.create_empty(200, 200, false, Image.FORMAT_RGB8)
+	img.fill(Color.BLACK)
+	img.fill_rect(Rect2i(1, 1, sizex-2, sizex-2), Color.WHITE)
+	
+	# get wall image size
+	var wall = Database.get_db_wall(wallid)
+	print ("wall: ", wall.id, ", ", wall.img_w, ", ", wall.img_h)
+	var ratiox = wall.img_w / sizex
+	var ratioy = wall.img_h / sizey
+	
+	print("Ratios: ", ratiox, ", ", ratioy)
+	
+	for h in holds:
+		# get hold position
+		var posx = h.x
+		var posy = h.y
+		img.fill_rect(Rect2i((posx/ratiox)-holdsize/2, (posy/ratioy)-holdsize/2, holdsize, holdsize), Hold.holdColors[h.type])
+	
+	img.save_jpg("user://" + id + ".jpg")
+	return img
+		
