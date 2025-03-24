@@ -57,7 +57,49 @@
 	"description": "Te llena de alegría",
 	"rating": 3,
 	"grade": "6c",
-	"sends": 12
+	"sends": 12,
+	"holds": [
+	{
+	  "id": 4,
+	  "size": 30,
+	  "type": 2,
+	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
+	  "x": 676,
+	  "y": 101
+	},
+	{
+	  "id": 11,
+	  "size": 30,
+	  "type": 3,
+	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
+	  "x": 353,
+	  "y": 337
+	},
+	{
+	  "id": 23,
+	  "size": 30,
+	  "type": 3,
+	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
+	  "x": 570,
+	  "y": 572
+	},
+	{
+	  "id": 26,
+	  "size": 30,
+	  "type": 4,
+	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
+	  "x": 358,
+	  "y": 689
+	},
+	{
+	  "id": 32,
+	  "size": 30,
+	  "type": 1,
+	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
+	  "x": 681,
+	  "y": 795
+	}
+  ]
   },
   {
 	"id": "c",
@@ -66,7 +108,57 @@
 	"description": "El clásico de los clásicos",
 	"rating": 4,
 	"grade": "7a",
-	"sends": 23
+	"sends": 23,
+	"holds": [
+	{
+	  "id": 5,
+	  "size": 30,
+	  "type": 2,
+	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
+	  "x": 246,
+	  "y": 219
+	},
+	{
+	  "id": 12,
+	  "size": 30,
+	  "type": 3,
+	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
+	  "x": 463,
+	  "y": 340
+	},
+	{
+	  "id": 14,
+	  "size": 30,
+	  "type": 3,
+	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
+	  "x": 680,
+	  "y": 338
+	},
+	{
+	  "id": 20,
+	  "size": 30,
+	  "type": 4,
+	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
+	  "x": 247,
+	  "y": 570
+	},
+	{
+	  "id": 22,
+	  "size": 30,
+	  "type": 3,
+	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
+	  "x": 466,
+	  "y": 570
+	},
+	{
+	  "id": 30,
+	  "size": 30,
+	  "type": 1,
+	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
+	  "x": 466,
+	  "y": 784
+	}
+  ]
   },
   {
 	"id": "d",
@@ -75,7 +167,57 @@
 	"description": "Vas al 100%",
 	"rating": 2,
 	"grade": "7d-",
-	"sends": 1
+	"sends": 1,
+	"holds": [
+	{
+	  "id": 2,
+	  "size": 30,
+	  "type": 2,
+	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
+	  "x": 462,
+	  "y": 98
+	},
+	{
+	  "id": 8,
+	  "size": 30,
+	  "type": 3,
+	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
+	  "x": 569,
+	  "y": 227
+	},
+	{
+	  "id": 9,
+	  "size": 30,
+	  "type": 3,
+	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
+	  "x": 675,
+	  "y": 219
+	},
+	{
+	  "id": 16,
+	  "size": 30,
+	  "type": 3,
+	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
+	  "x": 356,
+	  "y": 457
+	},
+	{
+	  "id": 24,
+	  "size": 30,
+	  "type": 1,
+	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
+	  "x": 677,
+	  "y": 571
+	},
+	{
+	  "id": 30,
+	  "size": 30,
+	  "type": 4,
+	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
+	  "x": 466,
+	  "y": 784
+	}
+  ]
   },
   {
 	"id": "e",
