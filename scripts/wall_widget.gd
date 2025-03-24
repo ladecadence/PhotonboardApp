@@ -177,7 +177,7 @@ func _input(event):
 								# so if we are inside
 								if inside:
 									wall.holds[hold_index].type = wall.holds[hold_index].type + 1
-									if wall.holds[hold_index].type > Hold.HOLD_TYPE.TOP:
+									if wall.holds[hold_index].type > Hold.HOLD_TYPE.FEET:
 										wall.holds[hold_index].type = Hold.HOLD_TYPE.DESIGN
 							queue_redraw()
 					else:
