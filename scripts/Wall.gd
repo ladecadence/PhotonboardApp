@@ -33,16 +33,16 @@ func _init(_id, n, d, a, dmin, dmax, i, iw, ih):
 	holds = []
 	
 	
-func updateImage(img):
+func update_image(img):
 	image = img
 
-func addHolds(h: Array[Hold]):
+func add_holds(h: Array[Hold]):
 	holds = h
 	
-func addHold(h: Hold):
+func add_hold(h: Hold):
 	holds.append(h)
 
-func toJson() -> String:
+func to_json() -> String:
 	var data = {}
 	data["id"] = self.id
 	data["name"] = self.name
@@ -61,11 +61,11 @@ func toJson() -> String:
 	
 	return JSON.stringify(data)
 	
-func fromJson(s):
+func from_json(s):
 	var data = JSON.parse_string(s)
-	fromDict(data)
+	from_dict(data)
 	
-func fromDict(data):
+func from_dict(data):
 	if data != null:
 		self.id = data["id"]
 		self.name = data["name"]
@@ -95,7 +95,7 @@ func from_db_query(data):
 			var holds_dict = JSON.parse_string(data["holds"])
 			for h in holds_dict:
 				var hold = Hold.new(0,"",0,0,0,0)
-				hold.fromDict(h)
+				hold.from_dict(h)
 				self.holds.append(hold)
 		else:
 			self.holds = []
@@ -103,5 +103,5 @@ func from_db_query(data):
 func holds_to_json():
 	var hold_array = []
 	for h in self.holds:
-		hold_array.append(h.toDict())
+		hold_array.append(h.to_dict())
 	return JSON.stringify(hold_array)

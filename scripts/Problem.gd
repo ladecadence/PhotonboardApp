@@ -23,10 +23,10 @@ func _init(w, n, d, r, g, s):
 	grade = g
 	sends = s
 	
-func addHold(h: Hold):
+func add_hold(h: Hold):
 	holds.append(h)
 	
-func toJson() -> String:
+func to_json() -> String:
 	var data = {}
 	data["id"] = self.id
 	data["wallid"] = self.wallid
@@ -39,13 +39,13 @@ func toJson() -> String:
 	# holds
 	var hold_array = []
 	for h in self.holds:
-		hold_array.append(h.toDict())
+		hold_array.append(h.to_dict())
 		
 	data["holds"] = hold_array
 	
 	return JSON.stringify(data)
 	
-func fromJson(s):
+func from_json(s):
 	var data = JSON.parse_string(s)
 	if data != null:
 		self.id = data["id"]
@@ -57,8 +57,11 @@ func fromJson(s):
 		if data.has("holds"):
 			for h in data["holds"]:
 				var hold = Hold.new(0,"",0,0,0,0)
-				hold.fromDict(h)
+				hold.from_dict(h)
 				self.holds.append(hold)
 		else:
 			self.holds = []
-		
+
+func from_db_query(q):
+	pass
+	

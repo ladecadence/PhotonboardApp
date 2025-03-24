@@ -8,14 +8,14 @@ var current_wall: Wall
 
 func _ready() -> void:
 	$Scroll/MarginPrincipal/Lista/MarginImage/WallWidget.change_mode(WallWidget.WALL_MODE.SHOW)
-	$Scroll/MarginPrincipal/Lista/MarginImage/WallWidget.setOffset($Scroll/MarginPrincipal/Lista/MarginImage/WallWidget.global_position)
+	$Scroll/MarginPrincipal/Lista/MarginImage/WallWidget.change_offset($Scroll/MarginPrincipal/Lista/MarginImage/WallWidget.global_position)
 	
-func loadData(data):
+func load_data(data):
 	current_problem = data
-	current_wall = AppManager.get_db_wall(current_problem.wallid)
+	current_wall = Database.get_db_wall(current_problem.wallid)
 	#$Scroll/MarginPrincipal/Lista/MarginImage/Image.set_texture(ImageTexture.create_from_image(Image.load_from_file("user://wall02.jpg")))
-	$Scroll/MarginPrincipal/Lista/MarginImage/WallWidget.loadData(current_wall)
-	$Scroll/MarginPrincipal/Lista/MarginImage/WallWidget.loadProblem(current_problem)
+	$Scroll/MarginPrincipal/Lista/MarginImage/WallWidget.load_data(current_wall)
+	$Scroll/MarginPrincipal/Lista/MarginImage/WallWidget.load_problem(current_problem)
 	$Scroll/MarginPrincipal/Lista/HBoxContainerNombre/Name.text = data.name
 	$Scroll/MarginPrincipal/Lista/HBoxContainerNombre/MarginContainer/CenterContainer/Panel/Grade.text = data.grade
 	$Scroll/MarginPrincipal/Lista/Description.text = data.description

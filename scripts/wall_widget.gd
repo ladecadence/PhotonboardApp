@@ -33,10 +33,10 @@ func _ready() -> void:
 	pass
 
 # offset from where the widget is drawn on the screen
-func setOffset(o: Vector2):
+func change_offset(o: Vector2):
 	offset = o
 
-func loadData(w: Wall):
+func load_data(w: Wall):
 	self.wall = w
 	holds = w.holds
 	lastHold = len(w.holds) # for counting the holds already added 
@@ -44,7 +44,7 @@ func loadData(w: Wall):
 	imageSize = image.get_size()
 	queue_redraw()
 
-func loadProblem(p: Problem):
+func load_problem(p: Problem):
 	problem = p
 	holds = p.holds
 	lastHold = len(holds)
@@ -111,7 +111,7 @@ func _input(event):
 					for h in wall.holds:
 						if h.type != Hold.HOLD_TYPE.DESIGN:
 							out_p.holds.append(h)
-					print(out_p.toJson())
+					print(out_p.to_json())
 				origin = Vector2.ZERO
 				queue_redraw()
 	# touch
@@ -179,7 +179,6 @@ func _input(event):
 									wall.holds[hold_index].type = wall.holds[hold_index].type + 1
 									if wall.holds[hold_index].type > Hold.HOLD_TYPE.TOP:
 										wall.holds[hold_index].type = Hold.HOLD_TYPE.DESIGN
-								
 							queue_redraw()
 					else:
 						print("Out: ", mouseinimage)
@@ -228,7 +227,7 @@ func remove_last():
 		lastHold -= 1
 		queue_redraw()
 		
-func set_hold_size(s: Hold.HOLD_SIZE ):
+func set_hold_size(s: Hold.HOLD_SIZE):
 	holdSize = s
 
 func change_mode(m: WALL_MODE):

@@ -2,10 +2,10 @@ extends MarginContainer
 
 func _ready() -> void:
 	$VBoxContainer/MarginContainer/WallWidget.change_mode(WallWidget.WALL_MODE.EDIT)
-	$VBoxContainer/MarginContainer/WallWidget.setOffset($VBoxContainer/Header.get_rect().size)
+	$VBoxContainer/MarginContainer/WallWidget.change_offset($VBoxContainer/Header.get_rect().size)
 
-func loadData(data):
-	$VBoxContainer/MarginContainer/WallWidget.loadData(data)
+func load_data(data):
+	$VBoxContainer/MarginContainer/WallWidget.load_data(data)
 
 
 func _on_button_pressed() -> void:

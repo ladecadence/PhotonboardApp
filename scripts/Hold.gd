@@ -22,7 +22,7 @@ func _init(_i, _w, _x, _y, _t, _s):
 	type = _t
 	size = _s
 
-func toDict():
+func to_dict():
 	var data = {}
 	data["id"] = self.id
 	data["wallid"] = self.wallid
@@ -32,7 +32,7 @@ func toDict():
 	data["size"] = self.size
 	return data
 
-func fromDict(data):
+func from_dict(data):
 	self.id = data["id"]
 	self.wallid = data["wallid"]
 	self.x = data["x"]
