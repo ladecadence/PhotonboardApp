@@ -32,8 +32,10 @@ func _init(_id, n, d, a, dmin, dmax, i, iw, ih):
 	img_h = ih
 	holds = []
 	
-func update_image(img):
+func update_image(img: Image):
 	image = img
+	img_w = img.get_width()
+	img_h = img.get_height()
 
 func add_holds(h: Array[Hold]):
 	holds = h
