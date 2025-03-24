@@ -112,14 +112,11 @@ func create_problem_image():
 	var ratiox = wall.img_w / sizex
 	var ratioy = wall.img_h / sizey
 	
-	print("Ratios: ", ratiox, ", ", ratioy)
-	
 	for h in holds:
 		# get hold position
 		var posx = h.x
 		var posy = h.y
 		img.fill_rect(Rect2i((posx/ratiox)-holdsize/2, (posy/ratioy)-holdsize/2, holdsize, holdsize), Hold.holdColors[h.type])
 	
-	img.save_jpg("user://" + id + ".jpg")
 	return img
 		
