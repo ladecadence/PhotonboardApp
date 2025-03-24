@@ -30,3 +30,15 @@ func _on_button_open_image_pressed() -> void:
 
 func _on_file_dialog_file_selected(path: String) -> void:
 	print("Image: ", path)
+
+
+func _on_button_config_pressed() -> void:
+	AppManager.load_screen(AppManager.Screen.CONFIG, null)
+
+
+func _on_button_walls_pressed() -> void:
+	AppManager.load_screen(AppManager.Screen.WALL_LIST, null)
+
+
+func _on_button_problems_pressed() -> void:
+	AppManager.load_screen(AppManager.Screen.PROBLEM_LIST, null)

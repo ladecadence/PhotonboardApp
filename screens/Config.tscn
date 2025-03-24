@@ -255,4 +255,6 @@ vertical_icon_alignment = 0
 expand_icon = true
 
 [connection signal="gui_input" from="VBoxContainer/Control/MarginContainer/Scroll/Lista/HBoxContainer7/Panel2/MarginContainer/CenterContainer/PanelSave" to="." method="_on_panel_save_gui_input"]
+[connection signal="pressed" from="VBoxContainer/Navbar/HBoxContainer/ButtonConfig" to="." method="_on_button_config_pressed"]
+[connection signal="pressed" from="VBoxContainer/Navbar/HBoxContainer/ButtonWalls" to="." method="_on_button_walls_pressed"]
 [connection signal="pressed" from="VBoxContainer/Navbar/HBoxContainer/ButtonProblems" to="." method="_on_button_problems_pressed"]

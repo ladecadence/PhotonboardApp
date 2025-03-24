@@ -195,3 +195,6 @@ expand_icon = true
 [connection signal="pressed" from="VBoxContainer/ControlsWall/Panel/MarginContainer/HBoxContainer/HBoxContainer/CheckMedium" to="." method="_on_check_medium_pressed"]
 [connection signal="pressed" from="VBoxContainer/ControlsWall/Panel/MarginContainer/HBoxContainer/HBoxContainer/CheckBoxBig" to="." method="_on_check_box_big_pressed"]
 [connection signal="pressed" from="VBoxContainer/ControlsWall/Panel/MarginContainer/HBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/NavbarApp/HBoxContainer/ButtonConfig" to="." method="_on_button_config_pressed"]
+[connection signal="pressed" from="VBoxContainer/NavbarApp/HBoxContainer/ButtonWalls" to="." method="_on_button_walls_pressed"]
+[connection signal="pressed" from="VBoxContainer/NavbarApp/HBoxContainer/ButtonProblems" to="." method="_on_button_problems_pressed"]
