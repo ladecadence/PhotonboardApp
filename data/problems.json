@@ -1,133 +1,175 @@
 [
-	{
-		"id": "a",
+  {
+	"id": "a",
+	"wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
+	"name": "La muerte",
+	"description": "Bloque que flipas de duro",
+	"rating": 5,
+	"grade": "7b+",
+	"sends": 4,
+	"holds": [
+	  {
+		"id": 1,
+		"size": 30,
+		"type": 2,
 		"wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
-		"name": "La muerte",
-		"description": "Bloque que flipas de duro",
-		"rating": 5,
-		"grade":  "7b+",
-		"sends": 4,
-	},
-	{
-		"id": "b",
+		"x": 357,
+		"y": 96
+	  },
+	  {
+		"id": 13,
+		"size": 30,
+		"type": 3,
 		"wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
-		"name": "La vida",
-		"description": "Te llena de alegría",
-		"rating": 3,
-		"grade":  "6c",
-		"sends": 12,
-	},
-	{
-		"id": "c",
+		"x": 569,
+		"y": 342
+	  },
+	  {
+		"id": 15,
+		"size": 30,
+		"type": 3,
 		"wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
-		"name": "Endika txistulari",
-		"description": "El clásico de los clásicos",
-		"rating": 4,
-		"grade":  "7a",
-		"sends": 23,
-	},
-	{
-		"id": "d",
+		"x": 247,
+		"y": 454
+	  },
+	  {
+		"id": 24,
+		"size": 30,
+		"type": 1,
 		"wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
-		"name": "Sin poleas mejor",
-		"description": "Vas al 100%",
-		"rating": 2,
-		"grade":  "7d-",
-		"sends": 1,
-	},
-	{
-		"id": "e",
+		"x": 677,
+		"y": 571
+	  },
+	  {
+		"id": 30,
+		"size": 30,
+		"type": 4,
 		"wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
-		"name": "Paseos a caballo",
-		"description": "Al lado de la autopista",
-		"rating": 5,
-		"grade":  "5+",
-		"sends": 0,
-	},
-	{
-		"id": "f",
+		"x": 466,
+		"y": 784
+	  }
+	]
+  },
+  {
+	"id": "b",
+	"wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
+	"name": "La vida",
+	"description": "Te llena de alegría",
+	"rating": 3,
+	"grade": "6c",
+	"sends": 12
+  },
+  {
+	"id": "c",
+	"wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
+	"name": "Endika txistulari",
+	"description": "El clásico de los clásicos",
+	"rating": 4,
+	"grade": "7a",
+	"sends": 23
+  },
+  {
+	"id": "d",
+	"wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
+	"name": "Sin poleas mejor",
+	"description": "Vas al 100%",
+	"rating": 2,
+	"grade": "7d-",
+	"sends": 1
+  },
+  {
+	"id": "e",
+	"wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
+	"name": "Paseos a caballo",
+	"description": "Al lado de la autopista",
+	"rating": 5,
+	"grade": "5+",
+	"sends": 0
+  },
+  {
+	"id": "f",
+	"wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
+	"name": "Paseos a caballo",
+	"description": "Al lado de la autopista",
+	"rating": 5,
+	"grade": "5+",
+	"sends": 0
+  },
+  {
+	"id": "g",
+	"wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
+	"name": "Paseos a caballo",
+	"description": "Al lado de la autopista",
+	"rating": 5,
+	"grade": "5+",
+	"sends": 0
+  },
+  {
+	"id": "h",
+	"wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
+	"name": "Paseos a caballo",
+	"description": "Al lado de la autopista",
+	"rating": 5,
+	"grade": "5+",
+	"sends": 0
+  },
+  {
+	"description": "Testing upload",
+	"grade": "7a",
+	"holds": [
+	  {
+		"id": 0,
+		"size": 30,
+		"type": 2,
 		"wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
-		"name": "Paseos a caballo",
-		"description": "Al lado de la autopista",
-		"rating": 5,
-		"grade":  "5+",
-		"sends": 0,
-	},
-	{
-		"id": "g",
+		"x": 243,
+		"y": 105
+	  },
+	  {
+		"id": 11,
+		"size": 30,
+		"type": 3,
 		"wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
-		"name": "Paseos a caballo",
-		"description": "Al lado de la autopista",
-		"rating": 5,
-		"grade":  "5+",
-		"sends": 0,
-	},
-	{
-		"id": "h",
+		"x": 353,
+		"y": 337
+	  },
+	  {
+		"id": 14,
+		"size": 30,
+		"type": 3,
 		"wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
-		"name": "Paseos a caballo",
-		"description": "Al lado de la autopista",
-		"rating": 5,
-		"grade":  "5+",
-		"sends": 0,
-	},
-	{
-	  "description": "Testing upload",
-	  "grade": "7a",
-	  "holds": [
-		{
-		  "id": 0,
-		  "size": 30,
-		  "type": 2,
-		  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
-		  "x": 243,
-		  "y": 105
-		},
-		{
-		  "id": 11,
-		  "size": 30,
-		  "type": 3,
-		  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
-		  "x": 353,
-		  "y": 337
-		},
-		{
-		  "id": 14,
-		  "size": 30,
-		  "type": 3,
-		  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
-		  "x": 680,
-		  "y": 338
-		},
-		{
-		  "id": 25,
-		  "size": 40,
-		  "type": 1,
-		  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
-		  "x": 251,
-		  "y": 699
-		},
-		{
-		  "id": 29,
-		  "size": 30,
-		  "type": 4,
-		  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
-		  "x": 678,
-		  "y": 686
-		},
-		{
-		  "id": 30,
-		  "size": 30,
-		  "type": 4,
-		  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
-		  "x": 466,
-		  "y": 784
-		}
-	  ],
-	  "id": "9213d786-846a-43bf-9325-60f1ca10a98e",
-	  "name": "Test TBK Problem",
-	  "rating": 5,
-	  "sends": 1,
-	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05"
-	}
+		"x": 680,
+		"y": 338
+	  },
+	  {
+		"id": 25,
+		"size": 40,
+		"type": 1,
+		"wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
+		"x": 251,
+		"y": 699
+	  },
+	  {
+		"id": 29,
+		"size": 30,
+		"type": 4,
+		"wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
+		"x": 678,
+		"y": 686
+	  },
+	  {
+		"id": 30,
+		"size": 30,
+		"type": 4,
+		"wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
+		"x": 466,
+		"y": 784
+	  }
+	],
+	"id": "9213d786-846a-43bf-9325-60f1ca10a98e",
+	"name": "Test TBK Problem",
+	"rating": 5,
+	"sends": 1,
+	"wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05"
+  }
 ]
