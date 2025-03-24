@@ -69,24 +69,12 @@ func create_test_data():
 	var wall = Wall.new(null, "", "", true, 0, 0, null, 0, 0)
 	wall.from_json(json)
 	
-	# create wall data
-	var data = {}
-	data["id"] = wall.id
-	data["name"] = wall.name
-	data["description"] = wall.description
-	data["adjustable"] = "true"
-	data["deg_min"] = wall.deg_min
-	data["deg_max"] = wall.deg_max
 	var img = Image.new()
 	img.load("res://images/wall0002.jpg")
-	print("Img Format: ", img.get_format())
-	data["image"] = img.save_jpg_to_buffer()
-	data["img_w"] = img.get_width()
-	data["img_h"] = img.get_height()
-	data["holds"] = wall.holds_to_json()
+	wall.update_image(img)
 	
 	# insert it 
-	db.insert_row("walls", data)
+	db.insert_row("walls", wall.to_dict())
 	
 	# problems
 	file = FileAccess.open("res://data/problems.json", FileAccess.READ)
@@ -112,6 +100,8 @@ func get_db_wall(id: String) -> Wall:
 	# get wall from id
 	var selected_array = db.select_rows("walls", 'id="'+id+'"', ["*"])
 	var query_result : Array = db.query_result
+	# Close the current database
+	db.close_db()
 	var count : int = 0
 	if query_result.is_empty():
 		return null
@@ -138,6 +128,8 @@ func get_db_walls() -> Array[Wall]:
 	# get wall from id
 	var selected_array = db.select_rows("walls", '', ["*"])
 	var query_result : Array = db.query_result
+	# Close the current database
+	db.close_db()
 	var count : int = 0
 	if query_result.is_empty():
 		return []
@@ -166,6 +158,8 @@ func get_db_problem(id: String) -> Problem:
 	# get wall from id
 	var selected_array = db.select_rows("problems", 'id="'+id+'"', ["*"])
 	var query_result : Array = db.query_result
+	# Close the current database
+	db.close_db()
 	var count : int = 0
 	if query_result.is_empty():
 		return null
@@ -203,3 +197,29 @@ func get_db_problems() -> Array[Problem]:
 			# image in DB is a PackedArray with JPG data, load it
 			problem_array.append(problem)
 		return problem_array
+
+func insert_db_problem(p: Problem):
+	db = SQLite.new()
+	db.path = db_file
+	db.verbosity_level = verbosity_level
+	# Open the database using the db_name found in the path variable
+	db.open_db()
+	
+	# insert it
+	db.insert_row("problems", p.to_dict())
+	
+	# Close the current database
+	db.close_db()
+
+func insert_db_wall(w: Wall):
+	db = SQLite.new()
+	db.path = db_file
+	db.verbosity_level = verbosity_level
+	# Open the database using the db_name found in the path variable
+	db.open_db()
+	
+	# insert it
+	db.insert_row("walls", w.to_dict())
+	
+	# Close the current database
+	db.close_db()
