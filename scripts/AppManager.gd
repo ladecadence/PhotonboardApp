@@ -9,12 +9,6 @@ var wall_ip: String = "127.0.0.1"
 
 
 func _ready() -> void:
-	# Copy wall image to user dir. JUST FOR TESTS. TODO remove this
-	var img_texture_path := "res://images/wall0002.jpg"
-	var img_texture := load(img_texture_path)
-	var image = img_texture.get_image()
-	image.save_jpg("user://wall02.jpg")
-	
 	# database
 	if not Database.database_exists():
 		Database.init_database()
