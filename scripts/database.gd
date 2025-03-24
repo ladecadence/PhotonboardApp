@@ -98,7 +98,7 @@ func get_db_wall(id: String) -> Wall:
 	db.open_db()
 	
 	# get wall from id
-	var selected_array = db.select_rows("walls", 'id="'+id+'"', ["*"])
+	var _selected_array = db.select_rows("walls", 'id="'+id+'"', ["*"])
 	var query_result : Array = db.query_result
 	# Close the current database
 	db.close_db()
@@ -126,7 +126,7 @@ func get_db_walls() -> Array[Wall]:
 	db.open_db()
 	
 	# get wall from id
-	var selected_array = db.select_rows("walls", '', ["*"])
+	var _selected_array = db.select_rows("walls", '', ["*"])
 	var query_result : Array = db.query_result
 	# Close the current database
 	db.close_db()
@@ -144,7 +144,7 @@ func get_db_walls() -> Array[Wall]:
 			# image in DB is a PackedArray with JPG data, load it
 			var img = Image.create(wall.img_w, wall.img_h, false, Image.FORMAT_RGB8)
 			img.load_jpg_from_buffer(result["image"])
-			wall.updateImage(img)
+			wall.update_image(img)
 			wall_array.append(wall)
 		return wall_array
 
@@ -156,7 +156,7 @@ func get_db_problem(id: String) -> Problem:
 	db.open_db()
 	
 	# get wall from id
-	var selected_array = db.select_rows("problems", 'id="'+id+'"', ["*"])
+	var _selected_array = db.select_rows("problems", 'id="'+id+'"', ["*"])
 	var query_result : Array = db.query_result
 	# Close the current database
 	db.close_db()
@@ -181,7 +181,7 @@ func get_db_problems() -> Array[Problem]:
 	db.open_db()
 	
 	# get wall from id
-	var selected_array = db.select_rows("problems", '', ["*"])
+	var _selected_array = db.select_rows("problems", '', ["*"])
 	var query_result : Array = db.query_result
 	var count : int = 0
 	if query_result.is_empty():
