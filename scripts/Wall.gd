@@ -32,7 +32,6 @@ func _init(_id, n, d, a, dmin, dmax, i, iw, ih):
 	img_h = ih
 	holds = []
 	
-	
 func update_image(img):
 	image = img
 
@@ -105,3 +104,19 @@ func holds_to_json():
 	for h in self.holds:
 		hold_array.append(h.to_dict())
 	return JSON.stringify(hold_array)
+
+func to_dict():
+	# create wall data
+	var data = {}
+	data["id"] = id
+	data["name"] = name
+	data["description"] = description
+	data["adjustable"] = "true"
+	data["deg_min"] = deg_min
+	data["deg_max"] = deg_max
+	data["image"] = image.save_jpg_to_buffer()
+	data["img_w"] = image.get_width()
+	data["img_h"] = image.get_height()
+	data["holds"] = holds_to_json()
+	
+	return data
