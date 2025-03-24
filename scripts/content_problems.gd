@@ -17,20 +17,6 @@ func _ready() -> void:
 		var c = card.instantiate()
 		c.load_data(p)
 		lista.add_child(c)
-	#var file = FileAccess.open("res://data/problems.json", FileAccess.READ)
-	#var content = file.get_as_text()
-	#var json_data = JSON.parse_string(content)
-	#
-	#for p in json_data:
-		#var c = card.instantiate()
-		##var problem = Problem.new(p["wallid"], p["name"], p["description"],
-		## p["rating"], p["grade"], p["sends"])
-		#var problem = Problem.new("", "", "", 0, "", 0)
-		#problem.from_json(JSON.stringify(p))
-		#
-		#c.load_data(problem)
-		#lista.add_child(c)
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -38,7 +24,6 @@ func _process(_delta: float) -> void:
 
 func _on_button_problems_pressed() -> void:
 	AppManager.load_screen(AppManager.Screen.PROBLEM_LIST, null)
-
 
 func _on_button_walls_pressed() -> void:
 	# TODO: remove after wall widget is ready
