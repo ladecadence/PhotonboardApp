@@ -12,19 +12,24 @@ func _ready() -> void:
 		child.queue_free()
 	
 	# load data
-	var file = FileAccess.open("res://data/problems.json", FileAccess.READ)
-	var content = file.get_as_text()
-	var json_data = JSON.parse_string(content)
-	
-	for p in json_data:
+	var problems = Database.get_db_problems()
+	for p in problems:
 		var c = card.instantiate()
-		#var problem = Problem.new(p["wallid"], p["name"], p["description"],
-		# p["rating"], p["grade"], p["sends"])
-		var problem = Problem.new("", "", "", 0, "", 0)
-		problem.from_json(JSON.stringify(p))
-		
-		c.load_data(problem)
+		c.load_data(p)
 		lista.add_child(c)
+	#var file = FileAccess.open("res://data/problems.json", FileAccess.READ)
+	#var content = file.get_as_text()
+	#var json_data = JSON.parse_string(content)
+	#
+	#for p in json_data:
+		#var c = card.instantiate()
+		##var problem = Problem.new(p["wallid"], p["name"], p["description"],
+		## p["rating"], p["grade"], p["sends"])
+		#var problem = Problem.new("", "", "", 0, "", 0)
+		#problem.from_json(JSON.stringify(p))
+		#
+		#c.load_data(problem)
+		#lista.add_child(c)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

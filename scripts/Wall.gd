@@ -77,7 +77,7 @@ func from_dict(data):
 		if data.has("holds"):
 			for h in data["holds"]:
 				var hold = Hold.new(0,"",0,0,0,0)
-				hold.fromDict(h)
+				hold.from_dict(h)
 				self.holds.append(hold)
 		else:
 			self.holds = []

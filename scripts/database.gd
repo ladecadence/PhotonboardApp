@@ -65,10 +65,11 @@ func create_test_data():
 	
 	var file = FileAccess.open("res://data/wall.json", FileAccess.READ)
 	var json = file.get_as_text()
+	file.close()
 	var wall = Wall.new(null, "", "", true, 0, 0, null, 0, 0)
-	wall.fromJson(json)
+	wall.from_json(json)
 	
-	# create data
+	# create wall data
 	var data = {}
 	data["id"] = wall.id
 	data["name"] = wall.name
@@ -86,6 +87,17 @@ func create_test_data():
 	
 	# insert it 
 	db.insert_row("walls", data)
+	
+	# problems
+	file = FileAccess.open("res://data/problems.json", FileAccess.READ)
+	var content = file.get_as_text()
+	file.close()
+	var json_data = JSON.parse_string(content)
+	for p in json_data:
+		var problem = Problem.new("", "", "", 0, "", 0)
+		problem.from_json(JSON.stringify(p))
+		# insert it 
+		db.insert_row("problems", problem.to_dict())
 	
 	# Close the current database
 	db.close_db()
@@ -166,3 +178,28 @@ func get_db_problem(id: String) -> Problem:
 		problem.from_db_query(result)
 		# image in DB is a PackedArray with JPG data, load it
 		return problem
+
+func get_db_problems() -> Array[Problem]:
+	db = SQLite.new()
+	db.path = db_file
+	db.verbosity_level = verbosity_level
+	# Open the database using the db_name found in the path variable
+	db.open_db()
+	
+	# get wall from id
+	var selected_array = db.select_rows("problems", '', ["*"])
+	var query_result : Array = db.query_result
+	var count : int = 0
+	if query_result.is_empty():
+		return []
+	else:
+		# ok, create problems
+		var problem_array: Array[Problem] = []
+		for result: Dictionary in query_result:
+			count = int(result.get("count", count))
+			var problem = Problem.new("", "", "", 0, "", 0)
+			# fill data
+			problem.from_db_query(result)
+			# image in DB is a PackedArray with JPG data, load it
+			problem_array.append(problem)
+		return problem_array
