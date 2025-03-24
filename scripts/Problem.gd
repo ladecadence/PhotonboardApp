@@ -62,6 +62,37 @@ func from_json(s):
 		else:
 			self.holds = []
 
-func from_db_query(q):
-	pass
+func from_db_query(data):
+	if data != null:
+		self.id = data["id"]
+		self.wallid = data["wallid"]
+		self.name = data["name"]
+		self.description = data["description"]
+		self.grade = data["grade"]
+		self.sends = data["sends"]
+		if data.has("holds"):
+			var holds_dict = JSON.parse_string(data["holds"])
+			for h in holds_dict:
+				var hold = Hold.new(0,"",0,0,0,0)
+				hold.from_dict(h)
+				self.holds.append(hold)
+		else:
+			self.holds = []
 	
+func holds_to_json():
+	var hold_array = []
+	for h in self.holds:
+		hold_array.append(h.to_dict())
+	return JSON.stringify(hold_array)
+	
+func to_dict():
+	var data = {}
+	data["id"] = id
+	data["wallid"] = wallid
+	data["name"] = name
+	data["description"] = description
+	data["rating"] = rating
+	data["grade"] = grade
+	data["sends"] = sends
+	data["holds"] = holds_to_json()
+	return data
