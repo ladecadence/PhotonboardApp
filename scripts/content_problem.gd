@@ -24,3 +24,5 @@ func load_data(data):
 	for i in data.rating:
 		stars += "⭐"
 	$Scroll/MarginPrincipal/Lista/Stars.text = stars
+	
+	current_problem.create_problem_image()

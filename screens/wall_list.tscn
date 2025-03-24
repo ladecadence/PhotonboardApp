@@ -1,20 +1,19 @@
-[gd_scene load_steps=13 format=3 uid="uid://eyqahvyds7o3"]
+[gd_scene load_steps=12 format=3 uid="uid://bg0kn2iw8sisi"]
 
-[ext_resource type="Script" uid="uid://d1xme41n1p2wa" path="res://scripts/problem_view.gd" id="1_dmijy"]
-[ext_resource type="Texture2D" uid="uid://c0hna8xcjl7wq" path="res://images/title.png" id="2_t2cw8"]
-[ext_resource type="PackedScene" uid="uid://ci2i2gvdbyciv" path="res://components/content_problem.tscn" id="3_2edo6"]
-[ext_resource type="FontFile" uid="uid://lnhy5j8s4phh" path="res://fonts/Nexa Bold.otf" id="4_hgdk2"]
-[ext_resource type="Texture2D" uid="uid://d234w55uw8xu1" path="res://icons/config.svg" id="5_tm8gr"]
-[ext_resource type="Texture2D" uid="uid://xjgjr86famnv" path="res://icons/wall.svg" id="6_dlbld"]
-[ext_resource type="Texture2D" uid="uid://cvymwojed6tmb" path="res://icons/problem.svg" id="7_hyfxd"]
+[ext_resource type="Texture2D" uid="uid://c0hna8xcjl7wq" path="res://images/title.png" id="1_sie82"]
+[ext_resource type="FontFile" uid="uid://lnhy5j8s4phh" path="res://fonts/Nexa Bold.otf" id="2_hcxbu"]
+[ext_resource type="PackedScene" uid="uid://1rke7onbbsvc" path="res://components/content_walls.tscn" id="3_dq81l"]
+[ext_resource type="Texture2D" uid="uid://d234w55uw8xu1" path="res://icons/config.svg" id="4_4qcso"]
+[ext_resource type="Texture2D" uid="uid://xjgjr86famnv" path="res://icons/wall.svg" id="5_dvplu"]
+[ext_resource type="Texture2D" uid="uid://cvymwojed6tmb" path="res://icons/problem.svg" id="6_h6uhi"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lcpuf"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e2f2v"]
 bg_color = Color(0.994083, 0.881678, 0.657324, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dmijy"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kb1io"]
 bg_color = Color(1, 1, 1, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t2cw8"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6b2ng"]
 bg_color = Color(0.994083, 0.881678, 0.657324, 1)
 corner_radius_top_left = 20
 corner_radius_top_right = 20
@@ -24,24 +23,23 @@ shadow_color = Color(0.295867, 0.295866, 0.295866, 0.6)
 shadow_size = 10
 shadow_offset = Vector2(2, 2)
 
-[sub_resource type="LabelSettings" id="LabelSettings_2edo6"]
-font = ExtResource("4_hgdk2")
+[sub_resource type="LabelSettings" id="LabelSettings_8w8ya"]
+font = ExtResource("2_hcxbu")
 font_size = 50
 font_color = Color(0, 0, 0, 1)
 shadow_size = 10
 shadow_color = Color(0, 0, 0, 0.243137)
 shadow_offset = Vector2(3, 3)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qgtbm"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f4jju"]
 bg_color = Color(0.994083, 0.881678, 0.657324, 1)
 
-[node name="ProblemView" type="MarginContainer"]
+[node name="WallList" type="MarginContainer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_dmijy")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -57,9 +55,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_lcpuf")
+theme_override_styles/panel = SubResource("StyleBoxFlat_e2f2v")
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/Header/Panel"]
+[node name="Logo" type="TextureRect" parent="VBoxContainer/Header/Panel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -73,7 +71,7 @@ offset_bottom = 124.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.75, 0.75)
-texture = ExtResource("2_t2cw8")
+texture = ExtResource("1_sie82")
 
 [node name="CenterContainer" type="MarginContainer" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 100)
@@ -82,7 +80,7 @@ layout_mode = 2
 [node name="Panel" type="Panel" parent="VBoxContainer/CenterContainer"]
 custom_minimum_size = Vector2(0, 120)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_dmijy")
+theme_override_styles/panel = SubResource("StyleBoxFlat_kb1io")
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/CenterContainer/Panel"]
 layout_mode = 1
@@ -102,12 +100,12 @@ size_flags_horizontal = 8
 [node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/CenterContainer/Panel/MarginContainer"]
 layout_mode = 2
 
-[node name="PanelSend" type="Panel" parent="VBoxContainer/CenterContainer/Panel/MarginContainer/CenterContainer"]
+[node name="PanelAdd" type="Panel" parent="VBoxContainer/CenterContainer/Panel/MarginContainer/CenterContainer"]
 custom_minimum_size = Vector2(100, 80)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_t2cw8")
+theme_override_styles/panel = SubResource("StyleBoxFlat_6b2ng")
 
-[node name="Send" type="Label" parent="VBoxContainer/CenterContainer/Panel/MarginContainer/CenterContainer/PanelSend"]
+[node name="Add" type="Label" parent="VBoxContainer/CenterContainer/Panel/MarginContainer/CenterContainer/PanelAdd"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -121,16 +119,15 @@ offset_bottom = 25.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_hgdk2")
+theme_override_fonts/font = ExtResource("2_hcxbu")
 theme_override_font_sizes/font_size = 40
-text = "💡"
-label_settings = SubResource("LabelSettings_2edo6")
+text = "+"
+label_settings = SubResource("LabelSettings_8w8ya")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ContentProblem" parent="VBoxContainer" instance=ExtResource("3_2edo6")]
+[node name="ContentWalls" parent="VBoxContainer" instance=ExtResource("3_dq81l")]
 layout_mode = 2
-size_flags_vertical = 3
 
 [node name="Navbar" type="Control" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 200)
@@ -143,7 +140,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_qgtbm")
+theme_override_styles/panel = SubResource("StyleBoxFlat_f4jju")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Navbar"]
 layout_mode = 1
@@ -158,10 +155,10 @@ alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_hgdk2")
+theme_override_fonts/font = ExtResource("2_hcxbu")
 theme_override_font_sizes/font_size = 30
 text = "Config"
-icon = ExtResource("5_tm8gr")
+icon = ExtResource("4_4qcso")
 flat = true
 icon_alignment = 1
 vertical_icon_alignment = 0
@@ -171,10 +168,10 @@ expand_icon = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_hgdk2")
+theme_override_fonts/font = ExtResource("2_hcxbu")
 theme_override_font_sizes/font_size = 30
 text = "Walls"
-icon = ExtResource("6_dlbld")
+icon = ExtResource("5_dvplu")
 flat = true
 icon_alignment = 1
 vertical_icon_alignment = 0
@@ -184,16 +181,15 @@ expand_icon = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_hgdk2")
+theme_override_fonts/font = ExtResource("2_hcxbu")
 theme_override_font_sizes/font_size = 30
 text = "Problems"
-icon = ExtResource("7_hyfxd")
+icon = ExtResource("6_h6uhi")
 flat = true
 icon_alignment = 1
 vertical_icon_alignment = 0
 expand_icon = true
 
-[connection signal="gui_input" from="VBoxContainer/CenterContainer/Panel/MarginContainer/CenterContainer/PanelSend" to="." method="_on_panel_send_gui_input"]
-[connection signal="pressed" from="VBoxContainer/Navbar/HBoxContainer/ButtonConfig" to="." method="_on_button_config_pressed"]
-[connection signal="pressed" from="VBoxContainer/Navbar/HBoxContainer/ButtonWalls" to="." method="_on_button_walls_pressed"]
-[connection signal="pressed" from="VBoxContainer/Navbar/HBoxContainer/ButtonProblems" to="." method="_on_button_problems_pressed"]
+[connection signal="pressed" from="VBoxContainer/Navbar/HBoxContainer/ButtonConfig" to="VBoxContainer/ContentWalls" method="_on_button_config_pressed"]
+[connection signal="pressed" from="VBoxContainer/Navbar/HBoxContainer/ButtonWalls" to="VBoxContainer/ContentWalls" method="_on_button_walls_pressed"]
+[connection signal="pressed" from="VBoxContainer/Navbar/HBoxContainer/ButtonProblems" to="VBoxContainer/ContentWalls" method="_on_button_problems_pressed"]

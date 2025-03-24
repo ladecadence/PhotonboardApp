@@ -1,0 +1,140 @@
+[gd_scene load_steps=9 format=3 uid="uid://cj37gsngo2t5c"]
+
+[ext_resource type="Script" uid="uid://bwcapkrb76q7a" path="res://scripts/wall_card.gd" id="1_iyosj"]
+[ext_resource type="Texture2D" uid="uid://pn7xd5um6opg" path="res://images/wall0002.jpg" id="1_qucpf"]
+[ext_resource type="FontFile" uid="uid://lnhy5j8s4phh" path="res://fonts/Nexa Bold.otf" id="2_1u8ex"]
+[ext_resource type="FontFile" uid="uid://ipbtnoe5klya" path="res://fonts/Nexa Light.otf" id="3_5wt3m"]
+[ext_resource type="FontFile" uid="uid://bbgpahlkmp2av" path="res://fonts/NotoEmoji-VariableFont_wght.ttf" id="4_tct22"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_347ym"]
+bg_color = Color(1, 1, 1, 1)
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+shadow_color = Color(0.176471, 0.176471, 0.176471, 0.72549)
+shadow_offset = Vector2(0, 10)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8wvja"]
+bg_color = Color(0.994083, 0.881678, 0.657324, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color(0.295867, 0.295866, 0.295866, 0.6)
+shadow_size = 10
+shadow_offset = Vector2(2, 2)
+
+[sub_resource type="LabelSettings" id="LabelSettings_baekc"]
+font = ExtResource("2_1u8ex")
+font_size = 50
+font_color = Color(0, 0, 0, 1)
+shadow_size = 10
+shadow_color = Color(0, 0, 0, 0.243137)
+shadow_offset = Vector2(3, 3)
+
+[node name="WallCard" type="MarginContainer"]
+custom_minimum_size = Vector2(0, 240)
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 20.0
+grow_horizontal = 2
+size_flags_vertical = 4
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+script = ExtResource("1_iyosj")
+
+[node name="Fondo" type="Panel" parent="."]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_347ym")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Fondo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 50
+
+[node name="MarginContainer" type="MarginContainer" parent="Fondo/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="TextureRect" type="TextureRect" parent="Fondo/HBoxContainer/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("1_qucpf")
+expand_mode = 2
+
+[node name="Descr" type="VBoxContainer" parent="Fondo/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Name" type="Label" parent="Fondo/HBoxContainer/Descr"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_1u8ex")
+theme_override_font_sizes/font_size = 60
+text = "Murete"
+
+[node name="Description" type="Label" parent="Fondo/HBoxContainer/Descr"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_5wt3m")
+theme_override_font_sizes/font_size = 40
+text = "Muro de mi casa"
+
+[node name="Stars" type="Label" parent="Fondo/HBoxContainer/Descr"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_tct22")
+theme_override_font_sizes/font_size = 30
+text = "⭐⭐⭐⭐⭐"
+
+[node name="Data" type="VBoxContainer" parent="Fondo/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Fondo/HBoxContainer/Data"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="CenterContainer" type="CenterContainer" parent="Fondo/HBoxContainer/Data/MarginContainer"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="Fondo/HBoxContainer/Data/MarginContainer/CenterContainer"]
+custom_minimum_size = Vector2(200, 80)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8wvja")
+
+[node name="Degrees" type="Label" parent="Fondo/HBoxContainer/Data/MarginContainer/CenterContainer/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -41.0
+offset_top = -25.5
+offset_right = 41.0
+offset_bottom = 25.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_1u8ex")
+theme_override_font_sizes/font_size = 40
+text = "20º"
+label_settings = SubResource("LabelSettings_baekc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="Fondo/HBoxContainer"]
+layout_mode = 2

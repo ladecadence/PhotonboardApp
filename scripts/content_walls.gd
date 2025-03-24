@@ -1,7 +1,8 @@
 extends Control
 
+
 @onready var lista = $Scroll/Lista
-@onready var card = preload("res://components/problem_card.tscn")
+@onready var card = preload("res://components/wall_card.tscn")
 
 #const Wall = preload("res://scripts/Wall.gd")
 
@@ -12,10 +13,10 @@ func _ready() -> void:
 		child.queue_free()
 	
 	# load data
-	var problems = Database.get_db_problems()
-	for p in problems:
+	var walls = Database.get_db_walls()
+	for w in walls:
 		var c = card.instantiate()
-		c.load_data(p)
+		c.load_data(w)
 		lista.add_child(c)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -27,7 +28,6 @@ func _on_button_problems_pressed() -> void:
 
 func _on_button_walls_pressed() -> void:
 	AppManager.load_screen(AppManager.Screen.WALL_LIST, null)
-
 
 func _on_panel_add_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:

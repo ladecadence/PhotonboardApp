@@ -1,0 +1,44 @@
+[gd_scene load_steps=4 format=3 uid="uid://1rke7onbbsvc"]
+
+[ext_resource type="PackedScene" uid="uid://dhrusiovpcgwn" path="res://components/problem_card.tscn" id="1_ca5mu"]
+[ext_resource type="Script" uid="uid://d274u244a533f" path="res://scripts/content_walls.gd" id="1_nl7ip"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nl7ip"]
+bg_color = Color(1, 1, 1, 1)
+
+[node name="ContentWalls" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_nl7ip")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_nl7ip")
+
+[node name="Scroll" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Lista" type="VBoxContainer" parent="Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+
+[node name="ProblemCard" parent="Scroll/Lista" instance=ExtResource("1_ca5mu")]
+layout_mode = 2

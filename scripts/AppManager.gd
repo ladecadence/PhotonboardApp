@@ -24,7 +24,7 @@ func _ready() -> void:
 	load_config()
 	
 	# Initial screen
-	load_screen(Screen.PROBLEM_LIST, null)
+	load_screen(Screen.WALL_LIST, null)
 
 func load_screen(s: Screen, data):
 	# calls the load function AFTER the current one finishes any running code
@@ -36,7 +36,7 @@ func _deferred_load_screen(s: Screen, data):
 		Screen.CONFIG:
 			screen_scene = "res://screens/Config.tscn"
 		Screen.WALL_LIST: 
-			screen_scene = ""
+			screen_scene = "res://screens/wall_list.tscn"
 		Screen.PROBLEM_LIST:
 			screen_scene = "res://screens/problem_list.tscn"
 		Screen.PROBLEM_VIEW:
