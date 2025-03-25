@@ -104,7 +104,7 @@ func _input(event):
 			# TEST, TODO: remove
 			if event.button_index == MOUSE_BUTTON_MIDDLE:
 				if mode == WALL_MODE.CREATE:
-					print(wall.toJson())
+					print(wall.to_json())
 				elif mode == WALL_MODE.EDIT:
 					# just print "active" holds
 					var out_p = Problem.new("1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05", "Test TBK Problem", "Testing upload", 5, "7a", 1)
