@@ -8,47 +8,47 @@
 	"grade": "7b+",
 	"sends": 4,
 	"holds": [
-	  {
-		"id": 1,
-		"size": 30,
-		"type": 2,
-		"wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
-		"x": 357,
-		"y": 96
-	  },
-	  {
-		"id": 13,
-		"size": 30,
-		"type": 3,
-		"wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
-		"x": 569,
-		"y": 342
-	  },
-	  {
-		"id": 15,
-		"size": 30,
-		"type": 3,
-		"wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
-		"x": 247,
-		"y": 454
-	  },
-	  {
-		"id": 24,
-		"size": 30,
-		"type": 1,
-		"wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
-		"x": 677,
-		"y": 571
-	  },
-	  {
-		"id": 30,
-		"size": 30,
-		"type": 4,
-		"wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
-		"x": 466,
-		"y": 784
-	  }
-	]
+	{
+	  "id": 0,
+	  "size": 30,
+	  "type": 2,
+	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
+	  "x": 257,
+	  "y": 109
+	},
+	{
+	  "id": 5,
+	  "size": 30,
+	  "type": 3,
+	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
+	  "x": 696,
+	  "y": 208
+	},
+	{
+	  "id": 12,
+	  "size": 30,
+	  "type": 3,
+	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
+	  "x": 481,
+	  "y": 361
+	},
+	{
+	  "id": 29,
+	  "size": 40,
+	  "type": 1,
+	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
+	  "x": 263,
+	  "y": 714
+	},
+	{
+	  "id": 35,
+	  "size": 30,
+	  "type": 4,
+	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
+	  "x": 689,
+	  "y": 936
+	}
+  ]
   },
   {
 	"id": "b",

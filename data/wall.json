@@ -2,274 +2,329 @@
   "adjustable": true,
   "deg_max": 40,
   "deg_min": 5,
-  "description": "Best wall",
+  "description": "Best test wall",
   "holds": [
 	{
 	  "id": 0,
 	  "size": 30,
 	  "type": 0,
 	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
-	  "x": 243,
-	  "y": 105
+	  "x": 257,
+	  "y": 109
 	},
 	{
 	  "id": 1,
 	  "size": 30,
 	  "type": 0,
 	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
-	  "x": 357,
-	  "y": 96
+	  "x": 368,
+	  "y": 94
 	},
 	{
 	  "id": 2,
 	  "size": 30,
 	  "type": 0,
 	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
-	  "x": 462,
-	  "y": 98
+	  "x": 474,
+	  "y": 96
 	},
 	{
 	  "id": 3,
 	  "size": 30,
 	  "type": 0,
 	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
-	  "x": 569,
-	  "y": 101
+	  "x": 586,
+	  "y": 99
 	},
 	{
 	  "id": 4,
 	  "size": 30,
 	  "type": 0,
 	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
-	  "x": 676,
-	  "y": 101
+	  "x": 698,
+	  "y": 98
 	},
 	{
 	  "id": 5,
 	  "size": 30,
 	  "type": 0,
 	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
-	  "x": 246,
-	  "y": 219
+	  "x": 696,
+	  "y": 208
 	},
 	{
 	  "id": 6,
 	  "size": 30,
 	  "type": 0,
 	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
-	  "x": 354,
-	  "y": 221
+	  "x": 580,
+	  "y": 233
 	},
 	{
 	  "id": 7,
 	  "size": 30,
 	  "type": 0,
 	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
-	  "x": 461,
-	  "y": 225
+	  "x": 475,
+	  "y": 230
 	},
 	{
 	  "id": 8,
 	  "size": 30,
 	  "type": 0,
 	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
-	  "x": 569,
-	  "y": 227
+	  "x": 361,
+	  "y": 225
 	},
 	{
 	  "id": 9,
 	  "size": 30,
 	  "type": 0,
 	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
-	  "x": 675,
-	  "y": 219
+	  "x": 251,
+	  "y": 221
 	},
 	{
 	  "id": 10,
 	  "size": 30,
 	  "type": 0,
 	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
-	  "x": 243,
-	  "y": 342
+	  "x": 247,
+	  "y": 352
 	},
 	{
 	  "id": 11,
 	  "size": 30,
 	  "type": 0,
 	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
-	  "x": 353,
-	  "y": 337
+	  "x": 364,
+	  "y": 345
 	},
 	{
 	  "id": 12,
 	  "size": 30,
 	  "type": 0,
 	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
-	  "x": 463,
-	  "y": 340
+	  "x": 481,
+	  "y": 361
 	},
 	{
 	  "id": 13,
 	  "size": 30,
 	  "type": 0,
 	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
-	  "x": 569,
-	  "y": 342
+	  "x": 586,
+	  "y": 351
 	},
 	{
 	  "id": 14,
 	  "size": 30,
 	  "type": 0,
 	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
-	  "x": 680,
-	  "y": 338
+	  "x": 704,
+	  "y": 357
 	},
 	{
 	  "id": 15,
 	  "size": 30,
 	  "type": 0,
 	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
-	  "x": 247,
-	  "y": 454
+	  "x": 698,
+	  "y": 486
 	},
 	{
 	  "id": 16,
 	  "size": 30,
 	  "type": 0,
 	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
-	  "x": 356,
-	  "y": 457
+	  "x": 585,
+	  "y": 466
 	},
 	{
 	  "id": 17,
 	  "size": 30,
 	  "type": 0,
 	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
-	  "x": 464,
-	  "y": 453
+	  "x": 473,
+	  "y": 468
 	},
 	{
 	  "id": 18,
 	  "size": 30,
 	  "type": 0,
 	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
-	  "x": 568,
-	  "y": 456
+	  "x": 372,
+	  "y": 471
 	},
 	{
 	  "id": 19,
 	  "size": 30,
 	  "type": 0,
 	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
-	  "x": 678,
-	  "y": 454
+	  "x": 259,
+	  "y": 472
 	},
 	{
 	  "id": 20,
 	  "size": 30,
 	  "type": 0,
 	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
-	  "x": 247,
-	  "y": 570
+	  "x": 262,
+	  "y": 583
 	},
 	{
 	  "id": 21,
 	  "size": 30,
 	  "type": 0,
 	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
-	  "x": 358,
-	  "y": 571
+	  "x": 375,
+	  "y": 593
 	},
 	{
 	  "id": 22,
 	  "size": 30,
 	  "type": 0,
 	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
-	  "x": 466,
-	  "y": 570
+	  "x": 485,
+	  "y": 581
 	},
 	{
 	  "id": 23,
 	  "size": 30,
 	  "type": 0,
 	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
-	  "x": 570,
-	  "y": 572
+	  "x": 593,
+	  "y": 586
 	},
 	{
 	  "id": 24,
 	  "size": 30,
 	  "type": 0,
 	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
-	  "x": 677,
-	  "y": 571
+	  "x": 691,
+	  "y": 584
 	},
 	{
 	  "id": 25,
-	  "size": 40,
+	  "size": 30,
 	  "type": 0,
 	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
-	  "x": 251,
-	  "y": 699
+	  "x": 691,
+	  "y": 701
 	},
 	{
 	  "id": 26,
 	  "size": 30,
 	  "type": 0,
 	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
-	  "x": 358,
-	  "y": 689
+	  "x": 574,
+	  "y": 700
 	},
 	{
 	  "id": 27,
 	  "size": 30,
 	  "type": 0,
 	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
-	  "x": 464,
-	  "y": 689
+	  "x": 474,
+	  "y": 702
 	},
 	{
 	  "id": 28,
 	  "size": 30,
 	  "type": 0,
 	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
-	  "x": 569,
-	  "y": 687
+	  "x": 369,
+	  "y": 699
 	},
 	{
 	  "id": 29,
-	  "size": 30,
+	  "size": 40,
 	  "type": 0,
 	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
-	  "x": 678,
-	  "y": 686
+	  "x": 263,
+	  "y": 714
 	},
 	{
 	  "id": 30,
 	  "size": 30,
 	  "type": 0,
 	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
-	  "x": 466,
-	  "y": 784
+	  "x": 264,
+	  "y": 810
 	},
 	{
 	  "id": 31,
 	  "size": 30,
 	  "type": 0,
 	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
-	  "x": 572,
-	  "y": 807
+	  "x": 368,
+	  "y": 815
 	},
 	{
 	  "id": 32,
 	  "size": 30,
 	  "type": 0,
 	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
-	  "x": 681,
-	  "y": 795
+	  "x": 473,
+	  "y": 804
+	},
+	{
+	  "id": 33,
+	  "size": 30,
+	  "type": 0,
+	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
+	  "x": 585,
+	  "y": 820
+	},
+	{
+	  "id": 34,
+	  "size": 30,
+	  "type": 0,
+	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
+	  "x": 701,
+	  "y": 821
+	},
+	{
+	  "id": 35,
+	  "size": 30,
+	  "type": 0,
+	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
+	  "x": 689,
+	  "y": 936
+	},
+	{
+	  "id": 36,
+	  "size": 30,
+	  "type": 0,
+	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
+	  "x": 580,
+	  "y": 935
+	},
+	{
+	  "id": 37,
+	  "size": 30,
+	  "type": 0,
+	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
+	  "x": 479,
+	  "y": 926
+	},
+	{
+	  "id": 38,
+	  "size": 30,
+	  "type": 0,
+	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
+	  "x": 370,
+	  "y": 926
+	},
+	{
+	  "id": 39,
+	  "size": 30,
+	  "type": 0,
+	  "wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
+	  "x": 264,
+	  "y": 926
 	}
   ],
   "id": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
-  "image": "user://wall02.jpg",
   "name": "WallTBK"
 }
