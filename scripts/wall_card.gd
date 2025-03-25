@@ -14,3 +14,5 @@ func load_data(data: Wall):
 		$Fondo/HBoxContainer/Data/MarginContainer/CenterContainer/Panel/Degrees.text = str(data.deg_min) + "-" + str(data.deg_max) + "º"
 	else:
 		$Fondo/HBoxContainer/Data/MarginContainer/CenterContainer/Panel/Degrees.text = data.deg_min
+	
+	$Fondo/HBoxContainer/MarginContainer/TextureRect.set_texture(ImageTexture.create_from_image(wall.image))
