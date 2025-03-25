@@ -56,7 +56,7 @@ func to_json() -> String:
 	# holds
 	var hold_array = []
 	for h in self.holds:
-		hold_array.append(h.toDict())
+		hold_array.append(h.to_dict())
 		
 	data["holds"] = hold_array
 	
