@@ -115,8 +115,26 @@ func load_config():
 
 func send_problem(p: Problem):
 	var endpoint = "http://" + wall_ip + "/load"
+	print("endpoint: ", endpoint)
 	var data = []
 	for h in p.holds:
-		data.append({"number": h.id, "color:": h.type})
-	print(JSON.stringify(data))
+		data.append({"number": h.id, "color": h.type+1})
+	print(JSON.stringify(data, "", false))
+	var http_request = HTTPRequest.new()
+	http_request.request_completed.connect(self._http_request_completed)
+	add_child(http_request)
+	
+	var headers = ["Content-Type: application/json"]
+	var error = http_request.request(endpoint, headers, HTTPClient.METHOD_POST, JSON.stringify(data, "", false))
+	if error == OK:
+		print("Sent.")
+		print("")
+	
+func _http_request_completed(result, response_code, headers, body):
+	var json = JSON.new()
+	json.parse(body.get_string_from_utf8())
+	var response = json.get_data()
+
+	# Will print the user agent string used by the HTTPRequest node (as recognized by httpbin.org).
+	print(response)
 	
