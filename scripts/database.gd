@@ -58,10 +58,10 @@ func init_database():
 
 func create_test_data():
 	# Copy wall image to user dir. JUST FOR TESTS. TODO remove this
-	var img_texture_path := "res://images/wall0002.jpg"
+	var img_texture_path := "res://images/wall0003.jpg"
 	var img_texture := load(img_texture_path)
 	var image = img_texture.get_image()
-	image.save_jpg("user://wall02.jpg", 1.0)
+	image.save_jpg("user://wall03.jpg", 1.0)
 	
 	db = SQLite.new()
 	db.path = db_file
@@ -75,12 +75,12 @@ func create_test_data():
 	var wall = Wall.new(null, "", "", true, 0, 0, null, 0, 0)
 	wall.from_json(json)
 	
-	print("Image exists? : ", FileAccess.file_exists("user://wall02.jpg"))
-	file = FileAccess.open("user://wall02.jpg", FileAccess.READ)
+	print("Image exists? : ", FileAccess.file_exists("user://wall03.jpg"))
+	file = FileAccess.open("user://wall03.jpg", FileAccess.READ)
 	print("Image size: ", file.get_length())
 	file.close()
 	
-	var img = Image.load_from_file("user://wall02.jpg")
+	var img = Image.load_from_file("user://wall03.jpg")
 	print("inserting wall: ", img.get_width())
 	wall.update_image(img)
 	
