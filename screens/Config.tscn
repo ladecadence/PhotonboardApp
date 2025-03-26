@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://ddnfe8q2l6adh"]
+[gd_scene load_steps=15 format=3 uid="uid://ddnfe8q2l6adh"]
 
 [ext_resource type="Script" uid="uid://c6mkqkqlpd85g" path="res://scripts/config.gd" id="1_7d1r7"]
 [ext_resource type="Texture2D" uid="uid://c0hna8xcjl7wq" path="res://images/title.png" id="2_7d1r7"]
@@ -13,6 +13,8 @@ bg_color = Color(0.994083, 0.881678, 0.657324, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_61yb8"]
 bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_7d1r7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_utxe6"]
 bg_color = Color(1, 1, 1, 1)
@@ -126,6 +128,28 @@ text = "Wall IP"
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 theme = ExtResource("3_7d1r7")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/Control/MarginContainer/Scroll/Lista"]
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="LabelGradeSystem" type="Label" parent="VBoxContainer/Control/MarginContainer/Scroll/Lista/HBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("3_7d1r7")
+text = "Grade system"
+
+[node name="CheckBoxFont" type="CheckBox" parent="VBoxContainer/Control/MarginContainer/Scroll/Lista/HBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("3_7d1r7")
+button_group = SubResource("ButtonGroup_7d1r7")
+text = "Font"
+
+[node name="CheckBoxHueco" type="CheckBox" parent="VBoxContainer/Control/MarginContainer/Scroll/Lista/HBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("3_7d1r7")
+button_group = SubResource("ButtonGroup_7d1r7")
+text = "Hueco (V)"
 
 [node name="HBoxContainer7" type="HBoxContainer" parent="VBoxContainer/Control/MarginContainer/Scroll/Lista"]
 layout_mode = 2
@@ -254,6 +278,8 @@ icon_alignment = 1
 vertical_icon_alignment = 0
 expand_icon = true
 
+[connection signal="pressed" from="VBoxContainer/Control/MarginContainer/Scroll/Lista/HBoxContainer2/CheckBoxFont" to="." method="_on_check_box_font_pressed"]
+[connection signal="pressed" from="VBoxContainer/Control/MarginContainer/Scroll/Lista/HBoxContainer2/CheckBoxHueco" to="." method="_on_check_box_hueco_pressed"]
 [connection signal="gui_input" from="VBoxContainer/Control/MarginContainer/Scroll/Lista/HBoxContainer7/Panel2/MarginContainer/CenterContainer/PanelSave" to="." method="_on_panel_save_gui_input"]
 [connection signal="pressed" from="VBoxContainer/Navbar/HBoxContainer/ButtonConfig" to="." method="_on_button_config_pressed"]
 [connection signal="pressed" from="VBoxContainer/Navbar/HBoxContainer/ButtonWalls" to="." method="_on_button_walls_pressed"]

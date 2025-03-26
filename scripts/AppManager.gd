@@ -6,6 +6,8 @@ var last_data
 var screen_scene: String
 var current_scene = null
 var wall_ip: String = "127.0.0.1"
+var grade_system: Grade.GRADE_SYSTEMS = Grade.GRADE_SYSTEMS.FONT
+var http_request = HTTPRequest.new()
 
 
 func _ready() -> void:
@@ -86,7 +88,8 @@ func get_uuid_v4():
 
 func save_config():
 	var data = {
-		"wall_ip": wall_ip
+		"wall_ip": wall_ip,
+		"grade_system": grade_system
 	}
 	var config_file = FileAccess.open("user://config.json", FileAccess.WRITE)
 	var json_string = JSON.stringify(data)
@@ -114,6 +117,8 @@ func load_config():
 		for i in node_data.keys():
 			if i == "wall_ip":
 				wall_ip = node_data[i]
+			if i == "grade_system":
+				grade_system = node_data[i]
 
 func send_problem(p: Problem):
 	var endpoint = "http://" + wall_ip + "/load"
@@ -122,7 +127,6 @@ func send_problem(p: Problem):
 	for h in p.holds:
 		data.append({"number": h.id, "color": h.type+1})
 	print(JSON.stringify(data, "", false))
-	var http_request = HTTPRequest.new()
 	http_request.request_completed.connect(self._http_request_completed)
 	add_child(http_request)
 	
@@ -139,4 +143,5 @@ func _http_request_completed(result, response_code, headers, body):
 
 	# Will print the user agent string used by the HTTPRequest node (as recognized by httpbin.org).
 	print(response)
+	remove_child(http_request)
 	
