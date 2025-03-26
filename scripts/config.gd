@@ -11,7 +11,7 @@ func _ready() -> void:
 		fontRadio.button_pressed = true
 	else:
 		huecoRadio.button_pressed = true
-		
+
 
 func _on_panel_save_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
