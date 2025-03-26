@@ -35,6 +35,8 @@ func _deferred_load_screen(s: Screen, data):
 			screen_scene = "res://screens/problem_list.tscn"
 		Screen.PROBLEM_VIEW:
 			screen_scene = "res://screens/problem_view.tscn"
+		Screen.PROBLEM_EDIT:
+			screen_scene = "res://screens/problem_new.tscn"
 		Screen.WALL_EDIT:
 			screen_scene = "res://screens/wall_new.tscn"
 		Screen.WALL_EDIT_HOLDS:

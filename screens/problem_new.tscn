@@ -1,0 +1,120 @@
+[gd_scene load_steps=9 format=3 uid="uid://cnnfsgu8elpx4"]
+
+[ext_resource type="Texture2D" uid="uid://c0hna8xcjl7wq" path="res://images/title.png" id="1_4sgew"]
+[ext_resource type="FontFile" uid="uid://lnhy5j8s4phh" path="res://fonts/Nexa Bold.otf" id="2_6cdxo"]
+[ext_resource type="PackedScene" uid="uid://cqosv3jah3jsn" path="res://components/content_problem_new.tscn" id="2_gewav"]
+[ext_resource type="Texture2D" uid="uid://d234w55uw8xu1" path="res://icons/config.svg" id="3_gewav"]
+[ext_resource type="Texture2D" uid="uid://xjgjr86famnv" path="res://icons/wall.svg" id="4_2vrq3"]
+[ext_resource type="Texture2D" uid="uid://cvymwojed6tmb" path="res://icons/problem.svg" id="5_sw420"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3d0al"]
+bg_color = Color(0.994083, 0.881678, 0.657324, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lohg8"]
+bg_color = Color(0.994083, 0.881678, 0.657324, 1)
+
+[node name="ProblemNew" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Header" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="VBoxContainer/Header"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3d0al")
+
+[node name="Logo" type="TextureRect" parent="VBoxContainer/Header/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -383.0
+offset_top = -65.0
+offset_right = 617.0
+offset_bottom = 124.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("1_4sgew")
+
+[node name="ContentProblemNew" parent="VBoxContainer" instance=ExtResource("2_gewav")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Navbar" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="VBoxContainer/Navbar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_lohg8")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Navbar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="ButtonConfig" type="Button" parent="VBoxContainer/Navbar/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_6cdxo")
+theme_override_font_sizes/font_size = 30
+text = "Config"
+icon = ExtResource("3_gewav")
+flat = true
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="ButtonWalls" type="Button" parent="VBoxContainer/Navbar/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_6cdxo")
+theme_override_font_sizes/font_size = 30
+text = "Walls"
+icon = ExtResource("4_2vrq3")
+flat = true
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="ButtonProblems" type="Button" parent="VBoxContainer/Navbar/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_6cdxo")
+theme_override_font_sizes/font_size = 30
+text = "Problems"
+icon = ExtResource("5_sw420")
+flat = true
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true

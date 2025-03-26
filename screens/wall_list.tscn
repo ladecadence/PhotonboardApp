@@ -1,5 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://bg0kn2iw8sisi"]
+[gd_scene load_steps=13 format=3 uid="uid://bg0kn2iw8sisi"]
 
+[ext_resource type="Script" uid="uid://cq488ks6phkx3" path="res://scripts/wall_list.gd" id="1_hcxbu"]
 [ext_resource type="Texture2D" uid="uid://c0hna8xcjl7wq" path="res://images/title.png" id="1_sie82"]
 [ext_resource type="FontFile" uid="uid://lnhy5j8s4phh" path="res://fonts/Nexa Bold.otf" id="2_hcxbu"]
 [ext_resource type="PackedScene" uid="uid://1rke7onbbsvc" path="res://components/content_walls.tscn" id="3_dq81l"]
@@ -40,6 +41,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_hcxbu")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -190,6 +192,7 @@ icon_alignment = 1
 vertical_icon_alignment = 0
 expand_icon = true
 
+[connection signal="gui_input" from="VBoxContainer/CenterContainer/Panel/MarginContainer/CenterContainer/PanelAdd" to="." method="_on_panel_add_gui_input"]
 [connection signal="pressed" from="VBoxContainer/Navbar/HBoxContainer/ButtonConfig" to="VBoxContainer/ContentWalls" method="_on_button_config_pressed"]
 [connection signal="pressed" from="VBoxContainer/Navbar/HBoxContainer/ButtonWalls" to="VBoxContainer/ContentWalls" method="_on_button_walls_pressed"]
 [connection signal="pressed" from="VBoxContainer/Navbar/HBoxContainer/ButtonProblems" to="VBoxContainer/ContentWalls" method="_on_button_problems_pressed"]
