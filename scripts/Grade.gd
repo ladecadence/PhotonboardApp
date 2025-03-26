@@ -2,6 +2,8 @@ extends Node
 
 class_name Grade
 
+enum GRADE_SYSTEMS {FONT, HUECO}
+
 const GRADES_FONT = {
 	1: "3",
 	2: "4-",
