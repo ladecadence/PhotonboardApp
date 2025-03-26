@@ -106,12 +106,7 @@ func _input(event):
 				if mode == WALL_MODE.CREATE:
 					print(wall.to_json())
 				elif mode == WALL_MODE.EDIT:
-					# just print "active" holds
-					var out_p = Problem.new("1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05", "Test TBK Problem", "Testing upload", 5, "7a", 1)
-					for h in wall.holds:
-						if h.type != Hold.HOLD_TYPE.DESIGN:
-							out_p.holds.append(h)
-					print(out_p.to_json())
+					print(problem.to_json())
 				origin = Vector2.ZERO
 				queue_redraw()
 	# touch
