@@ -229,3 +229,6 @@ text = "Continue"
 label_settings = SubResource("LabelSettings_mxhs3")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[connection signal="gui_input" from="MarginContainer/Scroll/Lista/HBoxContainer7/Panel/MarginContainer/CenterContainer/PanelCancel" to="." method="_on_panel_cancel_gui_input"]
+[connection signal="gui_input" from="MarginContainer/Scroll/Lista/HBoxContainer7/Panel2/MarginContainer/CenterContainer/PanelContinue" to="." method="_on_panel_continue_gui_input"]
