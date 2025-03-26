@@ -123,7 +123,7 @@ theme = ExtResource("4_kjd36")
 button_group = SubResource("ButtonGroup_kjd36")
 text = "Big"
 
-[node name="Button" type="Button" parent="VBoxContainer/ControlsWall/Panel/MarginContainer/HBoxContainer"]
+[node name="ButtonUndo" type="Button" parent="VBoxContainer/ControlsWall/Panel/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("4_kjd36")
@@ -194,7 +194,7 @@ expand_icon = true
 [connection signal="pressed" from="VBoxContainer/ControlsWall/Panel/MarginContainer/HBoxContainer/HBoxContainer/CheckBoxSmall" to="." method="_on_check_box_small_pressed"]
 [connection signal="pressed" from="VBoxContainer/ControlsWall/Panel/MarginContainer/HBoxContainer/HBoxContainer/CheckMedium" to="." method="_on_check_medium_pressed"]
 [connection signal="pressed" from="VBoxContainer/ControlsWall/Panel/MarginContainer/HBoxContainer/HBoxContainer/CheckBoxBig" to="." method="_on_check_box_big_pressed"]
-[connection signal="pressed" from="VBoxContainer/ControlsWall/Panel/MarginContainer/HBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ControlsWall/Panel/MarginContainer/HBoxContainer/ButtonUndo" to="." method="_on_button_undo_pressed"]
 [connection signal="pressed" from="VBoxContainer/NavbarApp/HBoxContainer/ButtonConfig" to="." method="_on_button_config_pressed"]
 [connection signal="pressed" from="VBoxContainer/NavbarApp/HBoxContainer/ButtonWalls" to="." method="_on_button_walls_pressed"]
 [connection signal="pressed" from="VBoxContainer/NavbarApp/HBoxContainer/ButtonProblems" to="." method="_on_button_problems_pressed"]

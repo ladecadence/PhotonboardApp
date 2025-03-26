@@ -8,7 +8,7 @@ func load_data(data):
 	$VBoxContainer/MarginContainer/WallWidget.load_data(data)
 
 
-func _on_button_pressed() -> void:
+func _on_button_undo_pressed() -> void:
 	$VBoxContainer/MarginContainer/WallWidget.remove_last()
 
 
