@@ -58,3 +58,21 @@ const GRADES_HUECO = {
 	24: "V16",
 	25: "V17"
 	}
+	
+static func font_to_hueco(g) -> String:
+	if typeof(g) == TYPE_INT:
+		return GRADES_HUECO[g]
+	else:
+		for k in GRADES_FONT:
+			if GRADES_FONT[k] == g:
+				return GRADES_HUECO[k]
+	return ""
+
+static func hueco_to_font(g) -> String:
+	if typeof(g) == TYPE_INT:
+		return GRADES_FONT[g]
+	else:
+		for k in GRADES_HUECO:
+			if GRADES_HUECO[k] == g:
+				return GRADES_FONT[k]
+	return ""

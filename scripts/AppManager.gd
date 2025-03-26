@@ -1,6 +1,6 @@
 extends Node
 
-enum Screen {WALL_LIST, PROBLEM_LIST, CONFIG, WALL_VIEW, PROBLEM_VIEW, WALL_EDIT, WALL_EDIT_HOLDS, PROBLEM_EDIT, TEST_WALLWIDGET}
+enum Screen {WALL_LIST, PROBLEM_LIST, CONFIG, WALL_VIEW, PROBLEM_VIEW, WALL_EDIT, WALL_EDIT_HOLDS, PROBLEM_EDIT, PROBLEM_EDIT_HOLDS, TEST_WALLWIDGET}
 
 var last_data
 var screen_scene: String
@@ -39,6 +39,8 @@ func _deferred_load_screen(s: Screen, data):
 			screen_scene = "res://screens/problem_view.tscn"
 		Screen.PROBLEM_EDIT:
 			screen_scene = "res://screens/problem_new.tscn"
+		Screen.PROBLEM_EDIT_HOLDS:
+			screen_scene = "res://screens/problem_new_2.tscn"	
 		Screen.WALL_EDIT:
 			screen_scene = "res://screens/wall_new.tscn"
 		Screen.WALL_EDIT_HOLDS:

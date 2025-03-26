@@ -18,7 +18,13 @@ func load_data(data: Problem):
 	for i in data.rating:
 		stars += "⭐"
 	$Fondo/HBoxContainer/Descr/Stars.text = stars
-	$Fondo/HBoxContainer/Data/MarginContainer/CenterContainer/Panel/Grade.text = data.grade
+	if data.grade_system == AppManager.grade_system:
+		$Fondo/HBoxContainer/Data/MarginContainer/CenterContainer/Panel/Grade.text = data.grade
+	else:
+		if data.grade_system == Grade.GRADE_SYSTEMS.FONT:
+			$Fondo/HBoxContainer/Data/MarginContainer/CenterContainer/Panel/Grade.text = Grade.font_to_hueco(data.grade)
+		else:
+			$Fondo/HBoxContainer/Data/MarginContainer/CenterContainer/Panel/Grade.text = Grade.hueco_to_font(data.grade)
 	$Fondo/HBoxContainer/Data/Sends/Number.text = str(data.sends)
 	var problem_texture = ImageTexture.create_from_image(problem.create_problem_image())
 	$Fondo/HBoxContainer/MarginContainer/TextureRect.set_texture(problem_texture)
