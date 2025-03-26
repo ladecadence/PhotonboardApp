@@ -106,6 +106,10 @@ func _input(event):
 				if mode == WALL_MODE.CREATE:
 					print(wall.to_json())
 				elif mode == WALL_MODE.EDIT:
+					problem.holds = []
+					for h in holds:
+						if h.type != Hold.HOLD_TYPE.DESIGN:
+							problem.holds.append(h)
 					print(problem.to_json())
 				origin = Vector2.ZERO
 				queue_redraw()
@@ -230,6 +234,13 @@ func change_mode(m: WALL_MODE):
 
 func get_wall() -> Wall:
 	return wall
+
+func get_problem() -> Problem:
+	problem.holds = []
+	for h in holds:
+		if h.type != Hold.HOLD_TYPE.DESIGN:
+			problem.holds.append(h)
+	return problem
 
 func is_inside(h: Hold, pos: Vector2):
 	return sqrt((pos.x-h.x)*(pos.x-h.x)+(pos.y-h.y)*(pos.y-h.y)) < h.size

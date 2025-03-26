@@ -1,0 +1,175 @@
+[gd_scene load_steps=12 format=3 uid="uid://tl87vg12ot4j"]
+
+[ext_resource type="Script" uid="uid://b2q5hcosqsvkl" path="res://scripts/problem_new2.gd" id="1_4btlg"]
+[ext_resource type="Texture2D" uid="uid://c0hna8xcjl7wq" path="res://images/title.png" id="2_d43o6"]
+[ext_resource type="PackedScene" uid="uid://bx20db8xc8vfv" path="res://components/wall_widget.tscn" id="3_spjhp"]
+[ext_resource type="Theme" uid="uid://cc6pd6kgs8ds2" path="res://theme/main.tres" id="4_ikbqg"]
+[ext_resource type="FontFile" uid="uid://lnhy5j8s4phh" path="res://fonts/Nexa Bold.otf" id="6_g206r"]
+[ext_resource type="Texture2D" uid="uid://d234w55uw8xu1" path="res://icons/config.svg" id="7_abusu"]
+[ext_resource type="Texture2D" uid="uid://xjgjr86famnv" path="res://icons/wall.svg" id="8_iwun5"]
+[ext_resource type="Texture2D" uid="uid://cvymwojed6tmb" path="res://icons/problem.svg" id="9_uddcs"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4hmjt"]
+bg_color = Color(0.994083, 0.881678, 0.657324, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ukg4v"]
+bg_color = Color(1, 1, 1, 1)
+border_width_top = 1
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mhdkq"]
+bg_color = Color(0.994083, 0.881678, 0.657324, 1)
+
+[node name="ProblemNew" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4btlg")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Header" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="VBoxContainer/Header"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4hmjt")
+
+[node name="Logo" type="TextureRect" parent="VBoxContainer/Header/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -383.0
+offset_top = -65.0
+offset_right = 617.0
+offset_bottom = 124.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("2_d43o6")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="WallWidget" parent="VBoxContainer/MarginContainer" instance=ExtResource("3_spjhp")]
+layout_mode = 2
+
+[node name="ControlsWall" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="VBoxContainer/ControlsWall"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ukg4v")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/ControlsWall/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/ControlsWall/Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="ButtonCancel" type="Button" parent="VBoxContainer/ControlsWall/Panel/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "Cancel"
+
+[node name="ButtonSave" type="Button" parent="VBoxContainer/ControlsWall/Panel/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("4_ikbqg")
+text = "Save 💾"
+
+[node name="NavbarApp" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="VBoxContainer/NavbarApp"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_mhdkq")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/NavbarApp"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="ButtonConfig" type="Button" parent="VBoxContainer/NavbarApp/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_g206r")
+theme_override_font_sizes/font_size = 30
+text = "Config"
+icon = ExtResource("7_abusu")
+flat = true
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="ButtonWalls" type="Button" parent="VBoxContainer/NavbarApp/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_g206r")
+theme_override_font_sizes/font_size = 30
+text = "Walls"
+icon = ExtResource("8_iwun5")
+flat = true
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="ButtonProblems" type="Button" parent="VBoxContainer/NavbarApp/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_g206r")
+theme_override_font_sizes/font_size = 30
+text = "Problems"
+icon = ExtResource("9_uddcs")
+flat = true
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[connection signal="pressed" from="VBoxContainer/ControlsWall/Panel/MarginContainer/HBoxContainer/ButtonCancel" to="." method="_on_button_cancel_pressed"]
+[connection signal="pressed" from="VBoxContainer/ControlsWall/Panel/MarginContainer/HBoxContainer/ButtonSave" to="." method="_on_button_save_pressed"]
+[connection signal="pressed" from="VBoxContainer/NavbarApp/HBoxContainer/ButtonConfig" to="." method="_on_button_config_pressed"]
+[connection signal="pressed" from="VBoxContainer/NavbarApp/HBoxContainer/ButtonWalls" to="." method="_on_button_walls_pressed"]
+[connection signal="pressed" from="VBoxContainer/NavbarApp/HBoxContainer/ButtonProblems" to="." method="_on_button_problems_pressed"]
