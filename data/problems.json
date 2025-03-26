@@ -6,6 +6,7 @@
 	"description": "Bloque que flipas de duro",
 	"rating": 5,
 	"grade": "7b+",
+	"grade_system": 0,
 	"sends": 4,
 	"holds": [
 	{
@@ -57,6 +58,7 @@
 	"description": "Te llena de alegría",
 	"rating": 3,
 	"grade": "6c",
+	"grade_system": 0,
 	"sends": 12,
 	"holds": [
 	{
@@ -108,6 +110,7 @@
 	"description": "El clásico de los clásicos",
 	"rating": 4,
 	"grade": "7a",
+	"grade_system": 0,
 	"sends": 23,
 	"holds": [
 	{
@@ -167,6 +170,7 @@
 	"description": "Vas al 100%",
 	"rating": 2,
 	"grade": "7d-",
+	"grade_system": 0,
 	"sends": 1,
 	"holds": [
 	{
@@ -226,6 +230,7 @@
 	"description": "Al lado de la autopista",
 	"rating": 5,
 	"grade": "5+",
+	"grade_system": 0,
 	"sends": 0
   },
   {
@@ -235,6 +240,7 @@
 	"description": "Al lado de la autopista",
 	"rating": 5,
 	"grade": "5+",
+	"grade_system": 0,
 	"sends": 0
   },
   {
@@ -244,6 +250,7 @@
 	"description": "Al lado de la autopista",
 	"rating": 5,
 	"grade": "5+",
+	"grade_system": 0,
 	"sends": 0
   },
   {
@@ -253,11 +260,13 @@
 	"description": "Al lado de la autopista",
 	"rating": 5,
 	"grade": "5+",
+	"grade_system": 0,
 	"sends": 0
   },
   {
 	"description": "Testing upload",
-	"grade": "7a",
+	"grade": "V8",
+	"grade_system": 1,
 	"holds": [
 	  {
 		"id": 0,

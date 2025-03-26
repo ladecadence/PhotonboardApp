@@ -10,17 +10,19 @@ var name : String
 var description : String
 var rating : int
 var grade: String
+var grade_system: Grade.GRADE_SYSTEMS
 var sends: int
 var holds: Array[Hold] = []
 
 
-func _init(w, n, d, r, g, s):
+func _init(w, n, d, r, g, gs, s):
 	id = AppManager.get_uuid_v4()
 	wallid = w
 	name = n
 	description = d
 	rating = r
 	grade = g
+	grade_system = gs
 	sends = s
 	
 func add_hold(h: Hold):
@@ -34,6 +36,7 @@ func to_json() -> String:
 	data["description"] = self.description
 	data["rating"] = self.rating
 	data["grade"] = self.grade
+	data["grade_system"] = self.grade_system
 	data["sends"] = self.sends 
 	
 	# holds
@@ -53,6 +56,7 @@ func from_json(s):
 		self.name = data["name"]
 		self.description = data["description"]
 		self.grade = data["grade"]
+		self.grade_system = data["grade_system"]
 		self.sends = data["sends"]
 		if data.has("holds"):
 			for h in data["holds"]:
@@ -69,6 +73,7 @@ func from_db_query(data):
 		self.name = data["name"]
 		self.description = data["description"]
 		self.grade = data["grade"]
+		self.grade_system = data["grade_system"]
 		self.sends = data["sends"]
 		if data.has("holds"):
 			var holds_dict = JSON.parse_string(data["holds"])
@@ -93,6 +98,7 @@ func to_dict():
 	data["description"] = description
 	data["rating"] = rating
 	data["grade"] = grade
+	data["grade_system"] = grade_system
 	data["sends"] = sends
 	data["holds"] = holds_to_json()
 	return data

@@ -49,6 +49,7 @@ func init_database():
 	table_problems["description"] = {"data_type":"text", "not_null": true}
 	table_problems["rating"] = {"data_type":"real", "not_null": true}
 	table_problems["grade"] = {"data_type":"text", "not_null": true}
+	table_problems["grade_system"] = {"data_type":"int", "not_null": true}
 	table_problems["sends"] = {"data_type":"int", "not_null": true}
 	table_problems["holds"] = {"data_type":"string", "not_null": true}
 	db.create_table("problems", table_problems)
@@ -93,7 +94,7 @@ func create_test_data():
 	file.close()
 	var json_data = JSON.parse_string(content)
 	for p in json_data:
-		var problem = Problem.new("", "", "", 0, "", 0)
+		var problem = Problem.new("", "", "", 0, "", 0, 0)
 		problem.from_json(JSON.stringify(p))
 		# insert it 
 		db.insert_row("problems", problem.to_dict())
@@ -178,7 +179,7 @@ func get_db_problem(id: String) -> Problem:
 		# ok, create wall
 		var result : Dictionary = query_result[0]
 		count = int(result.get("count", count))
-		var problem = Problem.new("", "", "", 0, "", 0)
+		var problem = Problem.new("", "", "", 0, "", 0, 0)
 		# fill data
 		problem.from_db_query(result)
 		# image in DB is a PackedArray with JPG data, load it
@@ -202,7 +203,7 @@ func get_db_problems() -> Array[Problem]:
 		var problem_array: Array[Problem] = []
 		for result: Dictionary in query_result:
 			count = int(result.get("count", count))
-			var problem = Problem.new("", "", "", 0, "", 0)
+			var problem = Problem.new("", "", "", 0, "", 0, 0)
 			# fill data
 			problem.from_db_query(result)
 			# image in DB is a PackedArray with JPG data, load it

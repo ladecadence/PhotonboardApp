@@ -3,9 +3,12 @@ extends Control
 func _ready() -> void:
 	for wall in Database.get_db_walls():
 		$MarginContainer/Scroll/Lista/HBoxContainer6/OptionWall.add_item(wall.name)
-	for grade in Grade.GRADES_FONT:
-		$MarginContainer/Scroll/Lista/HBoxContainer4/OptionGrade.add_item(Grade.GRADES_FONT[grade])
-
+	if AppManager.grade_system == Grade.GRADE_SYSTEMS.FONT:
+		for grade in Grade.GRADES_FONT:
+			$MarginContainer/Scroll/Lista/HBoxContainer4/OptionGrade.add_item(Grade.GRADES_FONT[grade])
+	else:
+		for grade in Grade.GRADES_HUECO:
+			$MarginContainer/Scroll/Lista/HBoxContainer4/OptionGrade.add_item(Grade.GRADES_HUECO[grade])
 
 
 func _on_panel_continue_gui_input(event: InputEvent) -> void:
