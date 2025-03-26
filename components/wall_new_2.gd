@@ -1,7 +1,7 @@
 extends MarginContainer
 
 func _ready() -> void:
-	$VBoxContainer/MarginContainer/WallWidget.change_mode(WallWidget.WALL_MODE.EDIT)
+	$VBoxContainer/MarginContainer/WallWidget.change_mode(WallWidget.WALL_MODE.CREATE)
 	$VBoxContainer/MarginContainer/WallWidget.change_offset($VBoxContainer/Header.get_rect().size)
 
 func load_data(data):
