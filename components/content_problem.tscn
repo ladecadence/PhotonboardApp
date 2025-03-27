@@ -170,3 +170,5 @@ theme_override_fonts/font = ExtResource("2_gikkm")
 theme_override_font_sizes/font_size = 40
 text = "3"
 vertical_alignment = 1
+
+[connection signal="gui_input" from="Scroll/MarginPrincipal/Lista/HBoxContainer/Sends" to="." method="_on_sends_gui_input"]
