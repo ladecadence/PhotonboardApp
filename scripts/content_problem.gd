@@ -31,3 +31,10 @@ func load_data(data):
 	$Scroll/MarginPrincipal/Lista/Stars.text = stars
 	$Scroll/MarginPrincipal/Lista/HBoxContainer/Sends/Number.text = str(current_problem.sends)
 	current_problem.create_problem_image()
+
+
+func _on_sends_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		current_problem.sends += 1
+		$Scroll/MarginPrincipal/Lista/HBoxContainer/Sends/Number.text = str(current_problem.sends)
+		Database.insert_db_problem(current_problem)
