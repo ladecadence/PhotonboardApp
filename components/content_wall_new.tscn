@@ -266,6 +266,18 @@ label_settings = SubResource("LabelSettings_6hj71")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="HBoxContainer8" type="HBoxContainer" parent="MarginContainer/Scroll/Lista"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="LabelInfo" type="Label" parent="MarginContainer/Scroll/Lista/HBoxContainer8"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("2_sbr81")
+horizontal_alignment = 1
+vertical_alignment = 2
+
 [node name="FileDialog" type="FileDialog" parent="."]
 mode = 3
 title = "Select picture"
