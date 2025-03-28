@@ -230,5 +230,17 @@ label_settings = SubResource("LabelSettings_mxhs3")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/Scroll/Lista"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="LabelInfo" type="Label" parent="MarginContainer/Scroll/Lista/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("2_53mhw")
+horizontal_alignment = 1
+vertical_alignment = 2
+
 [connection signal="gui_input" from="MarginContainer/Scroll/Lista/HBoxContainer7/Panel/MarginContainer/CenterContainer/PanelCancel" to="." method="_on_panel_cancel_gui_input"]
 [connection signal="gui_input" from="MarginContainer/Scroll/Lista/HBoxContainer7/Panel2/MarginContainer/CenterContainer/PanelContinue" to="." method="_on_panel_continue_gui_input"]

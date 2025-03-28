@@ -3,10 +3,14 @@ extends Control
 @onready var nameEdit = $MarginContainer/Scroll/Lista/HBoxContainer/LineEditName
 @onready var descriptionEdit = $MarginContainer/Scroll/Lista/HBoxContainer2/TextEdit
 @onready var gradeOption = $MarginContainer/Scroll/Lista/HBoxContainer4/OptionGrade
+@onready var wallSelect = $MarginContainer/Scroll/Lista/HBoxContainer6/OptionWall
+
+var walls: Array[Wall]
 
 func _ready() -> void:
 	for wall in Database.get_db_walls():
 		$MarginContainer/Scroll/Lista/HBoxContainer6/OptionWall.add_item(wall.name)
+		walls.append(wall)
 	$MarginContainer/Scroll/Lista/HBoxContainer6/OptionWall.select(0)
 	
 	if AppManager.grade_system == Grade.GRADE_SYSTEMS.FONT:
@@ -19,14 +23,18 @@ func _ready() -> void:
 
 func _on_panel_continue_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		var wall = Database.get_db_wall("1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05")
-		var grade
-		if AppManager.grade_system == Grade.GRADE_SYSTEMS.FONT:
-			grade = Grade.GRADES_FONT[gradeOption.selected+1]
-		else:
-			grade = Grade.GRADES_HUECO[gradeOption.selected+1]
-		var problem = Problem.new(wall.id, nameEdit.text, descriptionEdit.text, 0, grade, AppManager.grade_system, 0)
-		AppManager.load_screen(AppManager.Screen.PROBLEM_EDIT_HOLDS, problem)
+		# check all fields
+		if nameEdit.text == "" or descriptionEdit.text ==  "":
+			$MarginContainer/Scroll/Lista/HBoxContainer3/LabelInfo.text = "Please fill all the fields"
+		else: 
+			var wall = Database.get_db_wall(walls[wallSelect.get_selected_id()].id)
+			var grade
+			if AppManager.grade_system == Grade.GRADE_SYSTEMS.FONT:
+				grade = Grade.GRADES_FONT[gradeOption.selected+1]
+			else:
+				grade = Grade.GRADES_HUECO[gradeOption.selected+1]
+			var problem = Problem.new(wall.id, nameEdit.text, descriptionEdit.text, 0, grade, AppManager.grade_system, 0)
+			AppManager.load_screen(AppManager.Screen.PROBLEM_EDIT_HOLDS, problem)
 
 
 func _on_panel_cancel_gui_input(event: InputEvent) -> void:
