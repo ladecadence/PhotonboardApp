@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://eyqahvyds7o3"]
+[gd_scene load_steps=14 format=3 uid="uid://eyqahvyds7o3"]
 
 [ext_resource type="Script" uid="uid://d1xme41n1p2wa" path="res://scripts/problem_view.gd" id="1_dmijy"]
 [ext_resource type="Texture2D" uid="uid://c0hna8xcjl7wq" path="res://images/title.png" id="2_t2cw8"]
@@ -34,6 +34,9 @@ shadow_offset = Vector2(3, 3)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qgtbm"]
 bg_color = Color(0.994083, 0.881678, 0.657324, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2edo6"]
+bg_color = Color(0.992157, 0.882353, 0.658824, 1)
 
 [node name="ProblemView" type="MarginContainer"]
 anchors_preset = 15
@@ -193,7 +196,24 @@ icon_alignment = 1
 vertical_icon_alignment = 0
 expand_icon = true
 
+[node name="PopupPanelError" type="PopupPanel" parent="."]
+initial_position = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_2edo6")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PopupPanelError"]
+offset_right = 189.0
+offset_bottom = 100.0
+
+[node name="LabelError" type="Label" parent="PopupPanelError/VBoxContainer"]
+layout_mode = 2
+text = "Problem sending to Wall"
+
+[node name="ButtonOk" type="Button" parent="PopupPanelError/VBoxContainer"]
+layout_mode = 2
+text = "Ok"
+
 [connection signal="gui_input" from="VBoxContainer/CenterContainer/Panel/MarginContainer/CenterContainer/PanelSend" to="." method="_on_panel_send_gui_input"]
 [connection signal="pressed" from="VBoxContainer/Navbar/HBoxContainer/ButtonConfig" to="." method="_on_button_config_pressed"]
 [connection signal="pressed" from="VBoxContainer/Navbar/HBoxContainer/ButtonWalls" to="." method="_on_button_walls_pressed"]
 [connection signal="pressed" from="VBoxContainer/Navbar/HBoxContainer/ButtonProblems" to="." method="_on_button_problems_pressed"]
+[connection signal="pressed" from="PopupPanelError/VBoxContainer/ButtonOk" to="." method="_on_button_ok_pressed"]
