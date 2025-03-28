@@ -186,11 +186,15 @@ func _input(event):
 		touch_points[event.index] = event.position
 		# Handle 1 touch point (drag)
 		if touch_points.size() == 1:
-			# check if the drag vector was as least 2 units
-			if event.relative.length() > 2:
-				# TODO constrain drag
-				origin = origin + (event.relative/zoom)
-				queue_redraw()
+			# inside widget?
+			widget_size = get_global_rect().size
+			widget_pos = get_global_rect().position
+			if event.position.x > widget_pos.x and event.position.y > widget_pos.y and event.position.x < widget_pos.x+widget_size.x and event.position.y < widget_pos.y+widget_size.y:
+				# check if the drag vector was as least 2 units
+				if event.relative.length() > 2:
+					# TODO constrain drag
+					origin = origin + (event.relative/zoom)
+					queue_redraw()
 				
 		# Handle 2 touch points
 		elif touch_points.size() == 2:
@@ -201,7 +205,7 @@ func _input(event):
 
 			if current_dist > start_dist:
 				# zoom in
-				zoom += ZOOM_FACTOR / 2
+				zoom += ZOOM_FACTOR / 3
 				if zoom > ZOOM_MAX:
 					zoom = ZOOM_MAX
 				else: 
@@ -210,7 +214,7 @@ func _input(event):
 				
 			elif current_dist < start_dist:
 				# zoom out
-				zoom -= ZOOM_FACTOR / 2
+				zoom -= ZOOM_FACTOR / 3
 				if zoom < ZOOM_MIN:
 					zoom = ZOOM_MIN
 				else: 
