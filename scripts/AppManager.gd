@@ -7,8 +7,6 @@ var screen_scene: String
 var current_scene = null
 var wall_ip: String = "127.0.0.1"
 var grade_system: Grade.GRADE_SYSTEMS = Grade.GRADE_SYSTEMS.FONT
-var http_request = HTTPRequest.new()
-
 
 func _ready() -> void:
 	# database
@@ -121,29 +119,3 @@ func load_config():
 				wall_ip = node_data[i]
 			if i == "grade_system":
 				grade_system = node_data[i]
-
-func send_problem(p: Problem):
-	var endpoint = "http://" + wall_ip + "/load"
-	print("endpoint: ", endpoint)
-	var data = []
-	for h in p.holds:
-		data.append({"number": h.id, "color": h.type+1})
-	print(JSON.stringify(data, "", false))
-	http_request.request_completed.connect(self._http_request_completed)
-	add_child(http_request)
-	
-	var headers = ["Content-Type: application/json"]
-	var error = http_request.request(endpoint, headers, HTTPClient.METHOD_POST, JSON.stringify(data, "", false))
-	if error == OK:
-		print("Sent.")
-		print("")
-	
-func _http_request_completed(_result, _response_code, _headers, body):
-	var json = JSON.new()
-	json.parse(body.get_string_from_utf8())
-	var response = json.get_data()
-
-	# Will print the user agent string used by the HTTPRequest node (as recognized by httpbin.org).
-	print(response)
-	remove_child(http_request)
-	
