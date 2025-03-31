@@ -99,13 +99,14 @@ alignment = 1
 
 [node name="ButtonCancel" type="Button" parent="VBoxContainer/ControlsWall/Panel/MarginContainer/HBoxContainer"]
 layout_mode = 2
-text = "Cancel"
+theme = ExtResource("4_ikbqg")
+text = "❌ Cancel"
 
 [node name="ButtonSave" type="Button" parent="VBoxContainer/ControlsWall/Panel/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("4_ikbqg")
-text = "Save 💾"
+text = "💾 Save"
 
 [node name="NavbarApp" type="Control" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 200)
