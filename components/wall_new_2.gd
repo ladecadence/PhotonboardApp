@@ -10,7 +10,6 @@ func load_data(data):
 func _on_button_undo_pressed() -> void:
 	$VBoxContainer/MarginContainer/WallWidget.remove_last()
 
-
 func _on_check_box_small_pressed() -> void:
 	$VBoxContainer/MarginContainer/WallWidget.set_hold_size(Hold.HOLD_SIZE.SMALL)
 
@@ -30,3 +29,7 @@ func _on_button_walls_pressed() -> void:
 
 func _on_button_problems_pressed() -> void:
 	AppManager.load_screen(AppManager.Screen.PROBLEM_LIST, null)
+
+func _on_button_save_pressed() -> void:
+	var wall = $VBoxContainer/MarginContainer/WallWidget.get_wall()
+	Database.insert_db_wall(wall)
