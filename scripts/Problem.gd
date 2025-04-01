@@ -102,6 +102,28 @@ func to_dict():
 	data["sends"] = sends
 	data["holds"] = holds_to_json()
 	return data
+
+func from_dict(data: Dictionary):
+	id = data["id"]
+	wallid = data["wallid"] 
+	name = data["name"]
+	description = data["description"]
+	rating = data["rating"]
+	grade = data["grade"]
+	grade_system = data["grade_system"]
+	sends = data["sends"]
+	if data.has("holds"):
+			var holds_dict = JSON.parse_string(data["holds"])
+			for h in holds_dict:
+				var hold = Hold.new(0,"",0,0,0,0)
+				hold.from_dict(h)
+				self.holds.append(hold)
+				
+func to_bin() -> PackedByteArray:
+	return var_to_bytes(to_dict())
+	
+func from_bin(data: PackedByteArray):
+	from_dict(bytes_to_var(data))
 	
 func create_problem_image():
 	const sizex = 200

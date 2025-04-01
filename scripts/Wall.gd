@@ -64,9 +64,6 @@ func to_json() -> String:
 	
 func from_json(s):
 	var data = JSON.parse_string(s)
-	from_dict(data)
-	
-func from_dict(data):
 	if data != null:
 		self.id = data["id"]
 		self.name = data["name"]
@@ -82,13 +79,42 @@ func from_dict(data):
 				self.holds.append(hold)
 		else:
 			self.holds = []
+	
+func from_dict(data):
+	if data != null:
+		self.id = data["id"]
+		self.name = data["name"]
+		self.description = data["description"]
+		self.adjustable = data["adjustable"]
+		self.deg_min = data["deg_min"]
+		self.deg_max = data["deg_max"]
+		# self.image = Image.create_from_data(data["image"])
+		if data.has("holds"):
+			var dict = JSON.parse_string(data["holds"])
+			for h in dict:
+				var hold = Hold.new(0,"",0,0,0,0)
+				hold.from_dict(h)
+				self.holds.append(hold)
+		else:
+			self.holds = []
+
+func to_bin() -> PackedByteArray:
+	var dict = to_dict()
+	dict["image"] = image.save_jpg_to_buffer(1.0)
+	return var_to_bytes(dict)
+	
+func from_bin(data: PackedByteArray):
+	var dict = bytes_to_var(data)
+	from_dict(dict)
+	image = Image.new()
+	image.load_jpg_from_buffer(dict["image"])
 
 func from_db_query(data):
 	if data != null:
 		self.id = data["id"]
 		self.name = data["name"]
 		self.description = data["description"]
-		self.adjustable = true if data["adjustable"] == "true" else false
+		self.adjustable = data["adjustable"]
 		self.deg_min = data["deg_min"]
 		self.deg_max = data["deg_max"]
 		# self.image = Image.create_from_data(data["image"])
@@ -113,7 +139,7 @@ func to_dict():
 	data["id"] = id
 	data["name"] = name
 	data["description"] = description
-	data["adjustable"] = "true"
+	data["adjustable"] = adjustable
 	data["deg_min"] = deg_min
 	data["deg_max"] = deg_max
 	data["image"] = image.save_jpg_to_buffer()
