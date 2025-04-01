@@ -76,6 +76,7 @@ expand_mode = 2
 [node name="Descr" type="VBoxContainer" parent="Fondo/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/separation = 5
 alignment = 1
 
 [node name="Name" type="Label" parent="Fondo/HBoxContainer/Descr"]
@@ -92,14 +93,14 @@ theme_override_fonts/font = ExtResource("4_mpn5u")
 theme_override_font_sizes/font_size = 40
 text = "Bloque que flipas de duro"
 
-[node name="Stars" type="Label" parent="Fondo/HBoxContainer/Descr"]
+[node name="Wall" type="Label" parent="Fondo/HBoxContainer/Descr"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("5_vad8a")
 theme_override_font_sizes/font_size = 30
-text = "⭐⭐⭐⭐⭐"
+text = "Wall"
 
 [node name="Data" type="VBoxContainer" parent="Fondo/HBoxContainer"]
 layout_mode = 2

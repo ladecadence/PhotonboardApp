@@ -13,11 +13,8 @@ func load_data(data: Problem):
 	problem = data
 	$Fondo/HBoxContainer/Descr/Name.text = data.name
 	$Fondo/HBoxContainer/Descr/Description.text = data.description
-	# calculate stars
-	var stars = ""
-	for i in data.rating:
-		stars += "⭐"
-	$Fondo/HBoxContainer/Descr/Stars.text = stars
+	var wall = Database.get_db_wall(data.wallid)
+	$Fondo/HBoxContainer/Descr/Wall.text = wall.name
 	if data.grade_system == AppManager.grade_system:
 		$Fondo/HBoxContainer/Data/MarginContainer/CenterContainer/Panel/Grade.text = data.grade
 	else:
