@@ -16,3 +16,6 @@ func load_data(data: Wall):
 		$Fondo/HBoxContainer/Data/MarginContainer/CenterContainer/Panel/Degrees.text = data.deg_min
 	
 	$Fondo/HBoxContainer/MarginContainer/TextureRect.set_texture(ImageTexture.create_from_image(wall.image))
+
+func _on_panel_events_gui_input(event: InputEvent) -> void:
+	pass
