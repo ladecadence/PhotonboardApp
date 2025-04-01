@@ -1,10 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://dhrusiovpcgwn"]
+[gd_scene load_steps=10 format=3 uid="uid://dhrusiovpcgwn"]
 
 [ext_resource type="Script" uid="uid://dvk36f04teryn" path="res://scripts/problem_card.gd" id="1_ahfcr"]
 [ext_resource type="Texture2D" uid="uid://cbqf5tgsauwlo" path="res://images/wall0001.jpg" id="2_w4s6c"]
 [ext_resource type="FontFile" uid="uid://lnhy5j8s4phh" path="res://fonts/Nexa Bold.otf" id="3_rvixg"]
 [ext_resource type="FontFile" uid="uid://ipbtnoe5klya" path="res://fonts/Nexa Light.otf" id="4_mpn5u"]
-[ext_resource type="FontFile" uid="uid://bbgpahlkmp2av" path="res://fonts/NotoEmoji-VariableFont_wght.ttf" id="5_vad8a"]
 [ext_resource type="Texture2D" uid="uid://c6gxo82flq3h6" path="res://icons/sends.svg" id="6_eywcf"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l6jbu"]
@@ -96,11 +95,11 @@ text = "Bloque que flipas de duro"
 [node name="Wall" type="Label" parent="Fondo/HBoxContainer/Descr"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("5_vad8a")
+theme_override_fonts/font = ExtResource("3_rvixg")
 theme_override_font_sizes/font_size = 30
 text = "Wall"
+vertical_alignment = 2
 
 [node name="Data" type="VBoxContainer" parent="Fondo/HBoxContainer"]
 layout_mode = 2
