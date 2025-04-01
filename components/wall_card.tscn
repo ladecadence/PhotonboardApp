@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cj37gsngo2t5c"]
+[gd_scene load_steps=10 format=3 uid="uid://cj37gsngo2t5c"]
 
 [ext_resource type="Script" uid="uid://bwcapkrb76q7a" path="res://scripts/wall_card.gd" id="1_iyosj"]
 [ext_resource type="Texture2D" uid="uid://pn7xd5um6opg" path="res://images/wall0002.jpg" id="1_qucpf"]
@@ -30,6 +30,9 @@ font_color = Color(0, 0, 0, 1)
 shadow_size = 10
 shadow_color = Color(0, 0, 0, 0.243137)
 shadow_offset = Vector2(3, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iyosj"]
+bg_color = Color(0, 0, 0, 0)
 
 [node name="WallCard" type="MarginContainer"]
 custom_minimum_size = Vector2(0, 240)
@@ -138,3 +141,11 @@ vertical_alignment = 1
 
 [node name="MarginContainer2" type="MarginContainer" parent="Fondo/HBoxContainer"]
 layout_mode = 2
+
+[node name="PanelEvents" type="Panel" parent="."]
+z_index = 10
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_iyosj")
+
+[connection signal="gui_input" from="PanelEvents" to="." method="_on_panel_events_gui_input"]
