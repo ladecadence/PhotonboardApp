@@ -160,6 +160,29 @@ func get_db_walls() -> Array[Wall]:
 			wall_array.append(wall)
 		return wall_array
 
+func get_db_wall_ids() -> Array[String]:
+	db = SQLite.new()
+	db.path = db_file
+	db.verbosity_level = verbosity_level
+	# Open the database using the db_name found in the path variable
+	db.open_db()
+	
+	# get wall from id
+	var _selected_array = db.select_rows("walls", '', ["id"])
+	var query_result : Array = db.query_result
+	# Close the current database
+	db.close_db()
+	var count : int = 0
+	if query_result.is_empty():
+		return []
+	else:
+		# ok, create walls
+		var wall_array: Array[String] = []
+		for result: Dictionary in query_result:
+			count = int(result.get("count", count))
+			wall_array.append(result["id"])
+		return wall_array
+
 func get_db_problem(id: String) -> Problem:
 	db = SQLite.new()
 	db.path = db_file
