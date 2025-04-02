@@ -245,7 +245,7 @@ vertical_alignment = 1
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 
-[node name="LabelOk" type="Label" parent="VBoxContainer/Control/MarginContainer/Scroll/Lista/CenterContainer"]
+[node name="LabelInfo" type="Label" parent="VBoxContainer/Control/MarginContainer/Scroll/Lista/CenterContainer"]
 layout_mode = 2
 theme = ExtResource("2_chmxe")
 theme_override_font_sizes/font_size = 30
