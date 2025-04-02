@@ -15,10 +15,10 @@ func _ready() -> void:
 		Database.init_database()
 		Database.create_test_data()
 	
-	Database.get_db_wall("1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05")
+	#Database.get_db_wall("1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05")
 	load_config()
 	
-	print(Database.get_db_wall_ids())
+	#print(Database.get_db_wall_ids())
 	# Initial screen
 	load_screen(Screen.WALL_LIST, null)
 
