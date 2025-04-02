@@ -16,13 +16,10 @@ func load_data(data):
 	$Scroll/MarginPrincipal/Lista/MarginImage/WallWidget.load_data(current_wall)
 	$Scroll/MarginPrincipal/Lista/MarginImage/WallWidget.load_problem(current_problem)
 	$Scroll/MarginPrincipal/Lista/HBoxContainerNombre/Name.text = data.name
-	if data.grade_system == AppManager.grade_system:
-		$Scroll/MarginPrincipal/Lista/HBoxContainerNombre/MarginContainer/CenterContainer/Panel/Grade.text = data.grade
+	if AppManager.grade_system == Grade.GRADE_SYSTEMS.FONT:
+		$Scroll/MarginPrincipal/Lista/HBoxContainerNombre/MarginContainer/CenterContainer/Panel/Grade.text = Grade.GRADES_FONT[data.grade]
 	else:
-		if data.grade_system == Grade.GRADE_SYSTEMS.FONT:
-			$Scroll/MarginPrincipal/Lista/HBoxContainerNombre/MarginContainer/CenterContainer/Panel/Grade.text = Grade.font_to_hueco(data.grade)
-		else:
-			$Scroll/MarginPrincipal/Lista/HBoxContainerNombre/MarginContainer/CenterContainer/Panel/Grade.text = Grade.hueco_to_font(data.grade)
+		$Scroll/MarginPrincipal/Lista/HBoxContainerNombre/MarginContainer/CenterContainer/Panel/Grade.text = Grade.GRADES_HUECO[data.grade]
 	$Scroll/MarginPrincipal/Lista/Description.text = data.description
 	# calculate stars
 	var stars = ""

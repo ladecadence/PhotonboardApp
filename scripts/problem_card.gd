@@ -15,13 +15,10 @@ func load_data(data: Problem):
 	$Fondo/HBoxContainer/Descr/Description.text = data.description
 	var wall = Database.get_db_wall(data.wallid)
 	$Fondo/HBoxContainer/Descr/Wall.text = wall.name
-	if data.grade_system == AppManager.grade_system:
-		$Fondo/HBoxContainer/Data/MarginContainer/CenterContainer/Panel/Grade.text = data.grade
+	if AppManager.grade_system == Grade.GRADE_SYSTEMS.FONT:
+		$Fondo/HBoxContainer/Data/MarginContainer/CenterContainer/Panel/Grade.text = Grade.GRADES_FONT[data.grade]
 	else:
-		if data.grade_system == Grade.GRADE_SYSTEMS.FONT:
-			$Fondo/HBoxContainer/Data/MarginContainer/CenterContainer/Panel/Grade.text = Grade.font_to_hueco(data.grade)
-		else:
-			$Fondo/HBoxContainer/Data/MarginContainer/CenterContainer/Panel/Grade.text = Grade.hueco_to_font(data.grade)
+		$Fondo/HBoxContainer/Data/MarginContainer/CenterContainer/Panel/Grade.text = Grade.GRADES_HUECO[data.grade]
 	$Fondo/HBoxContainer/Data/Sends/Number.text = str(data.sends)
 	var problem_texture = ImageTexture.create_from_image(problem.create_problem_image())
 	$Fondo/HBoxContainer/MarginContainer/TextureRect.set_texture(problem_texture)

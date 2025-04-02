@@ -5,7 +5,7 @@
 	"name": "La muerte",
 	"description": "Bloque que flipas de duro",
 	"rating": 5,
-	"grade": "7B+",
+	"grade": 16,
 	"grade_system": 0,
 	"sends": 4,
 	"holds": [
@@ -57,7 +57,7 @@
 	"name": "La vida",
 	"description": "Te llena de alegría",
 	"rating": 3,
-	"grade": "6C",
+	"grade": 14,
 	"grade_system": 0,
 	"sends": 12,
 	"holds": [
@@ -109,7 +109,7 @@
 	"name": "Endika txistulari",
 	"description": "El clásico de los clásicos",
 	"rating": 4,
-	"grade": "7A",
+	"grade": 15,
 	"grade_system": 0,
 	"sends": 23,
 	"holds": [
@@ -169,7 +169,7 @@
 	"name": "Sin poleas mejor",
 	"description": "Vas al 100%",
 	"rating": 2,
-	"grade": "7C",
+	"grade": 17,
 	"grade_system": 0,
 	"sends": 1,
 	"holds": [
@@ -229,7 +229,7 @@
 	"name": "Paseos a caballo",
 	"description": "Al lado de la autopista",
 	"rating": 5,
-	"grade": "5+",
+	"grade": 6,
 	"grade_system": 0,
 	"sends": 0
   },
@@ -239,7 +239,7 @@
 	"name": "Paseos a caballo",
 	"description": "Al lado de la autopista",
 	"rating": 5,
-	"grade": "5+",
+	"grade": 6,
 	"grade_system": 0,
 	"sends": 0
   },
@@ -259,13 +259,13 @@
 	"name": "Paseos a caballo",
 	"description": "Al lado de la autopista",
 	"rating": 5,
-	"grade": "5+",
+	"grade": 6,
 	"grade_system": 0,
 	"sends": 0
   },
   {
 	"description": "Testing upload",
-	"grade": "V8",
+	"grade": 12,
 	"grade_system": 1,
 	"holds": [
 	  {
@@ -323,5 +323,5 @@
 	"sends": 1,
 	"wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05"
   },
-{"description":"NEW PROBLEM","grade":"V7","grade_system":1,"holds":[{"id":2,"size":30,"type":2,"wallid":"1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05","x":474.0,"y":96.0},{"id":10,"size":30,"type":3,"wallid":"1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05","x":247.0,"y":352.0},{"id":14,"size":30,"type":3,"wallid":"1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05","x":704.0,"y":357.0},{"id":21,"size":30,"type":3,"wallid":"1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05","x":375.0,"y":593.0},{"id":34,"size":30,"type":1,"wallid":"1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05","x":701.0,"y":821.0},{"id":39,"size":30,"type":4,"wallid":"1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05","x":264.0,"y":926.0}],"id":"aabcc040-670d-4ab0-86a3-ce7d1d89d4fd","name":"TEST","rating":0,"sends":0,"wallid":"1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05"}
+{"description":"NEW PROBLEM","grade":13,"grade_system":1,"holds":[{"id":2,"size":30,"type":2,"wallid":"1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05","x":474.0,"y":96.0},{"id":10,"size":30,"type":3,"wallid":"1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05","x":247.0,"y":352.0},{"id":14,"size":30,"type":3,"wallid":"1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05","x":704.0,"y":357.0},{"id":21,"size":30,"type":3,"wallid":"1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05","x":375.0,"y":593.0},{"id":34,"size":30,"type":1,"wallid":"1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05","x":701.0,"y":821.0},{"id":39,"size":30,"type":4,"wallid":"1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05","x":264.0,"y":926.0}],"id":"aabcc040-670d-4ab0-86a3-ce7d1d89d4fd","name":"TEST","rating":0,"sends":0,"wallid":"1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05"}
 ]

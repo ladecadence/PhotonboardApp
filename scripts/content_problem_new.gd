@@ -28,11 +28,7 @@ func _on_panel_continue_gui_input(event: InputEvent) -> void:
 			$MarginContainer/Scroll/Lista/HBoxContainer3/LabelInfo.text = "Please fill all the fields"
 		else: 
 			var wall = Database.get_db_wall(walls[wallSelect.get_selected_id()].id)
-			var grade
-			if AppManager.grade_system == Grade.GRADE_SYSTEMS.FONT:
-				grade = Grade.GRADES_FONT[gradeOption.selected+1]
-			else:
-				grade = Grade.GRADES_HUECO[gradeOption.selected+1]
+			var grade = gradeOption.selected+1
 			var problem = Problem.new(wall.id, nameEdit.text, descriptionEdit.text, 0, grade, AppManager.grade_system, 0)
 			AppManager.load_screen(AppManager.Screen.PROBLEM_EDIT_HOLDS, problem)
 

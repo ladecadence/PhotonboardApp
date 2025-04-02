@@ -48,7 +48,7 @@ func init_database():
 	table_problems["name"] = {"data_type":"text", "not_null": true}
 	table_problems["description"] = {"data_type":"text", "not_null": true}
 	table_problems["rating"] = {"data_type":"real", "not_null": true}
-	table_problems["grade"] = {"data_type":"text", "not_null": true}
+	table_problems["grade"] = {"data_type":"int", "not_null": true}
 	table_problems["grade_system"] = {"data_type":"int", "not_null": true}
 	table_problems["sends"] = {"data_type":"int", "not_null": true}
 	table_problems["holds"] = {"data_type":"string", "not_null": true}
@@ -94,7 +94,7 @@ func create_test_data():
 	file.close()
 	var json_data = JSON.parse_string(content)
 	for p in json_data:
-		var problem = Problem.new("", "", "", 0, "", 0, 0)
+		var problem = Problem.new("", "", "", 0, 0, 0, 0)
 		problem.from_json(JSON.stringify(p))
 		# insert it 
 		db.insert_row("problems", problem.to_dict())
@@ -179,7 +179,7 @@ func get_db_problem(id: String) -> Problem:
 		# ok, create wall
 		var result : Dictionary = query_result[0]
 		count = int(result.get("count", count))
-		var problem = Problem.new("", "", "", 0, "", 0, 0)
+		var problem = Problem.new("", "", "", 0, 0, 0, 0)
 		# fill data
 		problem.from_db_query(result)
 		# image in DB is a PackedArray with JPG data, load it
@@ -203,7 +203,32 @@ func get_db_problems() -> Array[Problem]:
 		var problem_array: Array[Problem] = []
 		for result: Dictionary in query_result:
 			count = int(result.get("count", count))
-			var problem = Problem.new("", "", "", 0, "", 0, 0)
+			var problem = Problem.new("", "", "", 0, 0, 0, 0)
+			# fill data
+			problem.from_db_query(result)
+			# image in DB is a PackedArray with JPG data, load it
+			problem_array.append(problem)
+		return problem_array
+
+func get_db_problems_filter(filter: FilterProblem) -> Array[Problem]:
+	db = SQLite.new()
+	db.path = db_file
+	db.verbosity_level = verbosity_level
+	# Open the database using the db_name found in the path variable
+	db.open_db()
+	
+	# get wall from id
+	var _selected_array = db.select_rows("problems", '', ["*"])
+	var query_result : Array = db.query_result
+	var count : int = 0
+	if query_result.is_empty():
+		return []
+	else:
+		# ok, create problems
+		var problem_array: Array[Problem] = []
+		for result: Dictionary in query_result:
+			count = int(result.get("count", count))
+			var problem = Problem.new("", "", "", 0, 0, 0, 0)
 			# fill data
 			problem.from_db_query(result)
 			# image in DB is a PackedArray with JPG data, load it

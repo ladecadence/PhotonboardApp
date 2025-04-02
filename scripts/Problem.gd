@@ -9,7 +9,7 @@ var wallid: String
 var name : String
 var description : String
 var rating : int
-var grade: String
+var grade: int
 var grade_system: Grade.GRADE_SYSTEMS
 var sends: int
 var holds: Array[Hold] = []
