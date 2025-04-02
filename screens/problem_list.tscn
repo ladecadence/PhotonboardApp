@@ -82,30 +82,29 @@ custom_minimum_size = Vector2(0, 120)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ct7u0")
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/CenterContainer/Panel"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/CenterContainer/Panel"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -100.0
-offset_top = -40.0
-offset_right = 100.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/CenterContainer/Panel/HBoxContainer"]
+layout_mode = 2
 size_flags_horizontal = 8
 
-[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/CenterContainer/Panel/MarginContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/CenterContainer/Panel/HBoxContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="PanelAdd" type="Panel" parent="VBoxContainer/CenterContainer/Panel/MarginContainer/CenterContainer"]
+[node name="PanelAdd" type="Panel" parent="VBoxContainer/CenterContainer/Panel/HBoxContainer/MarginContainer/CenterContainer"]
 custom_minimum_size = Vector2(100, 80)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_t1cu2")
 
-[node name="Add" type="Label" parent="VBoxContainer/CenterContainer/Panel/MarginContainer/CenterContainer/PanelAdd"]
+[node name="Add" type="Label" parent="VBoxContainer/CenterContainer/Panel/HBoxContainer/MarginContainer/CenterContainer/PanelAdd"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -122,6 +121,39 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_r4575")
 theme_override_font_sizes/font_size = 40
 text = "+"
+label_settings = SubResource("LabelSettings_r4575")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/CenterContainer/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/CenterContainer/Panel/HBoxContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="PanelFilter" type="Panel" parent="VBoxContainer/CenterContainer/Panel/HBoxContainer/MarginContainer2/CenterContainer"]
+custom_minimum_size = Vector2(200, 80)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_t1cu2")
+
+[node name="Filter" type="Label" parent="VBoxContainer/CenterContainer/Panel/HBoxContainer/MarginContainer2/CenterContainer/PanelFilter"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -41.0
+offset_top = -25.5
+offset_right = 41.0
+offset_bottom = 25.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_r4575")
+theme_override_font_sizes/font_size = 40
+text = "Filter"
 label_settings = SubResource("LabelSettings_r4575")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -190,7 +222,8 @@ icon_alignment = 1
 vertical_icon_alignment = 0
 expand_icon = true
 
-[connection signal="gui_input" from="VBoxContainer/CenterContainer/Panel/MarginContainer/CenterContainer/PanelAdd" to="VBoxContainer/ContentProblems" method="_on_panel_add_gui_input"]
+[connection signal="gui_input" from="VBoxContainer/CenterContainer/Panel/HBoxContainer/MarginContainer/CenterContainer/PanelAdd" to="VBoxContainer/ContentProblems" method="_on_panel_add_gui_input"]
+[connection signal="gui_input" from="VBoxContainer/CenterContainer/Panel/HBoxContainer/MarginContainer2/CenterContainer/PanelFilter" to="VBoxContainer/ContentProblems" method="_on_panel_filter_gui_input"]
 [connection signal="pressed" from="VBoxContainer/Navbar/HBoxContainer/ButtonConfig" to="VBoxContainer/ContentProblems" method="_on_button_config_pressed"]
 [connection signal="pressed" from="VBoxContainer/Navbar/HBoxContainer/ButtonWalls" to="VBoxContainer/ContentProblems" method="_on_button_walls_pressed"]
 [connection signal="pressed" from="VBoxContainer/Navbar/HBoxContainer/ButtonProblems" to="VBoxContainer/ContentProblems" method="_on_button_problems_pressed"]
