@@ -16,7 +16,7 @@ func set_wallid(wid):
 	wallid = wid
 
 func set_grade_range(gmin, gmax):
-	grade_range = []
+	grade_range.clear()
 	grade_range.append(gmin)
 	grade_range.append(gmax)
 
