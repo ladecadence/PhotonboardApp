@@ -28,6 +28,10 @@ window/size/viewport_width=1080
 window/size/viewport_height=1920
 window/handheld/orientation=1
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/GodotGetImage/plugin.cfg", "res://addons/godot-sqlite/plugin.cfg")
+
 [input_devices]
 
 pointing/emulate_touch_from_mouse=true
