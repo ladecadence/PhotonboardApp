@@ -1,12 +1,13 @@
 extends Node
 
-enum Screen {WALL_LIST, PROBLEM_LIST, CONFIG, WALL_VIEW, PROBLEM_VIEW, WALL_EDIT, WALL_EDIT_HOLDS, PROBLEM_EDIT, PROBLEM_EDIT_HOLDS, TEST_WALLWIDGET}
+enum Screen {WALL_LIST, PROBLEM_LIST, CONFIG, WALL_VIEW, PROBLEM_VIEW, WALL_EDIT, WALL_EDIT_HOLDS, PROBLEM_EDIT, PROBLEM_EDIT_HOLDS, PROBLEM_FILTER, TEST_WALLWIDGET}
 
 var last_data
 var screen_scene: String
 var current_scene = null
 var wall_ip: String = "127.0.0.1"
 var grade_system: Grade.GRADE_SYSTEMS = Grade.GRADE_SYSTEMS.FONT
+var filter_problem: FilterProblem = FilterProblem.new()
 
 func _ready() -> void:
 	# database
@@ -17,6 +18,7 @@ func _ready() -> void:
 	Database.get_db_wall("1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05")
 	load_config()
 	
+	print(Database.get_db_wall_ids())
 	# Initial screen
 	load_screen(Screen.WALL_LIST, null)
 
@@ -39,6 +41,8 @@ func _deferred_load_screen(s: Screen, data):
 			screen_scene = "res://screens/problem_new.tscn"
 		Screen.PROBLEM_EDIT_HOLDS:
 			screen_scene = "res://screens/problem_new_2.tscn"	
+		Screen.PROBLEM_FILTER:
+			screen_scene = "res://screens/filter_problem_screen.tscn"
 		Screen.WALL_EDIT:
 			screen_scene = "res://screens/wall_new.tscn"
 		Screen.WALL_EDIT_HOLDS:
