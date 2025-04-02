@@ -8,6 +8,10 @@ var wallid: String = ""
 var grade_range: Array[int] = []
 var order: ORDER_BY = ORDER_BY.NOTHING
 
+func clear():
+	wallid = ""
+	grade_range = []
+
 func set_wallid(wid):
 	wallid = wid
 
