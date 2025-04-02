@@ -13,7 +13,7 @@ func load_data(data: Wall):
 	if data.adjustable == true:
 		$Fondo/HBoxContainer/Data/MarginContainer/CenterContainer/Panel/Degrees.text = str(data.deg_min) + "-" + str(data.deg_max) + "º"
 	else:
-		$Fondo/HBoxContainer/Data/MarginContainer/CenterContainer/Panel/Degrees.text = data.deg_min
+		$Fondo/HBoxContainer/Data/MarginContainer/CenterContainer/Panel/Degrees.text = str(data.deg_min) + "º"
 	
 	$Fondo/HBoxContainer/MarginContainer/TextureRect.set_texture(ImageTexture.create_from_image(wall.image))
 
