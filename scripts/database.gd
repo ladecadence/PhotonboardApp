@@ -217,8 +217,8 @@ func get_db_problems_filter(filter: FilterProblem) -> Array[Problem]:
 	# Open the database using the db_name found in the path variable
 	db.open_db()
 	
-	# get wall from id
-	var _selected_array = db.select_rows("problems", '', ["*"])
+	# get problem with filter
+	var _selected_array = db.select_rows("problems", filter.get_db_conditions(), ["*"])
 	var query_result : Array = db.query_result
 	var count : int = 0
 	if query_result.is_empty():

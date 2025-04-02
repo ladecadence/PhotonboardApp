@@ -8,6 +8,14 @@ var wallid: String = ""
 var grade_range: Array[int] = []
 var order: ORDER_BY = ORDER_BY.NOTHING
 
+func set_wallid(wid):
+	wallid = wid
+
+func set_grade_range(gmin, gmax):
+	grade_range = []
+	grade_range.append(gmin)
+	grade_range.append(gmax)
+
 func get_db_conditions() -> String:
 	var conditions = ""
 	if wallid != "":
