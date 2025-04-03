@@ -243,12 +243,19 @@ func get_db_problems_filter(filter: FilterProblem) -> Array[Problem]:
 	# get problem with filter
 	# var _selected_array = db.select_rows("problems", filter.get_db_conditions(), ["*"])
 	var query = "SELECT * FROM problems"
-	if AppManager.filter_problem.wallid != "" or len(AppManager.filter_problem.grade_range) > 0:
+	if AppManager.filter_problem.filter_active:
 		query += " WHERE"
 	if AppManager.filter_problem.wallid != "":
 		query += " wallid='" + AppManager.filter_problem.wallid + "'"
+		if len(AppManager.filter_problem.grade_range) > 0:
+			query += " AND"
 	if len(AppManager.filter_problem.grade_range) > 0:
 		query += " grade>=" + str(AppManager.filter_problem.grade_range[0]) + " AND grade<=" + str(AppManager.filter_problem.grade_range[1])
+	if AppManager.filter_problem.order != FilterProblem.ORDER_BY.NOTHING:
+		query += " ORDER BY "
+		query += AppManager.filter_problem.get_order()
+		query += " ASC"
+	print("QUERY: ", query)
 	var _selected_array = db.query(query)
 	var query_result : Array = db.query_result
 	var count : int = 0
