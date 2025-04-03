@@ -4,6 +4,10 @@ extends MarginContainer
 @onready var optionWall = $VBoxContainer/Control/MarginContainer/Scroll/Lista/HBoxContainer/OptionWall
 @onready var optionGradeMin = $VBoxContainer/Control/MarginContainer/Scroll/Lista/HBoxContainer2/OptionGradeMin
 @onready var optionGradeMax = $VBoxContainer/Control/MarginContainer/Scroll/Lista/HBoxContainer2/OptionGradeMax
+@onready var optionOrder = $VBoxContainer/Control/MarginContainer/Scroll/Lista/HBoxContainer3/OptionOrder
+@onready var buttonDown = $VBoxContainer/Control/MarginContainer/Scroll/Lista/HBoxContainer3/CheckBoxDown
+
+var order_dir : FilterProblem.ORDER_DIR = FilterProblem.ORDER_DIR.ASC
 
 func _ready() -> void:
 	# fill walls
@@ -34,6 +38,13 @@ func _ready() -> void:
 		# unselect
 		optionGradeMin.select(-1)
 		optionGradeMax.select(-1)
+	
+	# select order
+	if AppManager.filter_problem.order != FilterProblem.ORDER_BY.NOTHING:
+		optionOrder.select(AppManager.filter_problem.order)
+	# select direction
+	if AppManager.filter_problem.order_dir == FilterProblem.ORDER_DIR.DESC:
+		buttonDown.button_pressed = true
 
 func _on_timer_timeout() -> void:
 	labelOk.text = ""
@@ -59,7 +70,11 @@ func _on_panel_filter_gui_input(event: InputEvent) -> void:
 			var grade_min = optionGradeMin.selected+1
 			var grade_max = optionGradeMax.selected+1
 			AppManager.filter_problem.set_grade_range(grade_min, grade_max)
-
+		if optionOrder.selected != 0:
+			AppManager.filter_problem.set_order(optionOrder.selected)
+			AppManager.filter_problem.set_order_dir(order_dir) 
+		# go to screen
+		AppManager.load_screen(AppManager.Screen.PROBLEM_LIST, null)
 		
 
 func _on_panel_clear_gui_input(event: InputEvent) -> void:
@@ -67,4 +82,12 @@ func _on_panel_clear_gui_input(event: InputEvent) -> void:
 		optionWall.select(-1)
 		optionGradeMax.select(-1)
 		optionGradeMin.select(-1)
+		optionOrder.select(0)
+		buttonDown.button_pressed = false
 		AppManager.filter_problem.clear()
+
+func _on_check_box_up_pressed() -> void:
+	order_dir = FilterProblem.ORDER_DIR.ASC
+
+func _on_check_box_down_pressed() -> void:
+	order_dir = FilterProblem.ORDER_DIR.DESC
