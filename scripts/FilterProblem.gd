@@ -3,11 +3,13 @@ extends Node
 class_name FilterProblem
 
 enum ORDER_BY {NOTHING, NAME, GRADE, SENDS}
+enum ORDER_DIR {ASC, DEC}
 
 var filter_active: bool =  false
 var wallid: String = ""
 var grade_range: Array[int] = []
 var order: ORDER_BY = ORDER_BY.NOTHING
+var order_dir: ORDER_DIR = ORDER_DIR.ASC
 
 func clear():
 	filter_active = false
@@ -33,6 +35,15 @@ func get_order() -> String:
 		ORDER_BY.NAME: return "name"
 		ORDER_BY.GRADE: return "grade"
 		ORDER_BY.SENDS: return "sends"
+		_: return ""
+
+func set_order_dir(d: ORDER_DIR):
+	order_dir = d
+	
+func get_order_dir() -> String:
+	match (order_dir):
+		ORDER_DIR.ASC: return " ASC"
+		ORDER_DIR.DEC: return " DEC"
 		_: return ""
 
 func get_db_conditions() -> String:

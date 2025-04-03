@@ -254,7 +254,7 @@ func get_db_problems_filter(filter: FilterProblem) -> Array[Problem]:
 	if AppManager.filter_problem.order != FilterProblem.ORDER_BY.NOTHING:
 		query += " ORDER BY "
 		query += AppManager.filter_problem.get_order()
-		query += " ASC"
+		query += AppManager.filter_problem.get_order_dir()
 	print("QUERY: ", query)
 	var _selected_array = db.query(query)
 	var query_result : Array = db.query_result
