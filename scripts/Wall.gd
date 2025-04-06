@@ -114,7 +114,10 @@ func from_db_query(data):
 		self.id = data["id"]
 		self.name = data["name"]
 		self.description = data["description"]
-		self.adjustable = data["adjustable"] == "true"
+		if typeof(data["adjustable"]) == TYPE_STRING:
+			self.adjustable = data["adjustable"] == "true"
+		else:
+			self.adjustable = data["adjustable"]
 		self.deg_min = data["deg_min"]
 		self.deg_max = data["deg_max"]
 		# self.image = Image.create_from_data(data["image"])
