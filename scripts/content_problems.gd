@@ -3,6 +3,8 @@ extends Control
 @onready var lista = $Scroll/Lista
 @onready var card = preload("res://components/problem_card.tscn")
 
+var load_thread := Thread.new()
+
 #const Wall = preload("res://scripts/Wall.gd")
 
 # Called when the node enters the scene tree for the first time.
@@ -11,12 +13,8 @@ func _ready() -> void:
 	for child in lista.get_children():
 		child.queue_free()
 	
-	# load data
-	var problems = Database.get_db_problems_filter(AppManager.filter_problem)
-	for p in problems:
-		var c = card.instantiate()
-		c.load_data(p)
-		lista.add_child(c)
+	# load problems
+	load_thread.start(Callable(self, "_load_problems_async"))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -39,3 +37,13 @@ func _on_button_config_pressed() -> void:
 func _on_panel_filter_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		AppManager.load_screen(AppManager.Screen.PROBLEM_FILTER, null)
+
+func _load_problems_async():
+	call_deferred("_on_problems_loaded", Database.get_db_problems_filter(AppManager.filter_problem))
+	
+func _on_problems_loaded(problems):
+	for p in problems:
+		var c = card.instantiate()
+		c.load_data(p)
+		lista.add_child(c)
+	load_thread.wait_to_finish()
