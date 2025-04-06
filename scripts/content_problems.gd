@@ -16,6 +16,11 @@ func _ready() -> void:
 	# load problems
 	load_thread.start(Callable(self, "_load_problems_async"))
 
+# Called when the node exits the scene tree.
+func _exit_tree():
+	if load_thread.is_alive():
+		load_thread.wait_to_finish()
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	pass
@@ -42,8 +47,9 @@ func _load_problems_async():
 	call_deferred("_on_problems_loaded", Database.get_db_problems_filter(AppManager.filter_problem))
 	
 func _on_problems_loaded(problems):
-	for p in problems:
-		var c = card.instantiate()
-		c.load_data(p)
-		lista.add_child(c)
+	if is_inside_tree():
+		for p in problems:
+			var c = card.instantiate()
+			c.load_data(p)
+			lista.add_child(c)
 	load_thread.wait_to_finish()
