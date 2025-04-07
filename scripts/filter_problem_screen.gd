@@ -10,41 +10,44 @@ extends MarginContainer
 var order_dir : FilterProblem.ORDER_DIR = FilterProblem.ORDER_DIR.ASC
 
 func _ready() -> void:
-	# fill walls
-	for wall in Database.get_db_walls():
-		optionWall.add_item(wall.name)
-	# if we have a filter for walls, select the one on the filter
-	if AppManager.filter_problem.wallid != "":
-		var wallids = Database.get_db_wall_ids()
-		optionWall.select(wallids.find(AppManager.filter_problem.wallid))
-	else:
-		optionWall.select(-1)
-		
-	# fill grades
-	if AppManager.grade_system == Grade.GRADE_SYSTEMS.FONT:
-		for grade in Grade.GRADES_FONT:
-			optionGradeMin.add_item(Grade.GRADES_FONT[grade])
-			optionGradeMax.add_item(Grade.GRADES_FONT[grade])
-	else:
-		for grade in Grade.GRADES_FONT:
-			optionGradeMin.add_item(Grade.GRADES_HUECO[grade])
-			optionGradeMax.add_item(Grade.GRADES_HUECO[grade])
+	Database.get_walls(
+		func(walls):
+			# fill walls
+			for wall in walls:
+				optionWall.add_item(wall.name)
+			# if we have a filter for walls, select the one on the filter
+			if AppManager.filter_problem.wallid != "":
+				var wallids = Database.get_db_wall_ids()
+				optionWall.select(wallids.find(AppManager.filter_problem.wallid))
+			else:
+				optionWall.select(-1)
+				
+			# fill grades
+			if AppManager.grade_system == Grade.GRADE_SYSTEMS.FONT:
+				for grade in Grade.GRADES_FONT:
+					optionGradeMin.add_item(Grade.GRADES_FONT[grade])
+					optionGradeMax.add_item(Grade.GRADES_FONT[grade])
+			else:
+				for grade in Grade.GRADES_FONT:
+					optionGradeMin.add_item(Grade.GRADES_HUECO[grade])
+					optionGradeMax.add_item(Grade.GRADES_HUECO[grade])
+					
+			# if we have a filter for grades, select them
+			if len(AppManager.filter_problem.grade_range) > 0:
+				optionGradeMin.select(AppManager.filter_problem.grade_range[0]-1)
+				optionGradeMax.select(AppManager.filter_problem.grade_range[1]-1)
+			else:
+				# unselect
+				optionGradeMin.select(-1)
+				optionGradeMax.select(-1)
 			
-	# if we have a filter for grades, select them
-	if len(AppManager.filter_problem.grade_range) > 0:
-		optionGradeMin.select(AppManager.filter_problem.grade_range[0]-1)
-		optionGradeMax.select(AppManager.filter_problem.grade_range[1]-1)
-	else:
-		# unselect
-		optionGradeMin.select(-1)
-		optionGradeMax.select(-1)
-	
-	# select order
-	if AppManager.filter_problem.order != FilterProblem.ORDER_BY.NOTHING:
-		optionOrder.select(AppManager.filter_problem.order)
-	# select direction
-	if AppManager.filter_problem.order_dir == FilterProblem.ORDER_DIR.DESC:
-		buttonDown.button_pressed = true
+			# select order
+			if AppManager.filter_problem.order != FilterProblem.ORDER_BY.NOTHING:
+				optionOrder.select(AppManager.filter_problem.order)
+			# select direction
+			if AppManager.filter_problem.order_dir == FilterProblem.ORDER_DIR.DESC:
+				buttonDown.button_pressed = true
+	)
 
 func _on_timer_timeout() -> void:
 	labelOk.text = ""

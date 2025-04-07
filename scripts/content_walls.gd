@@ -1,10 +1,7 @@
 extends Control
 
-
 @onready var lista = $Scroll/Lista
 @onready var card = preload("res://components/wall_card.tscn")
-
-var load_thread := Thread.new()
 
 #const Wall = preload("res://scripts/Wall.gd")
 
@@ -15,12 +12,14 @@ func _ready() -> void:
 		child.queue_free()
 
 	# load walls
-	load_thread.start(Callable(self, "_load_walls_async"))
-
-# Called when the node exits the scene tree.
-func _exit_tree():
-	if load_thread.is_alive():
-		load_thread.wait_to_finish()
+	Database.get_walls(
+		func(walls):
+			if walls != null:
+				for w in walls:
+					var c = card.instantiate()
+					c.load_data(w)
+					lista.add_child(c)
+	)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -38,14 +37,3 @@ func _on_panel_add_gui_input(event: InputEvent) -> void:
 
 func _on_button_config_pressed() -> void:
 	AppManager.load_screen(AppManager.Screen.CONFIG, null)
-	
-func _load_walls_async():
-	call_deferred("_on_walls_loaded", Database.get_db_walls())
-
-func _on_walls_loaded(walls):
-	if is_inside_tree():
-		for w in walls:
-			var c = card.instantiate()
-			c.load_data(w)
-			lista.add_child(c)
-	load_thread.wait_to_finish()
