@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://ci2i2gvdbyciv"]
+[gd_scene load_steps=11 format=3 uid="uid://ci2i2gvdbyciv"]
 
 [ext_resource type="Script" uid="uid://condfdcskejiv" path="res://scripts/content_problem.gd" id="1_prbk5"]
 [ext_resource type="FontFile" uid="uid://lnhy5j8s4phh" path="res://fonts/Nexa Bold.otf" id="2_gikkm"]
 [ext_resource type="PackedScene" uid="uid://bx20db8xc8vfv" path="res://components/wall_widget.tscn" id="2_onqak"]
 [ext_resource type="FontFile" uid="uid://ipbtnoe5klya" path="res://fonts/Nexa Light.otf" id="3_xd1c2"]
 [ext_resource type="FontFile" uid="uid://bbgpahlkmp2av" path="res://fonts/NotoEmoji-VariableFont_wght.ttf" id="4_lmpaw"]
+[ext_resource type="Theme" uid="uid://cc6pd6kgs8ds2" path="res://theme/main.tres" id="5_onqak"]
 [ext_resource type="Texture2D" uid="uid://c6gxo82flq3h6" path="res://icons/sends.svg" id="5_xd1c2"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fla8q"]
@@ -139,14 +140,48 @@ theme_override_fonts/font = ExtResource("3_xd1c2")
 theme_override_font_sizes/font_size = 40
 text = "Bloque que flipas de duro"
 
-[node name="Stars" type="Label" parent="Scroll/MarginPrincipal/Lista"]
+[node name="Stars" type="HBoxContainer" parent="Scroll/MarginPrincipal/Lista"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+
+[node name="Star1" type="Label" parent="Scroll/MarginPrincipal/Lista/Stars"]
+layout_mode = 2
+mouse_filter = 1
+theme = ExtResource("5_onqak")
+theme_override_colors/font_color = Color(0.920025, 0.920025, 0.920025, 1)
 theme_override_fonts/font = ExtResource("4_lmpaw")
-theme_override_font_sizes/font_size = 30
-text = "⭐⭐⭐⭐⭐"
+text = "⭐"
+
+[node name="Star2" type="Label" parent="Scroll/MarginPrincipal/Lista/Stars"]
+layout_mode = 2
+mouse_filter = 1
+theme = ExtResource("5_onqak")
+theme_override_colors/font_color = Color(0.920025, 0.920025, 0.920025, 1)
+theme_override_fonts/font = ExtResource("4_lmpaw")
+text = "⭐"
+
+[node name="Star3" type="Label" parent="Scroll/MarginPrincipal/Lista/Stars"]
+layout_mode = 2
+mouse_filter = 1
+theme = ExtResource("5_onqak")
+theme_override_colors/font_color = Color(0.920025, 0.920025, 0.920025, 1)
+theme_override_fonts/font = ExtResource("4_lmpaw")
+text = "⭐"
+
+[node name="Star4" type="Label" parent="Scroll/MarginPrincipal/Lista/Stars"]
+layout_mode = 2
+mouse_filter = 1
+theme = ExtResource("5_onqak")
+theme_override_colors/font_color = Color(0.920025, 0.920025, 0.920025, 1)
+theme_override_fonts/font = ExtResource("4_lmpaw")
+text = "⭐"
+
+[node name="Star5" type="Label" parent="Scroll/MarginPrincipal/Lista/Stars"]
+layout_mode = 2
+mouse_filter = 1
+theme = ExtResource("5_onqak")
+theme_override_colors/font_color = Color(0.920025, 0.920025, 0.920025, 1)
+theme_override_fonts/font = ExtResource("4_lmpaw")
+text = "⭐"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Scroll/MarginPrincipal/Lista"]
 layout_mode = 2
@@ -171,4 +206,9 @@ theme_override_font_sizes/font_size = 40
 text = "3"
 vertical_alignment = 1
 
+[connection signal="gui_input" from="Scroll/MarginPrincipal/Lista/Stars/Star1" to="." method="_on_star_1_gui_input"]
+[connection signal="gui_input" from="Scroll/MarginPrincipal/Lista/Stars/Star2" to="." method="_on_star_2_gui_input"]
+[connection signal="gui_input" from="Scroll/MarginPrincipal/Lista/Stars/Star3" to="." method="_on_star_3_gui_input"]
+[connection signal="gui_input" from="Scroll/MarginPrincipal/Lista/Stars/Star4" to="." method="_on_star_4_gui_input"]
+[connection signal="gui_input" from="Scroll/MarginPrincipal/Lista/Stars/Star5" to="." method="_on_star_5_gui_input"]
 [connection signal="gui_input" from="Scroll/MarginPrincipal/Lista/HBoxContainer/Sends" to="." method="_on_sends_gui_input"]

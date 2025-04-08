@@ -2,7 +2,7 @@ extends Node
 
 # database
 var db : SQLite = null
-const verbosity_level : int = SQLite.NORMAL
+const verbosity_level : int = SQLite.QUIET
 var db_file := "user://database.sqlite"
 
 func _ready() -> void:
@@ -47,7 +47,7 @@ func init_database():
 	table_problems["wallid"] = {"data_type":"text", "not_null": true}
 	table_problems["name"] = {"data_type":"text", "not_null": true}
 	table_problems["description"] = {"data_type":"text", "not_null": true}
-	table_problems["rating"] = {"data_type":"real", "not_null": true}
+	table_problems["rating"] = {"data_type":"int", "not_null": true}
 	table_problems["grade"] = {"data_type":"int", "not_null": true}
 	table_problems["grade_system"] = {"data_type":"int", "not_null": true}
 	table_problems["sends"] = {"data_type":"int", "not_null": true}
@@ -255,7 +255,6 @@ func get_db_problems_filter(filter: FilterProblem) -> Array[Problem]:
 		query += " ORDER BY "
 		query += AppManager.filter_problem.get_order()
 		query += AppManager.filter_problem.get_order_dir()
-	print("QUERY: ", query)
 	var _selected_array = db.query(query)
 	var query_result : Array = db.query_result
 	var count : int = 0
