@@ -32,4 +32,7 @@ func _on_button_problems_pressed() -> void:
 
 func _on_button_save_pressed() -> void:
 	var wall = $VBoxContainer/MarginContainer/WallWidget.get_wall()
-	Database.insert_db_wall(wall)
+	Database.upsert_wall(wall,
+		func(result: bool):
+			print("wall saved result ", result)
+	)
