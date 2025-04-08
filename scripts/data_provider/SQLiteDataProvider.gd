@@ -41,9 +41,7 @@ func get_problems_by_filter(filter: FilterProblem, callback: Callable, page: int
 		params.append(filter.grade_range[0])
 		params.append(filter.grade_range[1])
 	if filter.order != FilterProblem.ORDER_BY.NOTHING:
-		query += " ORDER BY ? ?"
-		params.append(filter.get_order())
-		params.append(filter.get_order_dir())
+		query += " ORDER BY %s %s" % [filter.get_order(), filter.get_order_dir()]
 	query += " LIMIT ? OFFSET ?;"
 	params.append(page_size)
 	params.append(page * page_size)
