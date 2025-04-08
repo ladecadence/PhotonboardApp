@@ -55,6 +55,7 @@ func from_json(s):
 		self.wallid = data["wallid"]
 		self.name = data["name"]
 		self.description = data["description"]
+		self.rating = data["rating"]
 		self.grade = data["grade"]
 		self.grade_system = data["grade_system"]
 		self.sends = data["sends"]
@@ -72,6 +73,7 @@ func from_db_query(data):
 		self.wallid = data["wallid"]
 		self.name = data["name"]
 		self.description = data["description"]
+		self.rating = data["rating"]
 		self.grade = data["grade"]
 		self.grade_system = data["grade_system"]
 		self.sends = data["sends"]
@@ -136,7 +138,7 @@ func create_problem_image():
 	
 	# get wall image size
 	var wall = Database.get_db_wall(wallid)
-	print ("wall: ", wall.id, ", ", wall.img_w, ", ", wall.img_h)
+	#print ("wall: ", wall.id, ", ", wall.img_w, ", ", wall.img_h)
 	var ratiox = wall.img_w / sizex
 	var ratioy = wall.img_h / sizey
 	
