@@ -55,6 +55,7 @@ func from_json(s):
 		self.wallid = data["wallid"]
 		self.name = data["name"]
 		self.description = data["description"]
+		self.rating = data["rating"]
 		self.grade = data["grade"]
 		self.grade_system = data["grade_system"]
 		self.sends = data["sends"]
@@ -117,7 +118,6 @@ func create_problem_image(wall: Wall):
 	img.fill_rect(Rect2i(1, 1, sizex-2, sizex-2), Color.WHITE)
 	
 	# get wall image size
-	print ("wall: ", wall.id, ", ", wall.img_w, ", ", wall.img_h)
 	var ratiox = wall.img_w / sizex
 	var ratioy = wall.img_h / sizey
 	
