@@ -4,7 +4,7 @@ class_name SQLiteDataProvider
 # attributes
 
 const _db_path: String = "user://database.sqlite"
-const _db_verbosity: int = SQLite.NORMAL
+const _db_verbosity: int = SQLite.QUIET
 var _thread_pool: ThreadPool = null
 
 # public methods
@@ -117,7 +117,7 @@ func _create_db() -> void:
 		table_problems["wallid"] = {"data_type":"text", "not_null": true}
 		table_problems["name"] = {"data_type":"text", "not_null": true}
 		table_problems["description"] = {"data_type":"text", "not_null": true}
-		table_problems["rating"] = {"data_type":"real", "not_null": true}
+		table_problems["rating"] = {"data_type":"int", "not_null": true}
 		table_problems["grade"] = {"data_type":"int", "not_null": true}
 		table_problems["grade_system"] = {"data_type":"int", "not_null": true}
 		table_problems["sends"] = {"data_type":"int", "not_null": true}
