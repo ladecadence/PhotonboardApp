@@ -3,8 +3,6 @@ extends Control
 @onready var lista = $Scroll/Lista
 @onready var card = preload("res://components/problem_card.tscn")
 
-var load_thread := Thread.new()
-
 #const Wall = preload("res://scripts/Wall.gd")
 
 # Called when the node enters the scene tree for the first time.
@@ -14,12 +12,15 @@ func _ready() -> void:
 		child.queue_free()
 
 	# load problems
-	load_thread.start(Callable(self, "_load_problems_async"))
-
-# Called when the node exits the scene tree.
-func _exit_tree():
-	if load_thread.is_alive():
-		load_thread.wait_to_finish()
+	Database.get_problems_by_filter(
+		AppManager.filter_problem,
+		func(problems):
+			if problems:
+				for p in problems:
+					var c = card.instantiate()
+					c.load_data(p)
+					lista.add_child(c)
+	)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -41,14 +42,3 @@ func _on_button_config_pressed() -> void:
 func _on_panel_filter_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		AppManager.load_screen(AppManager.Screen.PROBLEM_FILTER, null)
-
-func _load_problems_async():
-	call_deferred("_on_problems_loaded", Database.get_db_problems_filter(AppManager.filter_problem))
-
-func _on_problems_loaded(problems):
-	if is_inside_tree():
-		for p in problems:
-			var c = card.instantiate()
-			c.load_data(p)
-			lista.add_child(c)
-	load_thread.wait_to_finish()

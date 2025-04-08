@@ -17,8 +17,10 @@ func _ready() -> void:
 				optionWall.add_item(wall.name)
 			# if we have a filter for walls, select the one on the filter
 			if AppManager.filter_problem.wallid != "":
-				var wallids = Database.get_db_wall_ids()
-				optionWall.select(wallids.find(AppManager.filter_problem.wallid))
+				Database.get_walls_ids(
+					func(walls_ids):
+						optionWall.select(walls_ids.find(AppManager.filter_problem.wallid))
+				)
 			else:
 				optionWall.select(-1)
 				
@@ -66,9 +68,11 @@ func _on_panel_filter_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		# get selected wall
 		if optionWall.selected != -1:
-			var wallids = Database.get_db_wall_ids()
-			var wallid = wallids[optionWall.get_selected_id()]
-			AppManager.filter_problem.set_wallid(wallid)
+			Database.get_walls_ids(
+				func(walls_ids):
+					var wallid = walls_ids[optionWall.get_selected_id()]
+					AppManager.filter_problem.set_wallid(wallid)
+			)
 		if optionGradeMin.selected != -1 and optionGradeMax.selected != -1:
 			var grade_min = optionGradeMin.selected+1
 			var grade_max = optionGradeMax.selected+1

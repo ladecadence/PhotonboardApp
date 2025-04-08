@@ -12,26 +12,32 @@ func _ready() -> void:
 	
 func load_data(data):
 	current_problem = data
-	current_wall = Database.get_db_wall(current_problem.wallid)
-	$Scroll/MarginPrincipal/Lista/MarginImage/WallWidget.load_data(current_wall)
-	$Scroll/MarginPrincipal/Lista/MarginImage/WallWidget.load_problem(current_problem)
-	$Scroll/MarginPrincipal/Lista/HBoxContainerNombre/Name.text = data.name
-	if AppManager.grade_system == Grade.GRADE_SYSTEMS.FONT:
-		$Scroll/MarginPrincipal/Lista/HBoxContainerNombre/MarginContainer/CenterContainer/Panel/Grade.text = Grade.GRADES_FONT[data.grade]
-	else:
-		$Scroll/MarginPrincipal/Lista/HBoxContainerNombre/MarginContainer/CenterContainer/Panel/Grade.text = Grade.GRADES_HUECO[data.grade]
-	$Scroll/MarginPrincipal/Lista/Description.text = data.description
-	# calculate stars
-	var stars = ""
-	for i in data.rating:
-		stars += "⭐"
-	$Scroll/MarginPrincipal/Lista/Stars.text = stars
-	$Scroll/MarginPrincipal/Lista/HBoxContainer/Sends/Number.text = str(current_problem.sends)
-	current_problem.create_problem_image()
+	Database.get_wall(current_problem.wallid,
+		func(wall):
+			current_wall = wall
+			$Scroll/MarginPrincipal/Lista/MarginImage/WallWidget.load_data(current_wall)
+			$Scroll/MarginPrincipal/Lista/MarginImage/WallWidget.load_problem(current_problem)
+			$Scroll/MarginPrincipal/Lista/HBoxContainerNombre/Name.text = data.name
+			if AppManager.grade_system == Grade.GRADE_SYSTEMS.FONT:
+				$Scroll/MarginPrincipal/Lista/HBoxContainerNombre/MarginContainer/CenterContainer/Panel/Grade.text = Grade.GRADES_FONT[data.grade]
+			else:
+				$Scroll/MarginPrincipal/Lista/HBoxContainerNombre/MarginContainer/CenterContainer/Panel/Grade.text = Grade.GRADES_HUECO[data.grade]
+			$Scroll/MarginPrincipal/Lista/Description.text = data.description
+			# calculate stars
+			var stars = ""
+			for i in data.rating:
+				stars += "⭐"
+			$Scroll/MarginPrincipal/Lista/Stars.text = stars
+			$Scroll/MarginPrincipal/Lista/HBoxContainer/Sends/Number.text = str(current_problem.sends)
+			current_problem.create_problem_image(current_wall)
+	)
 
 
 func _on_sends_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		current_problem.sends += 1
 		$Scroll/MarginPrincipal/Lista/HBoxContainer/Sends/Number.text = str(current_problem.sends)
-		Database.insert_db_problem(current_problem)
+		Database.upsert_problem(current_problem,
+			func(result: bool):
+				print("problem saved result ", result)
+		)
