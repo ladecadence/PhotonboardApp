@@ -1,33 +1,97 @@
 extends DataProvider
 class_name SQLiteDataProvider
 
+# attributes
+
 const _db_path: String = "user://database.sqlite"
 const _db_verbosity: int = SQLite.NORMAL
 var _thread_pool: ThreadPool = null
 
+# public methods
+
 func destroy():
 	_thread_pool.destroy()
+	_thread_pool = null
 
-func get_problems(callback: Callable, page: int = 1, page_size: int = 25) -> void:
+func get_problem(id: String, callback: Callable) -> void:
+	assert(_thread_pool, "expected a valid thread pool")
+	_thread_pool.request(_query, ["SELECT * FROM problems WHERE id = ? LIMIT 1;", [id]], 
+		func(problem_data: Array):
+			if callback.is_valid():
+				callback.callv([problem_data.front()])
+	)
+
+func get_problems(callback: Callable, page: int = 0, page_size: int = 25) -> void:
+	assert(_thread_pool, "expected a valid thread pool")
 	_thread_pool.request(_query, ["SELECT * FROM problems LIMIT ? OFFSET ?;", [page_size, page * page_size]], callback)
 
+func get_problems_by_filter(filter: FilterProblem, callback: Callable, page: int = 0, page_size: int = 25) -> void:
+	assert(_thread_pool, "expected a valid thread pool")
+	var query = "SELECT * FROM problems"
+	var params = []
+	if filter.filter_active:
+		query += " WHERE"
+	if filter.wallid != "":
+		query += " wallid = ?"
+		params.append(filter.wallid)
+		if len(filter.grade_range) > 0:
+			query += " AND"
+	if len(filter.grade_range) > 0:
+		query += " grade >= ? AND grade <= ?"
+		params.append(filter.grade_range[0])
+		params.append(filter.grade_range[1])
+	if filter.order != FilterProblem.ORDER_BY.NOTHING:
+		query += " ORDER BY ? ?"
+		params.append(filter.get_order())
+		params.append(filter.get_order_dir())
+	query += " LIMIT ? OFFSET ?;"
+	params.append(page_size)
+	params.append(page * page_size)
+	_thread_pool.request(_query, [query, params], callback)
+
+func get_wall(id: String, callback: Callable) -> void:
+	assert(_thread_pool, "expected a valid thread pool")
+	_thread_pool.request(_query, ["SELECT * FROM walls WHERE id = ? LIMIT 1;", [id]], 
+		func(wall_data: Array):
+			if callback.is_valid():
+				callback.callv([wall_data.front()])
+	)
+
 func get_walls(callback: Callable, page: int = 0, page_size: int = 25) -> void:
+	assert(_thread_pool, "expected a valid thread pool")
 	_thread_pool.request(_query, ["SELECT * FROM walls LIMIT ? OFFSET ?;", [page_size, page * page_size]], callback)
+	
+func get_walls_ids(callback: Callable) -> void:
+	assert(_thread_pool, "expected a valid thread pool")
+	_thread_pool.request(_query, ["SELECT id FROM walls;", []], callback)
+
+func upsert_problem(problem_data: Dictionary, callback: Callable = Callable()) -> void:
+	assert(_thread_pool, "expected a valid thread pool")
+	get_problem(problem_data["id"], 
+		func(problem):
+			if problem:
+				_thread_pool.request(_update, ["problems", 'id="' + problem.id + '"', problem_data], callback)
+			else:
+				_thread_pool.request(_insert, ["problems", problem_data], callback)
+	)
+
+func upsert_wall(wall_data: Dictionary, callback: Callable = Callable()) -> void:
+	assert(_thread_pool, "expected a valid thread pool")
+	get_wall(wall_data["id"], 
+		func(wall):
+			if wall:
+				_thread_pool.request(_update, ["walls", 'id="' + wall.id + '"', wall_data], callback)
+			else:
+				_thread_pool.request(_insert, ["walls", wall_data], callback)
+	)
+
+# private methods
 
 func _create_connection() -> SQLite:
 	var connection = SQLite.new()
 	connection.path = _db_path
 	connection.verbosity_level = _db_verbosity
 	return connection
-
-func _init():
-	if not _exists_db():
-		_create_db()
-		_create_test_data()
-	_thread_pool = ThreadPool.new(1)
-
-func _exists_db() -> bool:
-	return FileAccess.file_exists(_db_path)
 
 func _create_db() -> void:
 	var connection = _create_connection()
@@ -77,7 +141,7 @@ func _create_test_data():
 		var file = FileAccess.open("res://data/wall.json", FileAccess.READ)
 		var json = file.get_as_text()
 		file.close()
-		var wall = Wall.new(null, "", "", true, 0, 0, null, 0, 0)
+		var wall = Wall.new()
 		wall.from_json(json)
 		
 		print("Image exists? : ", FileAccess.file_exists("user://wall03.jpg"))
@@ -98,7 +162,7 @@ func _create_test_data():
 		file.close()
 		var json_data = JSON.parse_string(content)
 		for p in json_data:
-			var problem = Problem.new("", "", "", 0, 0, 0, 0)
+			var problem = Problem.new()
 			problem.from_json(JSON.stringify(p))
 			# insert it 
 			connection.insert_row("problems", problem.to_dict())
@@ -106,11 +170,36 @@ func _create_test_data():
 		# Close the current database
 		connection.close_db()
 
+func _exists_db() -> bool:
+	return FileAccess.file_exists(_db_path)
+
+func _init():
+	if not _exists_db():
+		_create_db()
+		_create_test_data()
+	_thread_pool = ThreadPool.new(1)
+
+func _insert(table: String, data: Dictionary) -> bool:
+	var inserted: bool = false
+	var connection = _create_connection()
+	if connection.open_db():
+		inserted = connection.insert_row(table, data)
+		connection.close_db()
+	return inserted
+
 func _query(query: String, params: Array) -> Array:
-	var results = []
+	var data: Array = []
 	var connection = _create_connection()
 	if connection.open_db():
 		if connection.query_with_bindings(query, params):
-			results = connection.query_result
+			data = connection.query_result
 		connection.close_db()
-	return results
+	return data
+
+func _update(table: String, condition: String, data: Dictionary) -> bool:
+	var updated: bool = false
+	var connection = _create_connection()
+	if connection.open_db():
+		updated = connection.update_rows(table, condition, data)
+		connection.close_db()
+	return updated
