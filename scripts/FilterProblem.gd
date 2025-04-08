@@ -57,5 +57,4 @@ func get_db_conditions() -> String:
 		var grade_max = grade_range[1]
 		conditions =  conditions + ' grade >= ' +  str(grade_min) + ' and grade <= ' + str(grade_max)
 	
-	print(conditions)
 	return conditions
