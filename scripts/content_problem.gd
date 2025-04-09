@@ -116,14 +116,14 @@ func _on_star_5_gui_input(event: InputEvent) -> void:
 		)
 
 func _on_h_box_problem_info_gui_input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion and event.pressure > 0 and abs(event.velocity[0]) > 100:
+	if event is InputEventMouseMotion and event.pressure > 0 and abs(event.velocity[0]) > 1000:
 		var index = problems_list.find_custom(
 			func(problem):
 				return problem.id == current_problem.id
 		)
 		var new_problem: Problem
 		if event.velocity[0] < 0: # right scroll (next problem)
-			new_problem = problems_list[min(index + 1, len(problems_list))]
+			new_problem = problems_list[min(index + 1, len(problems_list)-1)]
 		else: # left scroll (prev. problem)
 			new_problem = problems_list[max(index - 1, 0)]
 		AppManager.load_screen(AppManager.Screen.PROBLEM_VIEW, new_problem)
