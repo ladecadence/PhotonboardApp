@@ -4,7 +4,7 @@ class_name ThreadPool
 # attributes
 
 const MIN_THREADS: int = 1
-var _queue: Array = []
+var _queue: Array[Dictionary] = []
 var _queue_mutex: Mutex = Mutex.new()
 var _running: bool = true
 var _running_mutex: Mutex = Mutex.new()
@@ -13,7 +13,7 @@ var _threads: Array[Thread] = []
 # public methods
 
 func destroy() -> void:
-	print("[Thread: %2s] ThreadPool.destroy { \"threads\": %d }" % [OS.get_thread_caller_id(), _threads.size()])
+	print("[Thread: %2s] ThreadPool.destroy { \"max_threads\": %d }" % [OS.get_thread_caller_id(), _threads.size()])
 	_running_mutex.lock()
 	_running = false
 	_running_mutex.unlock()
@@ -31,9 +31,9 @@ func request(task: Callable, args: Array = [], callback: Callable = Callable()) 
 
 # private methods
 
-func _init(threads: int) -> void:
-	print("[Thread: %2s] ThreadPool._init { \"threads\": %d }" % [OS.get_thread_caller_id(), threads])
-	for i in range(max(MIN_THREADS, threads)):
+func _init(max_threads: int = MIN_THREADS) -> void:
+	print("[Thread: %2s] ThreadPool._init { \"max_threads\": %d }" % [OS.get_thread_caller_id(), max_threads])
+	for i in range(max(MIN_THREADS, max_threads)):
 		var thread = Thread.new()
 		if (thread.start(_process_queue) == OK):
 			_threads.append(thread)
