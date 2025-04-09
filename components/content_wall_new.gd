@@ -46,7 +46,7 @@ func _on_button_open_image_pressed() -> void:
 		var options: Dictionary = {
 			"auto_rotate_image": true
 		}
-		# plugin.setOptions(options)
+		plugin.setOptions(options)
 		if plugin:
 			plugin.getGalleryImage()
 
