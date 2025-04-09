@@ -1,10 +1,10 @@
 extends Node
 
-# database
-var data_provider: DataProvider = null
+# attributes
 
-func _ready() -> void:
-	data_provider = SQLiteDataProvider.new()
+var data_provider: DataProvider = SQLiteDataProvider.new()
+
+# public methods
 
 func get_problem(id: String, callback: Callable) -> void:
 	data_provider.get_wall(id, 
