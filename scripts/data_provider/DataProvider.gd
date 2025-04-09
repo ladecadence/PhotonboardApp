@@ -1,6 +1,8 @@
 extends RefCounted
 class_name DataProvider
 
+# public methods
+
 func destroy() -> void:
 	push_error("destroy not implemented")
 
