@@ -1,6 +1,5 @@
 extends Control
 
-
 @onready var lista = $Scroll/Lista
 @onready var card = preload("res://components/wall_card.tscn")
 
@@ -11,13 +10,16 @@ func _ready() -> void:
 	# delete cards
 	for child in lista.get_children():
 		child.queue_free()
-	
-	# load data
-	var walls = Database.get_db_walls()
-	for w in walls:
-		var c = card.instantiate()
-		c.load_data(w)
-		lista.add_child(c)
+
+	# load walls
+	Database.get_walls(
+		func(walls):
+			if walls != null:
+				for w in walls:
+					var c = card.instantiate()
+					c.load_data(w)
+					lista.add_child(c)
+	)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:

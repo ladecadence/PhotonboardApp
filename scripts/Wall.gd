@@ -1,4 +1,4 @@
-extends Object
+extends RefCounted
 
 class_name Wall
 
@@ -16,8 +16,7 @@ var img_w: int
 var img_h: int
 var holds: Array[Hold]
 
-
-func _init(_id, n, d, a, dmin, dmax, i, iw, ih):
+func _init(_id = null, n = "", d = "", a = true, dmin = 0, dmax = 0, i = null, iw = 0, ih = 0):
 	if _id == null:
 		id = AppManager.get_uuid_v4()
 	else:
@@ -108,24 +107,6 @@ func from_bin(data: PackedByteArray):
 	from_dict(dict)
 	image = Image.new()
 	image.load_jpg_from_buffer(dict["image"])
-
-func from_db_query(data):
-	if data != null:
-		self.id = data["id"]
-		self.name = data["name"]
-		self.description = data["description"]
-		self.adjustable = data["adjustable"]
-		self.deg_min = data["deg_min"]
-		self.deg_max = data["deg_max"]
-		# self.image = Image.create_from_data(data["image"])
-		if data.has("holds"):
-			var holds_dict = JSON.parse_string(data["holds"])
-			for h in holds_dict:
-				var hold = Hold.new(0,"",0,0,0,0)
-				hold.from_dict(h)
-				self.holds.append(hold)
-		else:
-			self.holds = []
 
 func holds_to_json():
 	var hold_array = []

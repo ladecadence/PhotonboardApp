@@ -13,15 +13,17 @@ func load_data(data: Problem):
 	problem = data
 	$Fondo/HBoxContainer/Descr/Name.text = data.name
 	$Fondo/HBoxContainer/Descr/Description.text = data.description
-	var wall = Database.get_db_wall(data.wallid)
-	$Fondo/HBoxContainer/Descr/Wall.text = wall.name
-	if AppManager.grade_system == Grade.GRADE_SYSTEMS.FONT:
-		$Fondo/HBoxContainer/Data/MarginContainer/CenterContainer/Panel/Grade.text = Grade.GRADES_FONT[data.grade]
-	else:
-		$Fondo/HBoxContainer/Data/MarginContainer/CenterContainer/Panel/Grade.text = Grade.GRADES_HUECO[data.grade]
-	$Fondo/HBoxContainer/Data/Sends/Number.text = str(data.sends)
-	var problem_texture = ImageTexture.create_from_image(problem.create_problem_image())
-	$Fondo/HBoxContainer/MarginContainer/TextureRect.set_texture(problem_texture)
+	Database.get_wall(data.wallid,
+		func(wall):
+			$Fondo/HBoxContainer/Descr/Wall.text = wall.name
+			if AppManager.grade_system == Grade.GRADE_SYSTEMS.FONT:
+				$Fondo/HBoxContainer/Data/MarginContainer/CenterContainer/Panel/Grade.text = Grade.GRADES_FONT[data.grade]
+			else:
+				$Fondo/HBoxContainer/Data/MarginContainer/CenterContainer/Panel/Grade.text = Grade.GRADES_HUECO[data.grade]
+			$Fondo/HBoxContainer/Data/Sends/Number.text = str(data.sends)
+			var problem_texture = ImageTexture.create_from_image(problem.create_problem_image(wall))
+			$Fondo/HBoxContainer/MarginContainer/TextureRect.set_texture(problem_texture)
+	)
 
 func _on_panel_events_gui_input(event: InputEvent) -> void:
 	# use touch instead of mouse event so we can scroll if it's a drag (no distance moved when released)

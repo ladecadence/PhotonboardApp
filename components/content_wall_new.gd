@@ -34,7 +34,6 @@ func _on_panel_continue_gui_input(event: InputEvent) -> void:
 			$MarginContainer/Scroll/Lista/HBoxContainer8/LabelInfo.text = "Please select a JPG image for the wall."
 		else:
 			# continue to edit wall holds
-			# var wall = Database.get_db_wall("1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05")
 			var wall = Wall.new(null, name_in.text, description_in.text, adjustable_in.button_pressed, min_in.value, max_in.value, image, image.get_width(), image.get_height())
 			AppManager.load_screen(AppManager.Screen.WALL_EDIT_HOLDS, wall)
 

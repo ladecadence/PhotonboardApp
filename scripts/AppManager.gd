@@ -10,15 +10,8 @@ var grade_system: Grade.GRADE_SYSTEMS = Grade.GRADE_SYSTEMS.FONT
 var filter_problem: FilterProblem = FilterProblem.new()
 
 func _ready() -> void:
-	# database
-	if not Database.database_exists():
-		Database.init_database()
-		Database.create_test_data()
-	
-	#Database.get_db_wall("1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05")
 	load_config()
-	
-	#print(Database.get_db_wall_ids())
+
 	# Initial screen
 	load_screen(Screen.WALL_LIST, null)
 

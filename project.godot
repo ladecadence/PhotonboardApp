@@ -19,8 +19,8 @@ boot_splash/use_filter=false
 
 [autoload]
 
-Database="*res://scripts/database.gd"
 AppManager="*res://scripts/AppManager.gd"
+Database="*res://scripts/Database.gd"
 
 [display]
 
