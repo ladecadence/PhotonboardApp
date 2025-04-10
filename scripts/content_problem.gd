@@ -13,6 +13,7 @@ extends Control
 var current_problem: Problem
 var current_wall: Wall
 var problems_list: Array[Problem]
+var last_problem_hscroll: int = Time.get_ticks_msec()
 
 func _ready() -> void:
 	$Scroll/MarginPrincipal/Lista/MarginImage/WallWidget.change_mode(WallWidget.WALL_MODE.SHOW)
@@ -116,7 +117,10 @@ func _on_star_5_gui_input(event: InputEvent) -> void:
 		)
 
 func _on_h_box_problem_info_gui_input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion and event.pressure > 0 and abs(event.velocity[0]) > 1000:
+	var wait_millis = 100  # time to wait after last scroll to allow a new problem scroll
+	var scroll_vel = 1000  # X velocity threshold to detect an scroll
+	var elapsed = Time.get_ticks_msec() - last_problem_hscroll
+	if event is InputEventMouseMotion and event.pressure > 0 and abs(event.velocity[0]) > scroll_vel and elapsed > wait_millis:
 		var index = problems_list.find_custom(
 			func(problem):
 				return problem.id == current_problem.id
