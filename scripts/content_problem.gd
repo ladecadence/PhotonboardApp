@@ -123,7 +123,7 @@ func _on_h_box_problem_info_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and event.pressure > 0 and abs(event.velocity[0]) > scroll_vel and elapsed > wait_millis:
 		var index = problems_list.find_custom(
 			func(problem):
-				return problem.id == current_problem.id
+				return problem.uid == current_problem.uid
 		)
 		var new_problem: Problem
 		if event.velocity[0] < 0: # right scroll (next problem)

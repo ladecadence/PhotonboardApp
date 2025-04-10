@@ -183,14 +183,14 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="ButtonConfig" type="Button" parent="VBoxContainer/Navbar/HBoxContainer"]
+[node name="ButtonProblems" type="Button" parent="VBoxContainer/Navbar/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_r4575")
 theme_override_font_sizes/font_size = 30
-text = "Config"
-icon = ExtResource("4_2cpfu")
+text = "Problems"
+icon = ExtResource("6_783sm")
 flat = true
 icon_alignment = 1
 vertical_icon_alignment = 0
@@ -209,14 +209,14 @@ icon_alignment = 1
 vertical_icon_alignment = 0
 expand_icon = true
 
-[node name="ButtonProblems" type="Button" parent="VBoxContainer/Navbar/HBoxContainer"]
+[node name="ButtonConfig" type="Button" parent="VBoxContainer/Navbar/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_r4575")
 theme_override_font_sizes/font_size = 30
-text = "Problems"
-icon = ExtResource("6_783sm")
+text = "Config"
+icon = ExtResource("4_2cpfu")
 flat = true
 icon_alignment = 1
 vertical_icon_alignment = 0
@@ -224,6 +224,6 @@ expand_icon = true
 
 [connection signal="gui_input" from="VBoxContainer/CenterContainer/Panel/HBoxContainer/MarginContainer/CenterContainer/PanelAdd" to="VBoxContainer/ContentProblems" method="_on_panel_add_gui_input"]
 [connection signal="gui_input" from="VBoxContainer/CenterContainer/Panel/HBoxContainer/MarginContainer2/CenterContainer/PanelFilter" to="VBoxContainer/ContentProblems" method="_on_panel_filter_gui_input"]
-[connection signal="pressed" from="VBoxContainer/Navbar/HBoxContainer/ButtonConfig" to="VBoxContainer/ContentProblems" method="_on_button_config_pressed"]
-[connection signal="pressed" from="VBoxContainer/Navbar/HBoxContainer/ButtonWalls" to="VBoxContainer/ContentProblems" method="_on_button_walls_pressed"]
 [connection signal="pressed" from="VBoxContainer/Navbar/HBoxContainer/ButtonProblems" to="VBoxContainer/ContentProblems" method="_on_button_problems_pressed"]
+[connection signal="pressed" from="VBoxContainer/Navbar/HBoxContainer/ButtonWalls" to="VBoxContainer/ContentProblems" method="_on_button_walls_pressed"]
+[connection signal="pressed" from="VBoxContainer/Navbar/HBoxContainer/ButtonConfig" to="VBoxContainer/ContentProblems" method="_on_button_config_pressed"]

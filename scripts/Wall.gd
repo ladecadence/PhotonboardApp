@@ -5,7 +5,7 @@ class_name Wall
 #const Hold = preload("res://scripts/Hold.gd")
 #const Problem = preload("res://scripts/Problem.gd")
 
-var id: String
+var uid: String
 var name : String
 var description : String
 var adjustable : bool
@@ -18,9 +18,9 @@ var holds: Array[Hold]
 
 func _init(_id = null, n = "", d = "", a = true, dmin = 0, dmax = 0, i = null, iw = 0, ih = 0):
 	if _id == null:
-		id = AppManager.get_uuid_v4()
+		uid = AppManager.get_uuid_v4()
 	else:
-		id = _id
+		uid = _id
 	name = n
 	description = d
 	adjustable = a
@@ -44,7 +44,7 @@ func add_hold(h: Hold):
 
 func to_json() -> String:
 	var data = {}
-	data["id"] = self.id
+	data["uid"] = self.uid
 	data["name"] = self.name
 	data["description"] = self.description
 	data["adjustable"] = self.adjustable
@@ -64,7 +64,7 @@ func to_json() -> String:
 func from_json(s):
 	var data = JSON.parse_string(s)
 	if data != null:
-		self.id = data["id"]
+		self.uid = data["uid"]
 		self.name = data["name"]
 		self.description = data["description"]
 		self.adjustable = data["adjustable"]
@@ -81,7 +81,7 @@ func from_json(s):
 	
 func from_dict(data):
 	if data != null:
-		self.id = data["id"]
+		self.uid = data["uid"]
 		self.name = data["name"]
 		self.description = data["description"]
 		self.adjustable = data["adjustable"]
@@ -117,7 +117,7 @@ func holds_to_json():
 func to_dict():
 	# create wall data
 	var data = {}
-	data["id"] = id
+	data["uid"] = uid
 	data["name"] = name
 	data["description"] = description
 	data["adjustable"] = adjustable

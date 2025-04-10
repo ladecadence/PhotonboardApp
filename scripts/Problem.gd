@@ -4,7 +4,7 @@ class_name Problem
 
 #const Hold = preload("res://scripts/Hold.gd")
 
-var id: String
+var uid: String
 var wallid: String
 var name : String
 var description : String
@@ -15,7 +15,7 @@ var sends: int
 var holds: Array[Hold] = []
 
 func _init(w = "", n = "", d = "", r = 0, g = 0, gs = 0, s = 0):
-	id = AppManager.get_uuid_v4()
+	uid = AppManager.get_uuid_v4()
 	wallid = w
 	name = n
 	description = d
@@ -29,7 +29,7 @@ func add_hold(h: Hold):
 
 func to_json() -> String:
 	var data = {}
-	data["id"] = self.id
+	data["uid"] = self.uid
 	data["wallid"] = self.wallid
 	data["name"] = self.name
 	data["description"] = self.description
@@ -50,7 +50,7 @@ func to_json() -> String:
 func from_json(s):
 	var data = JSON.parse_string(s)
 	if data != null:
-		self.id = data["id"]
+		self.uid = data["uid"]
 		self.wallid = data["wallid"]
 		self.name = data["name"]
 		self.description = data["description"]
@@ -74,7 +74,7 @@ func holds_to_json():
 
 func to_dict():
 	var data = {}
-	data["id"] = id
+	data["uid"] = uid
 	data["wallid"] = wallid
 	data["name"] = name
 	data["description"] = description
@@ -86,7 +86,7 @@ func to_dict():
 	return data
 
 func from_dict(data: Dictionary):
-	id = data["id"]
+	uid = data["uid"]
 	wallid = data["wallid"] 
 	name = data["name"]
 	description = data["description"]

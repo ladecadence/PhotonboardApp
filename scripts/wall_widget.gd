@@ -146,7 +146,7 @@ func _input(event):
 								# TODO: This is a fix I don't understand, I calculated this using empirical data and it works, but I don't know
 								# why I need to multiply the Y offset (a constant value) by the inverse of the zoom when zooming
 								# I suspect it has to do with the matrix transform of the scene, but well...
-								wall.holds.append(Hold.new(lastHold, wall.id, (event.position.x/zoom)-origin.x-offset.x, (event.position.y/zoom)-origin.y-(offset.y*(1/zoom)), Hold.HOLD_TYPE.DESIGN, holdSize))
+								wall.holds.append(Hold.new(lastHold, wall.uid, (event.position.x/zoom)-origin.x-offset.x, (event.position.y/zoom)-origin.y-(offset.y*(1/zoom)), Hold.HOLD_TYPE.DESIGN, holdSize))
 								lastHold+=1
 							else: # EDIT_MODE
 								# TODO: change existing holds

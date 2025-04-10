@@ -13,9 +13,9 @@ func destroy():
 	_thread_pool.destroy()
 	_thread_pool = null
 
-func get_problem(id: String, callback: Callable) -> void:
+func get_problem(uid: String, callback: Callable) -> void:
 	assert(_thread_pool, "expected a valid thread pool")
-	_thread_pool.request(_query, ["SELECT * FROM problems WHERE id = ? LIMIT 1;", [id]], 
+	_thread_pool.request(_query, ["SELECT * FROM problems WHERE uid = ? LIMIT 1;", [uid]], 
 		func(problem_data: Array):
 			if callback.is_valid():
 				callback.callv([problem_data.front()])
@@ -47,9 +47,9 @@ func get_problems_by_filter(filter: FilterProblem, callback: Callable, page: int
 	params.append(page * page_size)
 	_thread_pool.request(_query, [query, params], callback)
 
-func get_wall(id: String, callback: Callable) -> void:
+func get_wall(uid: String, callback: Callable) -> void:
 	assert(_thread_pool, "expected a valid thread pool")
-	_thread_pool.request(_query, ["SELECT * FROM walls WHERE id = ? LIMIT 1;", [id]], 
+	_thread_pool.request(_query, ["SELECT * FROM walls WHERE uid = ? LIMIT 1;", [uid]], 
 		func(wall_data: Array):
 			if callback.is_valid():
 				callback.callv([wall_data.front()])
@@ -61,24 +61,24 @@ func get_walls(callback: Callable, page: int = 0, page_size: int = 25) -> void:
 	
 func get_walls_ids(callback: Callable) -> void:
 	assert(_thread_pool, "expected a valid thread pool")
-	_thread_pool.request(_query, ["SELECT id FROM walls;", []], callback)
+	_thread_pool.request(_query, ["SELECT uid FROM walls;", []], callback)
 
 func upsert_problem(problem_data: Dictionary, callback: Callable = Callable()) -> void:
 	assert(_thread_pool, "expected a valid thread pool")
-	get_problem(problem_data["id"], 
+	get_problem(problem_data["uid"], 
 		func(problem):
 			if problem:
-				_thread_pool.request(_update, ["problems", 'id="' + problem.id + '"', problem_data], callback)
+				_thread_pool.request(_update, ["problems", 'uid="' + problem.uid + '"', problem_data], callback)
 			else:
 				_thread_pool.request(_insert, ["problems", problem_data], callback)
 	)
 
 func upsert_wall(wall_data: Dictionary, callback: Callable = Callable()) -> void:
 	assert(_thread_pool, "expected a valid thread pool")
-	get_wall(wall_data["id"], 
+	get_wall(wall_data["uid"], 
 		func(wall):
 			if wall:
-				_thread_pool.request(_update, ["walls", 'id="' + wall.id + '"', wall_data], callback)
+				_thread_pool.request(_update, ["walls", 'uid="' + wall.uid + '"', wall_data], callback)
 			else:
 				_thread_pool.request(_insert, ["walls", wall_data], callback)
 	)
@@ -96,8 +96,8 @@ func _create_db() -> void:
 	if connection.open_db():
 		# walls
 		var table_walls : Dictionary = Dictionary()
-		table_walls["_id"] = {"data_type":"int", "primary_key": true, "not_null": true}
-		table_walls["id"] = {"data_type":"text", "not_null": true}
+		table_walls["id"] = {"data_type":"int", "primary_key": true, "not_null": true}
+		table_walls["uid"] = {"data_type":"text", "not_null": true}
 		table_walls["name"] = {"data_type":"text", "not_null": true}
 		table_walls["description"] = {"data_type":"text", "not_null": true}
 		table_walls["adjustable"] = {"data_type":"int", "not_null": true}
@@ -112,8 +112,8 @@ func _create_db() -> void:
 	
 		# problems
 		var table_problems : Dictionary = Dictionary()
-		table_problems["_id"] = {"data_type":"int", "primary_key": true, "not_null": true}
-		table_problems["id"] = {"data_type":"text", "not_null": true}
+		table_problems["id"] = {"data_type":"int", "primary_key": true, "not_null": true}
+		table_problems["uid"] = {"data_type":"text", "not_null": true}
 		table_problems["wallid"] = {"data_type":"text", "not_null": true}
 		table_problems["name"] = {"data_type":"text", "not_null": true}
 		table_problems["description"] = {"data_type":"text", "not_null": true}

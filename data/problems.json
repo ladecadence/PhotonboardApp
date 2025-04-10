@@ -1,6 +1,6 @@
 [
   {
-	"id": "a",
+	"uid": "a",
 	"wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
 	"name": "La muerte",
 	"description": "Bloque que flipas de duro",
@@ -52,7 +52,7 @@
   ]
   },
   {
-	"id": "b",
+	"uid": "b",
 	"wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
 	"name": "La vida",
 	"description": "Te llena de alegría",
@@ -104,7 +104,7 @@
   ]
   },
   {
-	"id": "c",
+	"uid": "c",
 	"wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
 	"name": "Endika txistulari",
 	"description": "El clásico de los clásicos",
@@ -164,7 +164,7 @@
   ]
   },
   {
-	"id": "d",
+	"uid": "d",
 	"wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
 	"name": "Sin poleas mejor",
 	"description": "Vas al 100%",
@@ -224,7 +224,7 @@
   ]
   },
   {
-	"id": "e",
+	"uid": "e",
 	"wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
 	"name": "Paseos a caballo",
 	"description": "Al lado de la autopista",
@@ -234,9 +234,9 @@
 	"sends": 0
   },
   {
-	"id": "f",
+	"uid": "f",
 	"wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
-	"name": "Paseos a caballo",
+	"name": "Paseos a caballo 1",
 	"description": "Al lado de la autopista",
 	"rating": 5,
 	"grade": 6,
@@ -244,9 +244,9 @@
 	"sends": 0
   },
   {
-	"id": "g",
+	"uid": "g",
 	"wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
-	"name": "Paseos a caballo",
+	"name": "Paseos a caballo 2",
 	"description": "Al lado de la autopista",
 	"rating": 5,
 	"grade": "5+",
@@ -254,9 +254,9 @@
 	"sends": 0
   },
   {
-	"id": "h",
+	"uid": "h",
 	"wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05",
-	"name": "Paseos a caballo",
+	"name": "Paseos a caballo 3",
 	"description": "Al lado de la autopista",
 	"rating": 5,
 	"grade": 6,
@@ -317,11 +317,11 @@
 		"y": 784
 	  }
 	],
-	"id": "9213d786-846a-43bf-9325-60f1ca10a98e",
+	"uid": "9213d786-846a-43bf-9325-60f1ca10a98e",
 	"name": "Test TBK Problem",
 	"rating": 5,
 	"sends": 1,
 	"wallid": "1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05"
   },
-{"description":"NEW PROBLEM","grade":13,"grade_system":1,"holds":[{"id":2,"size":30,"type":2,"wallid":"1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05","x":474.0,"y":96.0},{"id":10,"size":30,"type":3,"wallid":"1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05","x":247.0,"y":352.0},{"id":14,"size":30,"type":3,"wallid":"1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05","x":704.0,"y":357.0},{"id":21,"size":30,"type":3,"wallid":"1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05","x":375.0,"y":593.0},{"id":34,"size":30,"type":1,"wallid":"1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05","x":701.0,"y":821.0},{"id":39,"size":30,"type":4,"wallid":"1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05","x":264.0,"y":926.0}],"id":"aabcc040-670d-4ab0-86a3-ce7d1d89d4fd","name":"TEST","rating":0,"sends":0,"wallid":"1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05"}
+{"description":"NEW PROBLEM","grade":13,"grade_system":1,"holds":[{"id":2,"size":30,"type":2,"wallid":"1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05","x":474.0,"y":96.0},{"id":10,"size":30,"type":3,"wallid":"1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05","x":247.0,"y":352.0},{"id":14,"size":30,"type":3,"wallid":"1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05","x":704.0,"y":357.0},{"id":21,"size":30,"type":3,"wallid":"1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05","x":375.0,"y":593.0},{"id":34,"size":30,"type":1,"wallid":"1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05","x":701.0,"y":821.0},{"id":39,"size":30,"type":4,"wallid":"1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05","x":264.0,"y":926.0}],"uid":"aabcc040-670d-4ab0-86a3-ce7d1d89d4fd","name":"TEST","rating":0,"sends":0,"wallid":"1fddf17c-3ddf-4dc7-a3d0-e3ac3d9f8b05"}
 ]

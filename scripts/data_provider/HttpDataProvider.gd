@@ -19,8 +19,8 @@ var _requests: Array[HTTPRequest] = []
 func destroy() -> void:
 	push_error("destroy not implemented")
 
-func get_problem(id: String, callback: Callable) -> void:
-	_request("%s/problem/%s" % [BASE_URL, id], _get_auth_headers(), HTTPClient.METHOD_GET, "", callback)
+func get_problem(uid: String, callback: Callable) -> void:
+	_request("%s/problem/%s" % [BASE_URL, uid], _get_auth_headers(), HTTPClient.METHOD_GET, "", callback)
 
 func get_problems(callback: Callable, page: int = 0, page_size: int = 25) -> void:
 	_request("%s/problems?page=%d&page_size=%d" % [BASE_URL, page, page_size], _get_auth_headers(), HTTPClient.METHOD_GET, "", callback)
@@ -28,8 +28,8 @@ func get_problems(callback: Callable, page: int = 0, page_size: int = 25) -> voi
 func get_problems_by_filter(filter: FilterProblem, callback: Callable, page: int = 0, page_size: int = 25) -> void:
 	_request("%s/problems/filter?page=%d&page_size=%d" % [BASE_URL, page, page_size], _get_auth_headers(), HTTPClient.METHOD_POST, JSON.stringify(filter), callback)
 
-func get_wall(id: String, callback: Callable) -> void:
-	_request("%s/wall/%s" % [BASE_URL, id], _get_auth_headers(), HTTPClient.METHOD_GET, "", callback)
+func get_wall(uid: String, callback: Callable) -> void:
+	_request("%s/wall/%s" % [BASE_URL, uid], _get_auth_headers(), HTTPClient.METHOD_GET, "", callback)
 
 func get_walls(callback: Callable, page: int = 0, page_size: int = 25) -> void:
 	_request("%s/walls?page=%d&page_size=%d" % [BASE_URL, page, page_size], _get_auth_headers(), HTTPClient.METHOD_GET, "", callback)

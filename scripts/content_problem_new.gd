@@ -30,7 +30,7 @@ func _on_panel_continue_gui_input(event: InputEvent) -> void:
 		if nameEdit.text == "" or descriptionEdit.text ==  "":
 			$MarginContainer/Scroll/Lista/HBoxContainer3/LabelInfo.text = "Please fill all the fields"
 		else: 
-			Database.get_wall(_walls[wallSelect.get_selected_id()].id,
+			Database.get_wall(_walls[wallSelect.get_selected_id()].uid,
 				func(wall: Wall):
 					var grade = gradeOption.selected+1
 					var problem = Problem.new(wall.id, nameEdit.text, descriptionEdit.text, 0, grade, AppManager.grade_system, 0)
