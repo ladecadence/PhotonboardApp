@@ -80,7 +80,7 @@ func get_walls_ids(callback: Callable) -> void:
 			if callback.is_valid():
 				var walls_ids: Array[String] = []
 				for wall_data: Dictionary in walls_data:
-					walls_ids.append(wall_data["id"])
+					walls_ids.append(wall_data["uid"])
 				callback.callv([walls_ids])
 	)
 
