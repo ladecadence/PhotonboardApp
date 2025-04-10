@@ -3,7 +3,7 @@ extends Node
 # attributes
 
 var data_provider: DataProvider = SQLiteDataProvider.new()
-# var data_provider: DataProvider = HttpDataProvider.new("eneko", "1234", self)
+# var data_provider: DataProvider = HttpDataProvider.new("testuser", "testpassword", self)
 
 # public methods
 
