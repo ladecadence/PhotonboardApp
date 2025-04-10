@@ -3,7 +3,7 @@ class_name HttpDataProvider
 
 # attributes
 
-const BASE_URL := "https://127.0.0.1/api"
+const BASE_URL := "http://127.0.0.1:8080/api"
 const MIN_REQUESTS: int = 1
 
 var _user: String
@@ -79,7 +79,7 @@ func _request(url: String, headers: Array, method: HTTPClient.Method, body: Stri
 	else:
 		_queue.append(request)
 
-func _request_done(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray, http: HTTPRequest, callback: Callable) -> void:
+func _request_done(result: HTTPRequest.Result, response_code: int, headers: PackedStringArray, body: PackedByteArray, http: HTTPRequest, callback: Callable) -> void:
 	print("[Thread: %2s] HttpDataProvider._request_done { \"result\": %d, \"response_code\": %d, \"callback:\" %s}" % [OS.get_thread_caller_id(), result, response_code, callback])
 	_requests.erase(http)
 	http.queue_free()
