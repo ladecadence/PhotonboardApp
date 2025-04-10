@@ -20,38 +20,81 @@ func destroy() -> void:
 	push_error("destroy not implemented")
 
 func get_problem(uid: String, callback: Callable) -> void:
-	_request("%s/problem/%s" % [BASE_URL, uid], _get_auth_headers(), HTTPClient.METHOD_GET, "", callback)
-
-func get_problems(callback: Callable, page: int = 0, page_size: int = 25) -> void:
-	_request("%s/problems?page=%d&page_size=%d" % [BASE_URL, page, page_size], _get_auth_headers(), HTTPClient.METHOD_GET, "", callback)
-
-func get_problems_by_filter(filter: FilterProblem, callback: Callable, page: int = 0, page_size: int = 25) -> void:
-	_request("%s/problems/filter?page=%d&page_size=%d" % [BASE_URL, page, page_size], _get_auth_headers(), HTTPClient.METHOD_POST, JSON.stringify(filter), callback)
-
-func get_wall(uid: String, callback: Callable) -> void:
-	_request("%s/wall/%s" % [BASE_URL, uid], _get_auth_headers(), HTTPClient.METHOD_GET, "", callback)
-
-func get_walls(callback: Callable, page: int = 0, page_size: int = 25) -> void:
-	_request("%s/walls?page=%d&page_size=%d" % [BASE_URL, page, page_size], _get_auth_headers(), HTTPClient.METHOD_GET, "", 
+	_request("%s/problem/%s" % [BASE_URL, uid], _get_auth_headers(), HTTPClient.METHOD_GET, "",
 		func(data):
 			if callback.is_valid():
-				var walls = []
-				for wall_data in data:
-					# replace single quotes to double quotes in holds
-					wall_data["holds"] = wall_data["holds"].replace("'", "\"")
-					# convert base64 image data to raw data as expected by the app
-					wall_data["image"] = Marshalls.base64_to_raw(wall_data["image"])
-					walls.append(wall_data)
-				callback.callv([walls])
+				var problem_data = {}
+				if data:
+					problem_data = data
+					_sanitize_problem_data_from_server(problem_data)
+				callback.callv([problem_data])
+	)
+
+func get_problems(callback: Callable, page: int = 0, page_size: int = 25) -> void:
+	_request("%s/problems?page=%d&page_size=%d" % [BASE_URL, page, page_size], [], HTTPClient.METHOD_GET, "", 
+		func(data):
+			if callback.is_valid():
+				var problems_data = []
+				if data:
+					for problem_data in data:
+						_sanitize_problem_data_from_server(problem_data)
+						problems_data.append(problem_data)
+				callback.callv([problems_data])
+	)
+
+func get_problems_by_filter(filter: FilterProblem, callback: Callable, page: int = 0, page_size: int = 25) -> void:
+	# @todo - implement filters
+	_request("%s/problems?page=%d&page_size=%d" % [BASE_URL, page, page_size], [], HTTPClient.METHOD_GET, "", 
+		func(data):
+			if callback.is_valid():
+				var problems_data = []
+				if data:
+					for problem_data in data:
+						_sanitize_problem_data_from_server(problem_data)
+						problems_data.append(problem_data)
+				callback.callv([problems_data])
+	)
+
+func get_wall(uid: String, callback: Callable) -> void:
+	_request("%s/wall/%s" % [BASE_URL, uid], [], HTTPClient.METHOD_GET, "",
+		func(data):
+			if callback.is_valid():
+				var wall_data = {}
+				if data:
+					wall_data = data
+					_sanitize_wall_data_from_server(wall_data)
+				callback.callv([wall_data])
+	)
+
+func get_walls(callback: Callable, page: int = 0, page_size: int = 25) -> void:
+	_request("%s/walls?page=%d&page_size=%d" % [BASE_URL, page, page_size], [], HTTPClient.METHOD_GET, "", 
+		func(data):
+			if callback.is_valid():
+				var walls_data = []
+				if data:
+					for wall_data in data:
+						_sanitize_wall_data_from_server(wall_data)
+						walls_data.append(wall_data)
+				callback.callv([walls_data])
 	)
 
 func get_walls_ids(callback: Callable) -> void:
-	_request("%s/walls?page=%d&page_size=%d" % [BASE_URL], _get_auth_headers(), HTTPClient.METHOD_GET, "", callback)
+	_request("%s/walls?fields=uid" % [BASE_URL], [], HTTPClient.METHOD_GET, "", 
+		func(data):
+			if callback.is_valid():
+				var walls_ids = []
+				if data:
+					for wall_data in data:
+						walls_ids.append(wall_data["uid"])
+				callback.callv([walls_ids])
+	)
 
 func upsert_problem(problem_data: Dictionary, callback: Callable = Callable()) -> void:
+	_sanitize_problem_data_to_server(problem_data)
 	_request("%s/newproblem" % [BASE_URL], _get_auth_headers(), HTTPClient.METHOD_POST, JSON.stringify(problem_data), callback)
 
 func upsert_wall(wall_data: Dictionary, callback: Callable = Callable()) -> void:
+	_sanitize_wall_data_to_server(wall_data)
 	_request("%s/newwall" % [BASE_URL], _get_auth_headers(), HTTPClient.METHOD_POST, JSON.stringify(wall_data), callback)
 
 # private methods
@@ -96,12 +139,24 @@ func _request_done(result: HTTPRequest.Result, response_code: int, headers: Pack
 	http.queue_free()
 
 	if callback.is_valid():
-		var data = {}
-		if body.size() > 0:
-			var json = JSON.new()
-			if json.parse(body.get_string_from_utf8()) == OK:
-				data = json.data
-		callback.callv([data])
+		callback.callv([JSON.parse_string(body.get_string_from_utf8())])
 
 	if _queue.size() > 0:
 		_process_request(_queue.pop_front())
+
+func _sanitize_problem_data_from_server(problem_data: Dictionary) -> void:
+	# replace single quotes to double quotes in holds
+	problem_data["holds"] = problem_data["holds"].replace("'", "\"")
+
+func _sanitize_problem_data_to_server(problem_data: Dictionary) -> void:
+	pass
+
+func _sanitize_wall_data_from_server(wall_data: Dictionary) -> void:
+	# replace single quotes to double quotes in holds
+	wall_data["holds"] = wall_data["holds"].replace("'", "\"")
+	# convert base64 image data to raw data as expected by the app
+	wall_data["image"] = Marshalls.base64_to_raw(wall_data["image"])
+
+func _sanitize_wall_data_to_server(wall_data: Dictionary) -> void:
+	# convert raw data to base64
+	wall_data["image"] = Marshalls.raw_to_base64(wall_data["image"])
