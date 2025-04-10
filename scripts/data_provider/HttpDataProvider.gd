@@ -32,7 +32,18 @@ func get_wall(uid: String, callback: Callable) -> void:
 	_request("%s/wall/%s" % [BASE_URL, uid], _get_auth_headers(), HTTPClient.METHOD_GET, "", callback)
 
 func get_walls(callback: Callable, page: int = 0, page_size: int = 25) -> void:
-	_request("%s/walls?page=%d&page_size=%d" % [BASE_URL, page, page_size], _get_auth_headers(), HTTPClient.METHOD_GET, "", callback)
+	_request("%s/walls?page=%d&page_size=%d" % [BASE_URL, page, page_size], _get_auth_headers(), HTTPClient.METHOD_GET, "", 
+		func(data):
+			if callback.is_valid():
+				var walls = []
+				for wall_data in data:
+					# replace single quotes to double quotes in holds
+					wall_data["holds"] = wall_data["holds"].replace("'", "\"")
+					# convert base64 image data to raw data as expected by the app
+					wall_data["image"] = Marshalls.base64_to_raw(wall_data["image"])
+					walls.append(wall_data)
+				callback.callv([walls])
+	)
 
 func get_walls_ids(callback: Callable) -> void:
 	_request("%s/walls?page=%d&page_size=%d" % [BASE_URL], _get_auth_headers(), HTTPClient.METHOD_GET, "", callback)
@@ -84,17 +95,13 @@ func _request_done(result: HTTPRequest.Result, response_code: int, headers: Pack
 	_requests.erase(http)
 	http.queue_free()
 
-	# @todo - figure out if this is the correct way to parse the result
-	# we might need to parse result differently depending on the request
-	# for example get_problem expects a dict and get_problems expects an array
-	var response = {}
-	if body.size() > 0:
-		var json = JSON.new()
-		if json.parse(body.get_string_from_utf8()) == OK:
-			response = json.data
-
 	if callback.is_valid():
-		callback.callv([response])
+		var data = {}
+		if body.size() > 0:
+			var json = JSON.new()
+			if json.parse(body.get_string_from_utf8()) == OK:
+				data = json.data
+		callback.callv([data])
 
 	if _queue.size() > 0:
 		_process_request(_queue.pop_front())
