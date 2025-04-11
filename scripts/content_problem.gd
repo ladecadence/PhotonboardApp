@@ -23,7 +23,7 @@ func _ready() -> void:
 	for s in current_problem.rating:
 		stars[s].add_theme_color_override("font_color", "#000000")
 	
-	Database.get_problems_by_filter(
+	Database.get_problems(
 		AppManager.filter_problem,
 		func(problems):
 			if problems:

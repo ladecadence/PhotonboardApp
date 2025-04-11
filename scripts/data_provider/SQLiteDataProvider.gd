@@ -13,59 +13,53 @@ func destroy():
 	_thread_pool.destroy()
 	_thread_pool = null
 
-func get_problem(uid: String, callback: Callable) -> void:
+func get_problem(uid: String, fields: Array[String], callback: Callable) -> void:
 	assert(_thread_pool, "expected a valid thread pool")
-	_thread_pool.request(_query, ["SELECT * FROM problems WHERE uid = ? LIMIT 1;", [uid]], 
+	_thread_pool.request(_query, ["SELECT %s FROM problems WHERE uid = ? LIMIT 1;" % [",".join(fields)], [uid]], 
 		func(problem_data: Array):
 			if callback.is_valid():
 				callback.callv([problem_data.front()])
 	)
 
-func get_problems(callback: Callable, page: int = 0, page_size: int = 25) -> void:
+func get_problems(fields: Array[String], page_size: int, page: int, filter: FilterProblem, callback: Callable) -> void:
 	assert(_thread_pool, "expected a valid thread pool")
-	_thread_pool.request(_query, ["SELECT * FROM problems LIMIT ? OFFSET ?;", [page_size, page * page_size]], callback)
-
-func get_problems_by_filter(filter: FilterProblem, callback: Callable, page: int = 0, page_size: int = 25) -> void:
-	assert(_thread_pool, "expected a valid thread pool")
-	var query = "SELECT * FROM problems"
+	var query = "SELECT %s FROM problems" % [",".join(fields)]
 	var params = []
-	if filter.filter_active:
-		query += " WHERE"
-	if filter.wallid != "":
-		query += " wallid = ?"
-		params.append(filter.wallid)
+	if filter:
+		if filter.filter_active:
+			query += " WHERE"
+		if filter.wallid != "":
+			query += " wallid = ?"
+			params.append(filter.wallid)
+			if len(filter.grade_range) > 0:
+				query += " AND"
 		if len(filter.grade_range) > 0:
-			query += " AND"
-	if len(filter.grade_range) > 0:
-		query += " grade >= ? AND grade <= ?"
-		params.append(filter.grade_range[0])
-		params.append(filter.grade_range[1])
-	if filter.order != FilterProblem.ORDER_BY.NOTHING:
-		query += " ORDER BY %s %s" % [filter.get_order(), filter.get_order_dir()]
+			query += " grade >= ? AND grade <= ?"
+			params.append(filter.grade_range[0])
+			params.append(filter.grade_range[1])
+		if filter.order != FilterProblem.ORDER_BY.NOTHING:
+			query += " ORDER BY %s %s" % [filter.get_order(), filter.get_order_dir()]
 	query += " LIMIT ? OFFSET ?;"
 	params.append(page_size)
-	params.append(page * page_size)
+	params.append(page_size * page)
 	_thread_pool.request(_query, [query, params], callback)
 
-func get_wall(uid: String, callback: Callable) -> void:
+func get_wall(uid: String, fields: Array[String] = ["*"], callback: Callable = Callable()) -> void:
 	assert(_thread_pool, "expected a valid thread pool")
-	_thread_pool.request(_query, ["SELECT * FROM walls WHERE uid = ? LIMIT 1;", [uid]], 
+	_thread_pool.request(_query, ["SELECT %s FROM walls WHERE uid = ? LIMIT 1;" % [",".join(fields)], [uid]], 
 		func(wall_data: Array):
 			if callback.is_valid():
 				callback.callv([wall_data.front()])
 	)
 
-func get_walls(callback: Callable, page: int = 0, page_size: int = 25) -> void:
+func get_walls(fields: Array[String] = ["*"], page_size: int = 25, page: int = 0, callback: Callable = Callable()) -> void:
+	assert(callback, "expected a valid callback")
 	assert(_thread_pool, "expected a valid thread pool")
-	_thread_pool.request(_query, ["SELECT * FROM walls LIMIT ? OFFSET ?;", [page_size, page * page_size]], callback)
-	
-func get_walls_ids(callback: Callable) -> void:
-	assert(_thread_pool, "expected a valid thread pool")
-	_thread_pool.request(_query, ["SELECT uid FROM walls;", []], callback)
+	_thread_pool.request(_query, ["SELECT %s FROM walls LIMIT ? OFFSET ?;" % [",".join(fields)], [page_size, page_size * page]], callback)
 
 func upsert_problem(problem_data: Dictionary, callback: Callable = Callable()) -> void:
 	assert(_thread_pool, "expected a valid thread pool")
-	get_problem(problem_data["uid"], 
+	get_problem(problem_data["uid"], ["uid"],
 		func(problem):
 			if problem:
 				_thread_pool.request(_update, ["problems", 'uid="' + problem.uid + '"', problem_data], callback)
@@ -75,7 +69,7 @@ func upsert_problem(problem_data: Dictionary, callback: Callable = Callable()) -
 
 func upsert_wall(wall_data: Dictionary, callback: Callable = Callable()) -> void:
 	assert(_thread_pool, "expected a valid thread pool")
-	get_wall(wall_data["uid"], 
+	get_wall(wall_data["uid"], ["uid"],
 		func(wall):
 			if wall:
 				_thread_pool.request(_update, ["walls", 'uid="' + wall.uid + '"', wall_data], callback)

@@ -8,7 +8,7 @@ var data_provider: DataProvider = SQLiteDataProvider.new()
 # public methods
 
 func get_problem(id: String, callback: Callable) -> void:
-	data_provider.get_wall(id, 
+	data_provider.get_wall(id, ["*"],
 		func(problem_data):
 			if callback.is_valid():
 				var problem = null
@@ -18,21 +18,8 @@ func get_problem(id: String, callback: Callable) -> void:
 				callback.callv([problem])
 	)
 
-func get_problems(callback: Callable) -> void:
-	data_provider.get_problems(
-		func(problems_data):
-			if callback.is_valid():
-				var problems: Array[Problem] = []
-				for problem_data: Dictionary in problems_data:
-					var problem = Problem.new()
-					problem.from_dict(problem_data)
-					problems.append(problem)
-				callback.callv([problems])
-	)
-
-func get_problems_by_filter(filter: FilterProblem, callback: Callable) -> void:
-	data_provider.get_problems_by_filter(
-		filter,
+func get_problems(filter: FilterProblem, callback: Callable) -> void:
+	data_provider.get_problems(["*"], 25, 0, filter,
 		func(problems_data):
 			if callback.is_valid():
 				var problems: Array[Problem] = []
@@ -44,7 +31,7 @@ func get_problems_by_filter(filter: FilterProblem, callback: Callable) -> void:
 	)
 
 func get_wall(id: String, callback: Callable) -> void:
-	data_provider.get_wall(id, 
+	data_provider.get_wall(id, ["*"],
 		func(wall_data):
 			if callback.is_valid():
 				var wall = null
@@ -59,23 +46,24 @@ func get_wall(id: String, callback: Callable) -> void:
 	)
 
 func get_walls(callback: Callable) -> void:
-	data_provider.get_walls(
+	data_provider.get_walls(["*"], 25, 0,
 		func(walls_data):
 			if callback.is_valid():
 				var walls: Array[Wall] = []
 				for wall_data: Dictionary in walls_data:
 					var wall = Wall.new()
 					wall.from_dict(wall_data)
-					# image in DB is a PackedArray with JPG data, load it
-					var img = Image.create(wall.img_w, wall.img_h, false, Image.FORMAT_RGB8)
-					img.load_jpg_from_buffer(wall_data["image"])
-					wall.update_image(img)
+					if wall_data.has("image") and wall_data["image"]:
+						# image in DB is a PackedArray with JPG data, load it
+						var img = Image.create(wall.img_w, wall.img_h, false, Image.FORMAT_RGB8)
+						img.load_jpg_from_buffer(wall_data["image"])
+						wall.update_image(img)
 					walls.append(wall)
 				callback.callv([walls])
 	)
 
 func get_walls_ids(callback: Callable) -> void:
-	data_provider.get_walls_ids(
+	data_provider.get_walls(["uid"], 100, 0,
 		func(walls_data):
 			if callback.is_valid():
 				var walls_ids: Array[String] = []

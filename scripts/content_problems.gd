@@ -12,7 +12,7 @@ func _ready() -> void:
 		child.queue_free()
 
 	# load problems
-	Database.get_problems_by_filter(
+	Database.get_problems(
 		AppManager.filter_problem,
 		func(problems):
 			if problems:

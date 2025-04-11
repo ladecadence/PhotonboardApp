@@ -88,7 +88,7 @@ func from_dict(data):
 		self.deg_min = data["deg_min"]
 		self.deg_max = data["deg_max"]
 		# self.image = Image.create_from_data(data["image"])
-		if data.has("holds"):
+		if data.has("holds") and data["holds"]:
 			var dict = JSON.parse_string(data["holds"])
 			for h in dict:
 				var hold = Hold.new(0,"",0,0,0,0)

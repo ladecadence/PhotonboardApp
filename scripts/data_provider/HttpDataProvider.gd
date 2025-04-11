@@ -19,8 +19,8 @@ var _requests: Array[HTTPRequest] = []
 func destroy() -> void:
 	push_error("destroy not implemented")
 
-func get_problem(uid: String, callback: Callable) -> void:
-	_request("%s/problem/%s" % [BASE_URL, uid], _get_auth_headers(), HTTPClient.METHOD_GET, "",
+func get_problem(uid: String, fields: Array[String], callback: Callable) -> void:
+	_request("%s/problem/%s" % [BASE_URL, uid], [], HTTPClient.METHOD_GET, "",
 		func(data):
 			if callback.is_valid():
 				var problem_data = {}
@@ -30,21 +30,9 @@ func get_problem(uid: String, callback: Callable) -> void:
 				callback.callv([problem_data])
 	)
 
-func get_problems(callback: Callable, page: int = 0, page_size: int = 25) -> void:
-	_request("%s/problems?page=%d&page_size=%d" % [BASE_URL, page, page_size], [], HTTPClient.METHOD_GET, "", 
-		func(data):
-			if callback.is_valid():
-				var problems_data = []
-				if data:
-					for problem_data in data:
-						_sanitize_problem_data_from_server(problem_data)
-						problems_data.append(problem_data)
-				callback.callv([problems_data])
-	)
-
-func get_problems_by_filter(filter: FilterProblem, callback: Callable, page: int = 0, page_size: int = 25) -> void:
+func get_problems(fields: Array[String], page_size: int, page: int, filter: FilterProblem, callback: Callable) -> void:
 	# @todo - implement filters
-	_request("%s/problems?page=%d&page_size=%d" % [BASE_URL, page, page_size], [], HTTPClient.METHOD_GET, "", 
+	_request("%s/problems?fields=%s&page_size=%d&page=%d" % [BASE_URL, ",".join(fields), page_size, page], [], HTTPClient.METHOD_GET, "", 
 		func(data):
 			if callback.is_valid():
 				var problems_data = []
@@ -55,7 +43,7 @@ func get_problems_by_filter(filter: FilterProblem, callback: Callable, page: int
 				callback.callv([problems_data])
 	)
 
-func get_wall(uid: String, callback: Callable) -> void:
+func get_wall(uid: String, fields: Array[String], callback: Callable) -> void:
 	_request("%s/wall/%s" % [BASE_URL, uid], [], HTTPClient.METHOD_GET, "",
 		func(data):
 			if callback.is_valid():
@@ -66,8 +54,8 @@ func get_wall(uid: String, callback: Callable) -> void:
 				callback.callv([wall_data])
 	)
 
-func get_walls(callback: Callable, page: int = 0, page_size: int = 25) -> void:
-	_request("%s/walls?page=%d&page_size=%d" % [BASE_URL, page, page_size], [], HTTPClient.METHOD_GET, "", 
+func get_walls(fields: Array[String], page_size: int, page: int, callback: Callable) -> void:
+	_request("%s/walls?fields=%s&page_size=%d&page=%d" % [BASE_URL, ",".join(fields), page_size, page], [], HTTPClient.METHOD_GET, "", 
 		func(data):
 			if callback.is_valid():
 				var walls_data = []
@@ -75,16 +63,6 @@ func get_walls(callback: Callable, page: int = 0, page_size: int = 25) -> void:
 					for wall_data in data:
 						_sanitize_wall_data_from_server(wall_data)
 						walls_data.append(wall_data)
-				callback.callv([walls_data])
-	)
-
-func get_walls_ids(callback: Callable) -> void:
-	_request("%s/walls?fields=uid" % [BASE_URL], [], HTTPClient.METHOD_GET, "", 
-		func(data):
-			if callback.is_valid():
-				var walls_data = []
-				if data:
-					walls_data = data
 				callback.callv([walls_data])
 	)
 
@@ -151,11 +129,14 @@ func _sanitize_problem_data_to_server(problem_data: Dictionary) -> void:
 	pass
 
 func _sanitize_wall_data_from_server(wall_data: Dictionary) -> void:
-	# replace single quotes to double quotes in holds
-	wall_data["holds"] = wall_data["holds"].replace("'", "\"")
-	# convert base64 image data to raw data as expected by the app
-	wall_data["image"] = Marshalls.base64_to_raw(wall_data["image"])
+	if wall_data.has("holds") and wall_data["holds"]:
+		# replace single quotes to double quotes in holds
+		wall_data["holds"] = wall_data["holds"].replace("'", "\"")
+	if wall_data.has("image") and wall_data["image"]:
+		# convert base64 image data to raw data as expected by the app
+		wall_data["image"] = Marshalls.base64_to_raw(wall_data["image"])
 
 func _sanitize_wall_data_to_server(wall_data: Dictionary) -> void:
-	# convert raw data to base64
-	wall_data["image"] = Marshalls.raw_to_base64(wall_data["image"])
+	if wall_data.has("image") and wall_data["image"]:
+		# convert raw data to base64
+		wall_data["image"] = Marshalls.raw_to_base64(wall_data["image"])
