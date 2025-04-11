@@ -21,24 +21,24 @@ func get_problem(uid: String, fields: Array[String], callback: Callable) -> void
 				callback.callv([problem_data.front()])
 	)
 
-func get_problems(fields: Array[String], page_size: int, page: int, filter: FilterProblem, callback: Callable) -> void:
+func get_problems(fields: Array[String], page_size: int, page: int, filter: ProblemFilter, callback: Callable) -> void:
 	assert(_thread_pool, "expected a valid thread pool")
 	var query = "SELECT %s FROM problems" % [",".join(fields)]
 	var params = []
 	if filter:
-		if filter.filter_active:
+		if filter.is_active():
 			query += " WHERE"
-		if filter.wallid != "":
+		if filter.has_wall_uid():
 			query += " wallid = ?"
-			params.append(filter.wallid)
-			if len(filter.grade_range) > 0:
+			params.append(filter.wall_uid)
+			if filter.has_grade():
 				query += " AND"
-		if len(filter.grade_range) > 0:
+		if filter.has_grade():
 			query += " grade >= ? AND grade <= ?"
-			params.append(filter.grade_range[0])
-			params.append(filter.grade_range[1])
-		if filter.order != FilterProblem.ORDER_BY.NOTHING:
-			query += " ORDER BY %s %s" % [filter.get_order(), filter.get_order_dir()]
+			params.append(filter.grade_min)
+			params.append(filter.grade_max)
+		if filter.has_order_by():
+			query += " ORDER BY %s %s" % [filter.get_order_by_as_string(), filter.get_order_dir_as_string()]
 	query += " LIMIT ? OFFSET ?;"
 	params.append(page_size)
 	params.append(page_size * page)

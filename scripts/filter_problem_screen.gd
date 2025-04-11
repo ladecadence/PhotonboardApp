@@ -7,7 +7,7 @@ extends MarginContainer
 @onready var optionOrder = $VBoxContainer/Control/MarginContainer/Scroll/Lista/HBoxContainer3/OptionOrder
 @onready var buttonDown = $VBoxContainer/Control/MarginContainer/Scroll/Lista/HBoxContainer3/CheckBoxDown
 
-var order_dir : FilterProblem.ORDER_DIR = FilterProblem.ORDER_DIR.ASC
+var order_dir : ProblemFilter.ORDER_DIR = ProblemFilter.ORDER_DIR.ASC
 
 func _ready() -> void:
 	Database.get_walls(
@@ -16,10 +16,10 @@ func _ready() -> void:
 			for wall in walls:
 				optionWall.add_item(wall.name)
 			# if we have a filter for walls, select the one on the filter
-			if AppManager.filter_problem.wallid != "":
+			if AppManager.filter_problem.has_wall_uid():
 				Database.get_walls_ids(
 					func(walls_ids):
-						optionWall.select(walls_ids.find(AppManager.filter_problem.wallid))
+						optionWall.select(walls_ids.find(AppManager.filter_problem.wall_uid))
 				)
 			else:
 				optionWall.select(-1)
@@ -35,19 +35,19 @@ func _ready() -> void:
 					optionGradeMax.add_item(Grade.GRADES_HUECO[grade])
 					
 			# if we have a filter for grades, select them
-			if len(AppManager.filter_problem.grade_range) > 0:
-				optionGradeMin.select(AppManager.filter_problem.grade_range[0]-1)
-				optionGradeMax.select(AppManager.filter_problem.grade_range[1]-1)
+			if AppManager.filter_problem.has_grade():
+				optionGradeMin.select(AppManager.filter_problem.grade_min - 1)
+				optionGradeMax.select(AppManager.filter_problem.grade_max - 1)
 			else:
 				# unselect
 				optionGradeMin.select(-1)
 				optionGradeMax.select(-1)
 			
 			# select order
-			if AppManager.filter_problem.order != FilterProblem.ORDER_BY.NOTHING:
-				optionOrder.select(AppManager.filter_problem.order)
+			if AppManager.filter_problem.has_order_by():
+				optionOrder.select(AppManager.filter_problem.order_by)
 			# select direction
-			if AppManager.filter_problem.order_dir == FilterProblem.ORDER_DIR.DESC:
+			if AppManager.filter_problem.order_dir == ProblemFilter.ORDER_DIR.DESC:
 				buttonDown.button_pressed = true
 	)
 
@@ -70,16 +70,17 @@ func _on_panel_filter_gui_input(event: InputEvent) -> void:
 		if optionWall.selected != -1:
 			Database.get_walls_ids(
 				func(walls_ids):
-					var wallid = walls_ids[optionWall.get_selected_id()]
-					AppManager.filter_problem.set_wallid(wallid)
+					var wall_uid = walls_ids[optionWall.get_selected_id()]
+					AppManager.filter_problem.wall_uid = wall_uid
 			)
 		if optionGradeMin.selected != -1 and optionGradeMax.selected != -1:
 			var grade_min = optionGradeMin.selected+1
 			var grade_max = optionGradeMax.selected+1
-			AppManager.filter_problem.set_grade_range(grade_min, grade_max)
+			AppManager.filter_problem.grade_min = grade_min
+			AppManager.filter_problem.grade_max = grade_max
 		if optionOrder.selected != 0:
-			AppManager.filter_problem.set_order(optionOrder.selected)
-			AppManager.filter_problem.set_order_dir(order_dir) 
+			AppManager.filter_problem.order_by = optionOrder.selected
+			AppManager.filter_problem.order_dir = order_dir
 		# go to screen
 		AppManager.load_screen(AppManager.Screen.PROBLEM_LIST, null)
 		
@@ -94,7 +95,7 @@ func _on_panel_clear_gui_input(event: InputEvent) -> void:
 		AppManager.filter_problem.clear()
 
 func _on_check_box_up_pressed() -> void:
-	order_dir = FilterProblem.ORDER_DIR.ASC
+	order_dir = ProblemFilter.ORDER_DIR.ASC
 
 func _on_check_box_down_pressed() -> void:
-	order_dir = FilterProblem.ORDER_DIR.DESC
+	order_dir = ProblemFilter.ORDER_DIR.DESC

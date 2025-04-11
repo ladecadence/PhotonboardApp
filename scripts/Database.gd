@@ -18,7 +18,7 @@ func get_problem(id: String, callback: Callable) -> void:
 				callback.callv([problem])
 	)
 
-func get_problems(filter: FilterProblem, callback: Callable) -> void:
+func get_problems(filter: ProblemFilter, callback: Callable) -> void:
 	data_provider.get_problems(["*"], 25, 0, filter,
 		func(problems_data):
 			if callback.is_valid():

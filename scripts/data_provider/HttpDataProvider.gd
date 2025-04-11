@@ -4,6 +4,7 @@ class_name HttpDataProvider
 # attributes
 
 const BASE_URL := "http://127.0.0.1:8080/api"
+#const BASE_URL := "https://photonboard.ladecadence.net/api"
 const MIN_REQUESTS: int = 1
 
 var _user: String
@@ -17,7 +18,7 @@ var _requests: Array[HTTPRequest] = []
 # public methods
 
 func destroy() -> void:
-	push_error("destroy not implemented")
+	pass
 
 func get_problem(uid: String, fields: Array[String], callback: Callable) -> void:
 	_request("%s/problem/%s" % [BASE_URL, uid], [], HTTPClient.METHOD_GET, "",
@@ -30,9 +31,16 @@ func get_problem(uid: String, fields: Array[String], callback: Callable) -> void
 				callback.callv([problem_data])
 	)
 
-func get_problems(fields: Array[String], page_size: int, page: int, filter: FilterProblem, callback: Callable) -> void:
-	# @todo - implement filters
-	_request("%s/problems?fields=%s&page_size=%d&page=%d" % [BASE_URL, ",".join(fields), page_size, page], [], HTTPClient.METHOD_GET, "", 
+func get_problems(fields: Array[String], page_size: int, page: int, filter: ProblemFilter, callback: Callable) -> void:
+	var url = "%s/problems?fields=%s&page_size=%d&page=%d" % [BASE_URL, ",".join(fields), page_size, page]
+	if filter:
+		if filter.has_wall_uid():
+			url += "&wallid=%s" % filter.wall_uid
+		if filter.has_grade():
+			url += "&grade_min=%s&grade_max=%s" % [filter.grade_min, filter.grade_max]
+		if filter.has_order_by():
+			url += "&orderby=%s&order=%s" % [filter.get_order_by_as_string(), filter.get_order_dir_as_string()]
+	_request(url, [], HTTPClient.METHOD_GET, "", 
 		func(data):
 			if callback.is_valid():
 				var problems_data = []

@@ -9,7 +9,7 @@ func destroy() -> void:
 func get_problem(uid: String, fields: Array[String], callback: Callable) -> void:
 	push_error("get_problem not implemented")
 
-func get_problems(fields: Array[String], page_size: int, page: int, filter: FilterProblem, callback: Callable) -> void:
+func get_problems(fields: Array[String], page_size: int, page: int, filter: ProblemFilter, callback: Callable) -> void:
 	push_error("get_problems not implemented")
 
 func get_wall(uid: String, fields: Array[String], callback: Callable) -> void:

@@ -7,7 +7,7 @@ var screen_scene: String
 var current_scene = null
 var wall_ip: String = "127.0.0.1"
 var grade_system: Grade.GRADE_SYSTEMS = Grade.GRADE_SYSTEMS.FONT
-var filter_problem: FilterProblem = FilterProblem.new()
+var filter_problem: ProblemFilter = ProblemFilter.new()
 
 func _ready() -> void:
 	load_config()
