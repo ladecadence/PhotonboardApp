@@ -44,8 +44,8 @@ func set_order_dir(d: ORDER_DIR):
 	
 func get_order_dir() -> String:
 	match (order_dir):
-		ORDER_DIR.ASC: return " ASC"
-		ORDER_DIR.DESC: return " DESC"
+		ORDER_DIR.ASC: return "ASC"
+		ORDER_DIR.DESC: return "DESC"
 		_: return ""
 
 func get_db_conditions() -> String:
@@ -58,3 +58,21 @@ func get_db_conditions() -> String:
 		conditions =  conditions + ' grade >= ' +  str(grade_min) + ' and grade <= ' + str(grade_max)
 	
 	return conditions
+
+func _to_string() -> String:
+	var string = ""
+	if wallid != "":
+		string = wallid
+	if len(grade_range) > 0:
+		if string.length() > 0:
+			string += ","
+		string += str(str(grade_range[0]), ",", str(grade_range[1]))
+	if get_order().length() > 0:
+		if string.length() > 0:
+			string += ","
+		string += get_order()
+	if get_order_dir().length() > 0:
+		if string.length() > 0:
+			string += ","
+		string += get_order_dir()
+	return string
