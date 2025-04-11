@@ -82,11 +82,10 @@ func get_walls_ids(callback: Callable) -> void:
 	_request("%s/walls?fields=uid" % [BASE_URL], [], HTTPClient.METHOD_GET, "", 
 		func(data):
 			if callback.is_valid():
-				var walls_ids = []
+				var walls_data = []
 				if data:
-					for wall_data in data:
-						walls_ids.append(wall_data["uid"])
-				callback.callv([walls_ids])
+					walls_data = data
+				callback.callv([walls_data])
 	)
 
 func upsert_problem(problem_data: Dictionary, callback: Callable = Callable()) -> void:
