@@ -119,7 +119,6 @@ func _create_db() -> void:
 		table_problems["description"] = {"data_type":"text", "not_null": true}
 		table_problems["rating"] = {"data_type":"int", "not_null": true}
 		table_problems["grade"] = {"data_type":"int", "not_null": true}
-		table_problems["grade_system"] = {"data_type":"int", "not_null": true}
 		table_problems["sends"] = {"data_type":"int", "not_null": true}
 		table_problems["holds"] = {"data_type":"string", "not_null": true}
 		connection.create_table("problems", table_problems)
