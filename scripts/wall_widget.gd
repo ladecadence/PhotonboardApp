@@ -12,6 +12,7 @@ const ZOOM_MAX = 4
 
 var mode: WALL_MODE = WALL_MODE.EDIT
 var image: Texture2D = null
+var dim: Texture2D = null
 var widget_size: Vector2 = Vector2(0, 0)
 var widget_pos: Vector2 = Vector2(0, 0)
 var zoom: float = 1.0
@@ -42,6 +43,9 @@ func load_data(w: Wall):
 	lastHold = len(w.holds) # for counting the holds already added 
 	image = ImageTexture.create_from_image(w.image)
 	imageSize = image.get_size()
+	var d = Image.create_empty(w.image.get_width(), w.image.get_height(), false, Image.FORMAT_RGBA8)
+	d.fill_rect(Rect2i(0, 0, d.get_width()-1, d.get_height()-1), Color(0.0, 0.0, 0.0, 0.5))
+	dim = ImageTexture.create_from_image(d)
 	queue_redraw()
 
 func load_problem(p: Problem):
@@ -53,6 +57,7 @@ func load_problem(p: Problem):
 func _draw() -> void:
 	draw_set_transform(Vector2.ZERO, 0.0, Vector2(zoom, zoom))
 	draw_texture(image, origin)
+	draw_texture(dim, origin)
 	var default_font = ThemeDB.fallback_font
 	if holds != null:
 		for h in holds:
