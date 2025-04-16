@@ -1,15 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://tl87vg12ot4j"]
+[gd_scene load_steps=6 format=3 uid="uid://tl87vg12ot4j"]
 
 [ext_resource type="Script" uid="uid://b2q5hcosqsvkl" path="res://scripts/problem_new2.gd" id="1_4btlg"]
 [ext_resource type="PackedScene" uid="uid://dqbsyjm472g3s" path="res://components/header.tscn" id="2_uvqo4"]
 [ext_resource type="PackedScene" uid="uid://bx20db8xc8vfv" path="res://components/wall_widget.tscn" id="3_spjhp"]
 [ext_resource type="Theme" uid="uid://cc6pd6kgs8ds2" path="res://theme/main.tres" id="4_ikbqg"]
 [ext_resource type="PackedScene" uid="uid://dtcl56kq2beg1" path="res://components/nav_bar.tscn" id="5_fwn68"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ukg4v"]
-bg_color = Color(1, 1, 1, 1)
-border_width_top = 1
-border_color = Color(0, 0, 0, 1)
 
 [node name="ProblemNew" type="MarginContainer"]
 anchors_preset = 15
@@ -43,7 +38,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_ukg4v")
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/ControlsWall/Panel"]
 layout_mode = 1
