@@ -19,8 +19,9 @@ boot_splash/use_filter=false
 
 [autoload]
 
-AppManager="*res://scripts/AppManager.gd"
+SystemBar="*res://addons/SystemBarColorChanger/SystemBarColorChanger.gd"
 Database="*res://scripts/Database.gd"
+AppManager="*res://scripts/AppManager.gd"
 
 [display]
 
@@ -31,7 +32,7 @@ window/handheld/orientation=1
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/GodotGetImage/plugin.cfg", "res://addons/godot-sqlite/plugin.cfg")
+enabled=PackedStringArray("res://addons/GodotGetImage/plugin.cfg", "res://addons/SystemBarColorChanger/plugin.cfg", "res://addons/godot-sqlite/plugin.cfg")
 
 [input_devices]
 

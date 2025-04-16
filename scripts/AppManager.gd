@@ -11,7 +11,10 @@ var filter_problem: ProblemFilter = ProblemFilter.new()
 
 func _ready() -> void:
 	load_config()
-
+	
+	# Android system bar
+	SystemBar.set_status_bar_color("#262338")
+	SystemBar.set_navigation_bar_color("#262338")
 	# Initial screen
 	load_screen(Screen.PROBLEM_LIST, null)
 
