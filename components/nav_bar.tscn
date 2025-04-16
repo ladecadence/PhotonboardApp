@@ -1,12 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://dtcl56kq2beg1"]
+[gd_scene load_steps=7 format=3 uid="uid://dtcl56kq2beg1"]
 
 [ext_resource type="Script" uid="uid://bhfh6y3xrnlny" path="res://scripts/nav_bar.gd" id="1_fxa0t"]
-[ext_resource type="Texture2D" uid="uid://d234w55uw8xu1" path="res://icons/config.svg" id="2_bd6jp"]
-[ext_resource type="Texture2D" uid="uid://xjgjr86famnv" path="res://icons/wall.svg" id="3_k4aqs"]
-[ext_resource type="Texture2D" uid="uid://cvymwojed6tmb" path="res://icons/problem.svg" id="4_43p7e"]
+[ext_resource type="Theme" uid="uid://cc6pd6kgs8ds2" path="res://theme/main.tres" id="2_k4aqs"]
+[ext_resource type="Texture2D" uid="uid://ch054u7158xvr" path="res://icons/problem-w.svg" id="3_bd6jp"]
+[ext_resource type="Texture2D" uid="uid://yevly2iiws0p" path="res://icons/wall-w.svg" id="4_k4aqs"]
+[ext_resource type="Texture2D" uid="uid://cpf8xwe1bpwhn" path="res://icons/config-w.svg" id="5_43p7e"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e6mvx"]
-bg_color = Color(0.994083, 0.881678, 0.657324, 1)
+bg_color = Color(0.14902, 0.137255, 0.219608, 1)
 
 [node name="NavBar" type="MarginContainer"]
 custom_minimum_size = Vector2(0, 200)
@@ -32,10 +33,10 @@ alignment = 1
 [node name="ButtonProblems" type="Button" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme = ExtResource("2_k4aqs")
 theme_override_font_sizes/font_size = 30
 text = "Problems"
-icon = ExtResource("4_43p7e")
+icon = ExtResource("3_bd6jp")
 flat = true
 icon_alignment = 1
 vertical_icon_alignment = 0
@@ -44,10 +45,9 @@ expand_icon = true
 [node name="ButtonWalls" type="Button" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 30
 text = "Walls"
-icon = ExtResource("3_k4aqs")
+icon = ExtResource("4_k4aqs")
 flat = true
 icon_alignment = 1
 vertical_icon_alignment = 0
@@ -56,10 +56,9 @@ expand_icon = true
 [node name="ButtonConfig" type="Button" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 30
 text = "Config"
-icon = ExtResource("2_bd6jp")
+icon = ExtResource("5_43p7e")
 flat = true
 icon_alignment = 1
 vertical_icon_alignment = 0

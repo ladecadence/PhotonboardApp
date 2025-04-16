@@ -2,9 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c4nertlp2cjy2" path="res://scripts/content_problems.gd" id="1_k2ub7"]
 [ext_resource type="PackedScene" uid="uid://dhrusiovpcgwn" path="res://components/problem_card.tscn" id="1_v2aux"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ofblv"]
-bg_color = Color(1, 1, 1, 1)
+[ext_resource type="Theme" uid="uid://cc6pd6kgs8ds2" path="res://theme/main.tres" id="2_311ju"]
 
 [node name="ContentProblems" type="Control"]
 layout_mode = 3
@@ -23,7 +21,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_ofblv")
+theme = ExtResource("2_311ju")
 
 [node name="Scroll" type="ScrollContainer" parent="."]
 layout_mode = 1

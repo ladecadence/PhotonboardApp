@@ -1,23 +1,16 @@
-[gd_scene load_steps=12 format=3 uid="uid://cvhcpuaolv2bl"]
+[gd_scene load_steps=9 format=3 uid="uid://cvhcpuaolv2bl"]
 
 [ext_resource type="Script" uid="uid://bih61pwshgh8f" path="res://scripts/filter_problem_screen.gd" id="1_chmxe"]
 [ext_resource type="Theme" uid="uid://cc6pd6kgs8ds2" path="res://theme/main.tres" id="2_chmxe"]
 [ext_resource type="PackedScene" uid="uid://dqbsyjm472g3s" path="res://components/header.tscn" id="2_o0vv1"]
-[ext_resource type="FontFile" uid="uid://lnhy5j8s4phh" path="res://fonts/Nexa Bold.otf" id="3_o0vv1"]
 [ext_resource type="PackedScene" uid="uid://dtcl56kq2beg1" path="res://components/nav_bar.tscn" id="5_gux4j"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_61yb8"]
-bg_color = Color(1, 1, 1, 1)
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_7d1r7"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_chmxe"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_utxe6"]
-bg_color = Color(1, 1, 1, 1)
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6og1j"]
-bg_color = Color(0.994083, 0.881678, 0.657324, 1)
+bg_color = Color(1, 0, 0.505882, 1)
 corner_radius_top_left = 20
 corner_radius_top_right = 20
 corner_radius_bottom_right = 20
@@ -27,9 +20,7 @@ shadow_size = 10
 shadow_offset = Vector2(2, 2)
 
 [sub_resource type="LabelSettings" id="LabelSettings_txrv4"]
-font = ExtResource("3_o0vv1")
 font_size = 50
-font_color = Color(0, 0, 0, 1)
 shadow_size = 10
 shadow_color = Color(0, 0, 0, 0.243137)
 shadow_offset = Vector2(3, 3)
@@ -59,7 +50,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_61yb8")
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Control"]
 layout_mode = 1
@@ -170,7 +160,6 @@ alignment = 1
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_utxe6")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Control/MarginContainer/Scroll/Lista/HBoxContainer7/Panel2"]
 layout_mode = 1
@@ -207,8 +196,6 @@ offset_right = 41.0
 offset_bottom = 25.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("3_o0vv1")
 theme_override_font_sizes/font_size = 40
 text = "Clear"
 label_settings = SubResource("LabelSettings_txrv4")
@@ -240,8 +227,6 @@ offset_right = 41.0
 offset_bottom = 25.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("3_o0vv1")
 theme_override_font_sizes/font_size = 40
 text = "Filter"
 label_settings = SubResource("LabelSettings_txrv4")

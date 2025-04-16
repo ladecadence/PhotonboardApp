@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cgg3p4y0yferl"]
+[gd_scene load_steps=8 format=3 uid="uid://cgg3p4y0yferl"]
 
 [ext_resource type="Script" uid="uid://l6286vihg1au" path="res://components/wall_new_2.gd" id="1_xobvf"]
 [ext_resource type="PackedScene" uid="uid://dqbsyjm472g3s" path="res://components/header.tscn" id="2_ukg4v"]
@@ -6,11 +6,6 @@
 [ext_resource type="Theme" uid="uid://cc6pd6kgs8ds2" path="res://theme/main.tres" id="4_kjd36"]
 [ext_resource type="Texture2D" uid="uid://c8k0on32gf6u5" path="res://icons/undo.png" id="5_ukg4v"]
 [ext_resource type="PackedScene" uid="uid://dtcl56kq2beg1" path="res://components/nav_bar.tscn" id="6_40swn"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ukg4v"]
-bg_color = Color(1, 1, 1, 1)
-border_width_top = 1
-border_color = Color(0, 0, 0, 1)
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_kjd36"]
 
@@ -46,7 +41,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_ukg4v")
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/ControlsWall/Panel"]
 layout_mode = 1

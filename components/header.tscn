@@ -5,11 +5,10 @@
 [ext_resource type="Theme" uid="uid://cc6pd6kgs8ds2" path="res://theme/main.tres" id="2_bty8r"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bty8r"]
-bg_color = Color(0.994083, 0.881678, 0.657324, 1)
+bg_color = Color(0.14902, 0.137255, 0.219608, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_roa84"]
 font_size = 60
-font_color = Color(0, 0, 0, 1)
 outline_size = 3
 outline_color = Color(0.18, 0.18, 0.18, 0.184314)
 shadow_size = 0
