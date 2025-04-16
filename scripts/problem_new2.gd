@@ -5,6 +5,7 @@ extends Node
 func _ready() -> void:
 	$VBoxContainer/Header.set_title("New problem")
 	$VBoxContainer/MarginContainer/WallWidget.change_mode(WallWidget.WALL_MODE.EDIT)
+	#print("Header offset: ", $VBoxContainer/Header.get_rect().size)
 	$VBoxContainer/MarginContainer/WallWidget.change_offset($VBoxContainer/Header.get_rect().size)
 
 func load_data(data):

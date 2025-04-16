@@ -34,7 +34,7 @@ func _ready() -> void:
 
 # offset from where the widget is drawn on the screen
 func change_offset(o: Vector2):
-	offset = o
+	offset = Vector2(0, o.y)
 
 func load_data(w: Wall):
 	self.wall = w
