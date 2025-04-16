@@ -1,21 +1,15 @@
-[gd_scene load_steps=11 format=3 uid="uid://tl87vg12ot4j"]
+[gd_scene load_steps=7 format=3 uid="uid://tl87vg12ot4j"]
 
 [ext_resource type="Script" uid="uid://b2q5hcosqsvkl" path="res://scripts/problem_new2.gd" id="1_4btlg"]
 [ext_resource type="PackedScene" uid="uid://dqbsyjm472g3s" path="res://components/header.tscn" id="2_uvqo4"]
 [ext_resource type="PackedScene" uid="uid://bx20db8xc8vfv" path="res://components/wall_widget.tscn" id="3_spjhp"]
 [ext_resource type="Theme" uid="uid://cc6pd6kgs8ds2" path="res://theme/main.tres" id="4_ikbqg"]
-[ext_resource type="FontFile" uid="uid://lnhy5j8s4phh" path="res://fonts/Nexa Bold.otf" id="6_g206r"]
-[ext_resource type="Texture2D" uid="uid://d234w55uw8xu1" path="res://icons/config.svg" id="7_abusu"]
-[ext_resource type="Texture2D" uid="uid://xjgjr86famnv" path="res://icons/wall.svg" id="8_iwun5"]
-[ext_resource type="Texture2D" uid="uid://cvymwojed6tmb" path="res://icons/problem.svg" id="9_uddcs"]
+[ext_resource type="PackedScene" uid="uid://dtcl56kq2beg1" path="res://components/nav_bar.tscn" id="5_fwn68"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ukg4v"]
 bg_color = Color(1, 1, 1, 1)
 border_width_top = 1
 border_color = Color(0, 0, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mhdkq"]
-bg_color = Color(0.994083, 0.881678, 0.657324, 1)
 
 [node name="ProblemNew" type="MarginContainer"]
 anchors_preset = 15
@@ -79,69 +73,8 @@ size_flags_horizontal = 4
 theme = ExtResource("4_ikbqg")
 text = "💾 Save"
 
-[node name="NavbarApp" type="Control" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 200)
+[node name="NavBar" parent="VBoxContainer" instance=ExtResource("5_fwn68")]
 layout_mode = 2
-
-[node name="Panel" type="Panel" parent="VBoxContainer/NavbarApp"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_mhdkq")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/NavbarApp"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-alignment = 1
-
-[node name="ButtonConfig" type="Button" parent="VBoxContainer/NavbarApp/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("6_g206r")
-theme_override_font_sizes/font_size = 30
-text = "Config"
-icon = ExtResource("7_abusu")
-flat = true
-icon_alignment = 1
-vertical_icon_alignment = 0
-expand_icon = true
-
-[node name="ButtonWalls" type="Button" parent="VBoxContainer/NavbarApp/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("6_g206r")
-theme_override_font_sizes/font_size = 30
-text = "Walls"
-icon = ExtResource("8_iwun5")
-flat = true
-icon_alignment = 1
-vertical_icon_alignment = 0
-expand_icon = true
-
-[node name="ButtonProblems" type="Button" parent="VBoxContainer/NavbarApp/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("6_g206r")
-theme_override_font_sizes/font_size = 30
-text = "Problems"
-icon = ExtResource("9_uddcs")
-flat = true
-icon_alignment = 1
-vertical_icon_alignment = 0
-expand_icon = true
 
 [connection signal="pressed" from="VBoxContainer/ControlsWall/Panel/MarginContainer/HBoxContainer/ButtonCancel" to="." method="_on_button_cancel_pressed"]
 [connection signal="pressed" from="VBoxContainer/ControlsWall/Panel/MarginContainer/HBoxContainer/ButtonSave" to="." method="_on_button_save_pressed"]
-[connection signal="pressed" from="VBoxContainer/NavbarApp/HBoxContainer/ButtonConfig" to="." method="_on_button_config_pressed"]
-[connection signal="pressed" from="VBoxContainer/NavbarApp/HBoxContainer/ButtonWalls" to="." method="_on_button_walls_pressed"]
-[connection signal="pressed" from="VBoxContainer/NavbarApp/HBoxContainer/ButtonProblems" to="." method="_on_button_problems_pressed"]

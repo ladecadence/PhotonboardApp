@@ -55,16 +55,6 @@ func _ready() -> void:
 func _on_timer_timeout() -> void:
 	labelOk.text = ""
 
-func _on_button_problems_pressed() -> void:
-	AppManager.load_screen(AppManager.Screen.PROBLEM_LIST, null)
-
-func _on_button_walls_pressed() -> void:
-	AppManager.load_screen(AppManager.Screen.WALL_LIST, null)
-
-func _on_button_config_pressed() -> void:
-	pass # Replace with function body.
-
-
 func _on_panel_filter_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		# get selected wall

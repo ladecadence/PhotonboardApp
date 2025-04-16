@@ -1,12 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://eyqahvyds7o3"]
+[gd_scene load_steps=10 format=3 uid="uid://eyqahvyds7o3"]
 
 [ext_resource type="Script" uid="uid://d1xme41n1p2wa" path="res://scripts/problem_view.gd" id="1_dmijy"]
 [ext_resource type="PackedScene" uid="uid://dqbsyjm472g3s" path="res://components/header.tscn" id="2_dmijy"]
 [ext_resource type="PackedScene" uid="uid://ci2i2gvdbyciv" path="res://components/content_problem.tscn" id="3_2edo6"]
 [ext_resource type="FontFile" uid="uid://lnhy5j8s4phh" path="res://fonts/Nexa Bold.otf" id="4_hgdk2"]
-[ext_resource type="Texture2D" uid="uid://d234w55uw8xu1" path="res://icons/config.svg" id="5_tm8gr"]
-[ext_resource type="Texture2D" uid="uid://xjgjr86famnv" path="res://icons/wall.svg" id="6_dlbld"]
-[ext_resource type="Texture2D" uid="uid://cvymwojed6tmb" path="res://icons/problem.svg" id="7_hyfxd"]
+[ext_resource type="PackedScene" uid="uid://dtcl56kq2beg1" path="res://components/nav_bar.tscn" id="5_s6c3e"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dmijy"]
 bg_color = Color(1, 1, 1, 1)
@@ -28,9 +26,6 @@ font_color = Color(0, 0, 0, 1)
 shadow_size = 10
 shadow_color = Color(0, 0, 0, 0.243137)
 shadow_offset = Vector2(3, 3)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qgtbm"]
-bg_color = Color(0.994083, 0.881678, 0.657324, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2edo6"]
 bg_color = Color(0.992157, 0.882353, 0.658824, 1)
@@ -118,66 +113,8 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Navbar" type="Control" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 200)
+[node name="NavBar" parent="VBoxContainer" instance=ExtResource("5_s6c3e")]
 layout_mode = 2
-
-[node name="Panel" type="Panel" parent="VBoxContainer/Navbar"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_qgtbm")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Navbar"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-alignment = 1
-
-[node name="ButtonConfig" type="Button" parent="VBoxContainer/Navbar/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_hgdk2")
-theme_override_font_sizes/font_size = 30
-text = "Config"
-icon = ExtResource("5_tm8gr")
-flat = true
-icon_alignment = 1
-vertical_icon_alignment = 0
-expand_icon = true
-
-[node name="ButtonWalls" type="Button" parent="VBoxContainer/Navbar/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_hgdk2")
-theme_override_font_sizes/font_size = 30
-text = "Walls"
-icon = ExtResource("6_dlbld")
-flat = true
-icon_alignment = 1
-vertical_icon_alignment = 0
-expand_icon = true
-
-[node name="ButtonProblems" type="Button" parent="VBoxContainer/Navbar/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_hgdk2")
-theme_override_font_sizes/font_size = 30
-text = "Problems"
-icon = ExtResource("7_hyfxd")
-flat = true
-icon_alignment = 1
-vertical_icon_alignment = 0
-expand_icon = true
 
 [node name="PopupPanelError" type="PopupPanel" parent="."]
 mode = 3
@@ -208,7 +145,4 @@ layout_mode = 2
 text = "Ok"
 
 [connection signal="gui_input" from="VBoxContainer/CenterContainer/Panel/MarginContainer/CenterContainer/PanelSend" to="." method="_on_panel_send_gui_input"]
-[connection signal="pressed" from="VBoxContainer/Navbar/HBoxContainer/ButtonConfig" to="." method="_on_button_config_pressed"]
-[connection signal="pressed" from="VBoxContainer/Navbar/HBoxContainer/ButtonWalls" to="." method="_on_button_walls_pressed"]
-[connection signal="pressed" from="VBoxContainer/Navbar/HBoxContainer/ButtonProblems" to="." method="_on_button_problems_pressed"]
 [connection signal="pressed" from="PopupPanelError/MarginContainer/VBoxContainer/ButtonOk" to="." method="_on_button_ok_pressed"]

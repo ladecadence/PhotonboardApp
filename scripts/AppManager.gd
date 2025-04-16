@@ -13,7 +13,7 @@ func _ready() -> void:
 	load_config()
 
 	# Initial screen
-	load_screen(Screen.WALL_LIST, null)
+	load_screen(Screen.PROBLEM_LIST, null)
 
 func load_screen(s: Screen, data):
 	# calls the load function AFTER the current one finishes any running code
