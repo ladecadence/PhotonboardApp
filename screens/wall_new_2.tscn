@@ -1,7 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://cgg3p4y0yferl"]
+[gd_scene load_steps=13 format=3 uid="uid://cgg3p4y0yferl"]
 
 [ext_resource type="Script" uid="uid://l6286vihg1au" path="res://components/wall_new_2.gd" id="1_xobvf"]
-[ext_resource type="Texture2D" uid="uid://c0hna8xcjl7wq" path="res://images/title.png" id="2_kjd36"]
+[ext_resource type="PackedScene" uid="uid://dqbsyjm472g3s" path="res://components/header.tscn" id="2_ukg4v"]
 [ext_resource type="PackedScene" uid="uid://bx20db8xc8vfv" path="res://components/wall_widget.tscn" id="3_ukg4v"]
 [ext_resource type="FontFile" uid="uid://lnhy5j8s4phh" path="res://fonts/Nexa Bold.otf" id="4_32ddd"]
 [ext_resource type="Theme" uid="uid://cc6pd6kgs8ds2" path="res://theme/main.tres" id="4_kjd36"]
@@ -9,9 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://c8k0on32gf6u5" path="res://icons/undo.png" id="5_ukg4v"]
 [ext_resource type="Texture2D" uid="uid://xjgjr86famnv" path="res://icons/wall.svg" id="6_qg8pd"]
 [ext_resource type="Texture2D" uid="uid://cvymwojed6tmb" path="res://icons/problem.svg" id="7_uedxn"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4hmjt"]
-bg_color = Color(0.994083, 0.881678, 0.657324, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ukg4v"]
 bg_color = Color(1, 1, 1, 1)
@@ -34,34 +31,8 @@ script = ExtResource("1_xobvf")
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="Header" type="Control" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 200)
+[node name="Header2" parent="VBoxContainer" instance=ExtResource("2_ukg4v")]
 layout_mode = 2
-
-[node name="Panel" type="Panel" parent="VBoxContainer/Header"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_4hmjt")
-
-[node name="Logo" type="TextureRect" parent="VBoxContainer/Header/Panel"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -383.0
-offset_top = -65.0
-offset_right = 617.0
-offset_bottom = 124.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.75, 0.75)
-texture = ExtResource("2_kjd36")
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
