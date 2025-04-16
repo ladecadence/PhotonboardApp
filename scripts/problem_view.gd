@@ -43,6 +43,8 @@ func _http_request_completed(_result, _response_code, _headers, body):
 		$PopupPanelError.show()
 	remove_child(http_request)
 
-
 func _on_button_ok_pressed() -> void:
 	$PopupPanelError.hide()
+
+func _on_button_pressed() -> void:
+	send_problem($VBoxContainer/ContentProblem.current_problem)

@@ -1,28 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://eyqahvyds7o3"]
+[gd_scene load_steps=8 format=3 uid="uid://eyqahvyds7o3"]
 
 [ext_resource type="Script" uid="uid://d1xme41n1p2wa" path="res://scripts/problem_view.gd" id="1_dmijy"]
 [ext_resource type="PackedScene" uid="uid://dqbsyjm472g3s" path="res://components/header.tscn" id="2_dmijy"]
 [ext_resource type="PackedScene" uid="uid://ci2i2gvdbyciv" path="res://components/content_problem.tscn" id="3_2edo6"]
 [ext_resource type="Theme" uid="uid://cc6pd6kgs8ds2" path="res://theme/main.tres" id="3_l02yn"]
-[ext_resource type="FontFile" uid="uid://lnhy5j8s4phh" path="res://fonts/Nexa Bold.otf" id="4_hgdk2"]
+[ext_resource type="Texture2D" uid="uid://bads18hn644i2" path="res://icons/bulb-w.png" id="5_dmijy"]
 [ext_resource type="PackedScene" uid="uid://dtcl56kq2beg1" path="res://components/nav_bar.tscn" id="5_s6c3e"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t2cw8"]
-bg_color = Color(1, 0, 0.505882, 1)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-shadow_color = Color(0.295867, 0.295866, 0.295866, 0.6)
-shadow_size = 10
-shadow_offset = Vector2(2, 2)
-
-[sub_resource type="LabelSettings" id="LabelSettings_2edo6"]
-font = ExtResource("4_hgdk2")
-font_size = 60
-shadow_size = 10
-shadow_color = Color(0, 0, 0, 0.243137)
-shadow_offset = Vector2(3, 3)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2edo6"]
 bg_color = Color(0.14902, 0.14902, 0.219608, 1)
@@ -80,31 +63,11 @@ size_flags_horizontal = 8
 [node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/CenterContainer/Panel/MarginContainer"]
 layout_mode = 2
 
-[node name="PanelSend" type="Panel" parent="VBoxContainer/CenterContainer/Panel/MarginContainer/CenterContainer"]
-custom_minimum_size = Vector2(100, 80)
+[node name="Button" type="Button" parent="VBoxContainer/CenterContainer/Panel/MarginContainer/CenterContainer"]
+custom_minimum_size = Vector2(150, 90)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_t2cw8")
-
-[node name="Send" type="Label" parent="VBoxContainer/CenterContainer/Panel/MarginContainer/CenterContainer/PanelSend"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -41.0
-offset_top = -25.5
-offset_right = 41.0
-offset_bottom = 25.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_hgdk2")
-theme_override_font_sizes/font_size = 40
-text = "💡"
-label_settings = SubResource("LabelSettings_2edo6")
-horizontal_alignment = 1
-vertical_alignment = 1
+icon = ExtResource("5_dmijy")
+icon_alignment = 1
 
 [node name="ContentProblem" parent="VBoxContainer" instance=ExtResource("3_2edo6")]
 layout_mode = 2
@@ -141,5 +104,5 @@ text = "Problem sending to Wall"
 layout_mode = 2
 text = "Ok"
 
-[connection signal="gui_input" from="VBoxContainer/CenterContainer/Panel/MarginContainer/CenterContainer/PanelSend" to="." method="_on_panel_send_gui_input"]
+[connection signal="pressed" from="VBoxContainer/CenterContainer/Panel/MarginContainer/CenterContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="PopupPanelError/MarginContainer/VBoxContainer/ButtonOk" to="." method="_on_button_ok_pressed"]
