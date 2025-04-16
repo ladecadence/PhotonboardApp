@@ -1,8 +1,9 @@
-[gd_resource type="Theme" load_steps=16 format=3 uid="uid://cc6pd6kgs8ds2"]
+[gd_resource type="Theme" load_steps=18 format=3 uid="uid://cc6pd6kgs8ds2"]
 
 [ext_resource type="Texture2D" uid="uid://y2w3mx0nonsw" path="res://icons/checkbox-on.png" id="1_klomd"]
 [ext_resource type="Texture2D" uid="uid://bmyosfgvqrhkw" path="res://icons/checkbox-off.png" id="2_lw8ei"]
 [ext_resource type="FontFile" uid="uid://lnhy5j8s4phh" path="res://fonts/Nexa Bold.otf" id="2_pcump"]
+[ext_resource type="FontFile" uid="uid://cu4pcudiibbm8" path="res://fonts/Roboto-VariableFont_wdth,wght.ttf" id="4_klomd"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4uf5d"]
 content_margin_left = 5.0
@@ -15,10 +16,10 @@ border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0.0646966, 0.0646965, 0.0646965, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 shadow_color = Color(0, 0, 0, 0.45098)
 shadow_size = 2
 shadow_offset = Vector2(2, 2)
@@ -34,10 +35,10 @@ border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0.0646966, 0.0646965, 0.0646965, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 shadow_color = Color(0, 0, 0, 0.447059)
 shadow_size = 2
 shadow_offset = Vector2(2, 2)
@@ -54,13 +55,21 @@ border_width_right = 1
 border_width_bottom = 1
 border_color = Color(0.114897, 0.114897, 0.114897, 1)
 border_blend = true
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 shadow_color = Color(0, 0, 0, 0.188235)
 shadow_size = 2
 shadow_offset = Vector2(2, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tdj1e"]
+bg_color = Color(1, 1, 1, 1)
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tsfsn"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -121,7 +130,7 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
 [resource]
-default_font = ExtResource("2_pcump")
+default_font = ExtResource("4_klomd")
 default_font_size = 50
 Button/colors/font_color = Color(0, 0, 0, 1)
 Button/colors/font_focus_color = Color(0, 0, 0, 1)
@@ -130,6 +139,7 @@ Button/colors/font_pressed_color = Color(0.0807833, 0.0807833, 0.0807833, 1)
 Button/styles/focus = SubResource("StyleBoxFlat_4uf5d")
 Button/styles/hover = SubResource("StyleBoxFlat_75awx")
 Button/styles/normal = SubResource("StyleBoxFlat_lw8ei")
+Button/styles/pressed = SubResource("StyleBoxFlat_tdj1e")
 CheckBox/colors/font_color = Color(0, 0, 0, 1)
 CheckBox/colors/font_hover_color = Color(0.144062, 0.144063, 0.144063, 1)
 CheckBox/colors/font_hover_pressed_color = Color(0.0923971, 0.0923971, 0.0923971, 1)
@@ -142,6 +152,7 @@ CheckBox/styles/normal = SubResource("StyleBoxFlat_x6fvb")
 CheckBox/styles/pressed = SubResource("StyleBoxFlat_owg8w")
 Label/colors/font_color = Color(0, 0, 0, 1)
 Label/colors/font_outline_color = Color(0.877616, 0.877616, 0.877616, 1)
+Label/constants/line_spacing = 1
 LineEdit/colors/caret_color = Color(0.165655, 0.165657, 0.165656, 1)
 LineEdit/colors/font_color = Color(0, 0, 0, 1)
 LineEdit/styles/focus = null
