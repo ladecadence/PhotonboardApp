@@ -7,8 +7,8 @@ var data_provider: DataProvider = CachedDataProvider.new(SQLiteDataProvider.new(
 
 # public methods
 
-func get_problem(id: String, callback: Callable) -> void:
-	data_provider.get_wall(id, ["*"],
+func get_problem(uid: String, callback: Callable) -> void:
+	data_provider.get_wall(uid, ["*"],
 		func(problem_data):
 			if callback.is_valid():
 				var problem = null
@@ -31,8 +31,8 @@ func get_problems(filter: ProblemFilter, callback: Callable) -> void:
 				callback.callv([problems])
 	)
 
-func get_wall(id: String, callback: Callable) -> void:
-	data_provider.get_wall(id, ["*"],
+func get_wall(uid: String, callback: Callable) -> void:
+	data_provider.get_wall(uid, ["*"],
 		func(wall_data):
 			if callback.is_valid():
 				var wall = null
