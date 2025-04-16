@@ -1,0 +1,70 @@
+[gd_scene load_steps=6 format=3 uid="uid://dtcl56kq2beg1"]
+
+[ext_resource type="Script" uid="uid://bhfh6y3xrnlny" path="res://scripts/nav_bar.gd" id="1_fxa0t"]
+[ext_resource type="Texture2D" uid="uid://d234w55uw8xu1" path="res://icons/config.svg" id="2_bd6jp"]
+[ext_resource type="Texture2D" uid="uid://xjgjr86famnv" path="res://icons/wall.svg" id="3_k4aqs"]
+[ext_resource type="Texture2D" uid="uid://cvymwojed6tmb" path="res://icons/problem.svg" id="4_43p7e"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e6mvx"]
+bg_color = Color(0.994083, 0.881678, 0.657324, 1)
+
+[node name="NavBar" type="MarginContainer"]
+custom_minimum_size = Vector2(0, 200)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 0
+script = ExtResource("1_fxa0t")
+
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_e6mvx")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+size_flags_vertical = 0
+alignment = 1
+
+[node name="ButtonProblems" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "Problems"
+icon = ExtResource("4_43p7e")
+flat = true
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="ButtonWalls" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "Walls"
+icon = ExtResource("3_k4aqs")
+flat = true
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="ButtonConfig" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "Config"
+icon = ExtResource("2_bd6jp")
+flat = true
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[connection signal="pressed" from="HBoxContainer/ButtonProblems" to="." method="_on_button_problems_pressed"]
+[connection signal="pressed" from="HBoxContainer/ButtonWalls" to="." method="_on_button_walls_pressed"]
+[connection signal="pressed" from="HBoxContainer/ButtonConfig" to="." method="_on_button_config_pressed"]
