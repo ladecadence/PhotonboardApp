@@ -10,6 +10,7 @@ extends MarginContainer
 var order_dir : ProblemFilter.ORDER_DIR = ProblemFilter.ORDER_DIR.ASC
 
 func _ready() -> void:
+	$VBoxContainer/Header2.set_title("Filter problems")
 	Database.get_walls(
 		func(walls):
 			# fill walls

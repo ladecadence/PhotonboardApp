@@ -1,15 +1,12 @@
-[gd_scene load_steps=16 format=3 uid="uid://cvhcpuaolv2bl"]
+[gd_scene load_steps=15 format=3 uid="uid://cvhcpuaolv2bl"]
 
-[ext_resource type="Texture2D" uid="uid://c0hna8xcjl7wq" path="res://images/title.png" id="1_c1fsc"]
 [ext_resource type="Script" uid="uid://bih61pwshgh8f" path="res://scripts/filter_problem_screen.gd" id="1_chmxe"]
 [ext_resource type="Theme" uid="uid://cc6pd6kgs8ds2" path="res://theme/main.tres" id="2_chmxe"]
+[ext_resource type="PackedScene" uid="uid://dqbsyjm472g3s" path="res://components/header.tscn" id="2_o0vv1"]
 [ext_resource type="FontFile" uid="uid://lnhy5j8s4phh" path="res://fonts/Nexa Bold.otf" id="3_o0vv1"]
 [ext_resource type="Texture2D" uid="uid://d234w55uw8xu1" path="res://icons/config.svg" id="4_3s01a"]
 [ext_resource type="Texture2D" uid="uid://xjgjr86famnv" path="res://icons/wall.svg" id="5_22ego"]
 [ext_resource type="Texture2D" uid="uid://cvymwojed6tmb" path="res://icons/problem.svg" id="6_77kcu"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lcpuf"]
-bg_color = Color(0.994083, 0.881678, 0.657324, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_61yb8"]
 bg_color = Color(1, 1, 1, 1)
@@ -53,34 +50,8 @@ script = ExtResource("1_chmxe")
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="Header" type="Control" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 200)
+[node name="Header2" parent="VBoxContainer" instance=ExtResource("2_o0vv1")]
 layout_mode = 2
-
-[node name="Panel" type="Panel" parent="VBoxContainer/Header"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_lcpuf")
-
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/Header/Panel"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -383.0
-offset_top = -65.0
-offset_right = 617.0
-offset_bottom = 124.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.75, 0.75)
-texture = ExtResource("1_c1fsc")
 
 [node name="Control" type="Control" parent="VBoxContainer"]
 layout_mode = 2
