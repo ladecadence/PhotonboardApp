@@ -30,7 +30,7 @@ func send_problem(p: Problem):
 		print("Sent.")
 		print("")
 	else:
-		$PopupPanelError.show()
+		$PopupPanelError.popup_centered()
 		remove_child(http_request)
 	
 func _http_request_completed(_result, _response_code, _headers, body):
