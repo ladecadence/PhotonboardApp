@@ -63,7 +63,7 @@ size_flags_vertical = 3
 theme_override_constants/separation = 50
 
 [node name="MarginImage" type="MarginContainer" parent="Scroll/MarginPrincipal/Lista"]
-custom_minimum_size = Vector2(0, 1000)
+custom_minimum_size = Vector2(0, 1100)
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
