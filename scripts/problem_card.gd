@@ -22,7 +22,7 @@ func load_data(data: Problem):
 				$Fondo/HBoxContainer/Data/MarginContainer/CenterContainer/Panel/Grade.text = Grade.GRADES_HUECO[data.grade]
 			$Fondo/HBoxContainer/Data/Sends/Number.text = str(data.sends)
 			var problem_texture = ImageTexture.create_from_image(problem.create_problem_image(wall))
-			$Fondo/HBoxContainer/MarginContainer/TextureRect.set_texture(problem_texture)
+			$Fondo/HBoxContainer/MarginContainer/PanelContainer/TextureRect.set_texture(problem_texture)
 	)
 
 func _on_panel_events_gui_input(event: InputEvent) -> void:

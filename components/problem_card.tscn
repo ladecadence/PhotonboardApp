@@ -1,9 +1,19 @@
-[gd_scene load_steps=8 format=3 uid="uid://dhrusiovpcgwn"]
+[gd_scene load_steps=9 format=3 uid="uid://dhrusiovpcgwn"]
 
 [ext_resource type="Script" uid="uid://dvk36f04teryn" path="res://scripts/problem_card.gd" id="1_ahfcr"]
 [ext_resource type="Texture2D" uid="uid://cbqf5tgsauwlo" path="res://images/wall0001.jpg" id="2_w4s6c"]
 [ext_resource type="Theme" uid="uid://cc6pd6kgs8ds2" path="res://theme/main.tres" id="3_a6w86"]
 [ext_resource type="Texture2D" uid="uid://b7wv0k6jh0awn" path="res://icons/sends-w.svg" id="4_er2le"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_er2le"]
+bg_color = Color(0.0799, 0.0799, 0.17, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color(0, 0, 0, 0.901961)
+shadow_size = 2
+shadow_offset = Vector2(1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kdcrm"]
 bg_color = Color(0.0745098, 0.901961, 0.584314, 1)
@@ -56,7 +66,12 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="TextureRect" type="TextureRect" parent="Fondo/HBoxContainer/MarginContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="Fondo/HBoxContainer/MarginContainer"]
+clip_children = 1
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_er2le")
+
+[node name="TextureRect" type="TextureRect" parent="Fondo/HBoxContainer/MarginContainer/PanelContainer"]
 layout_mode = 2
 texture = ExtResource("2_w4s6c")
 expand_mode = 2

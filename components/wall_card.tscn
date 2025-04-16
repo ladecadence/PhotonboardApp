@@ -1,8 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://cj37gsngo2t5c"]
+[gd_scene load_steps=8 format=3 uid="uid://cj37gsngo2t5c"]
 
 [ext_resource type="Script" uid="uid://bwcapkrb76q7a" path="res://scripts/wall_card.gd" id="1_iyosj"]
 [ext_resource type="Texture2D" uid="uid://pn7xd5um6opg" path="res://images/wall0002.jpg" id="1_qucpf"]
 [ext_resource type="FontFile" uid="uid://bbgpahlkmp2av" path="res://fonts/NotoEmoji-VariableFont_wght.ttf" id="4_tct22"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_swtpw"]
+bg_color = Color(0.0784314, 0.0784314, 0.168627, 1)
+border_color = Color(0.0799, 0.0799, 0.17, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8wvja"]
 bg_color = Color(0.0745098, 0.901961, 0.584314, 1)
@@ -55,7 +63,12 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="TextureRect" type="TextureRect" parent="Fondo/HBoxContainer/MarginContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="Fondo/HBoxContainer/MarginContainer"]
+clip_children = 1
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_swtpw")
+
+[node name="TextureRect" type="TextureRect" parent="Fondo/HBoxContainer/MarginContainer/PanelContainer"]
 layout_mode = 2
 texture = ExtResource("1_qucpf")
 expand_mode = 2
