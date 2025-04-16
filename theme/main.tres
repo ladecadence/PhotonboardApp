@@ -1,6 +1,8 @@
-[gd_resource type="Theme" load_steps=18 format=3 uid="uid://cc6pd6kgs8ds2"]
+[gd_resource type="Theme" load_steps=20 format=3 uid="uid://cc6pd6kgs8ds2"]
 
+[ext_resource type="Texture2D" uid="uid://bkia1mlevilru" path="res://icons/checked-w.png" id="1_c5abu"]
 [ext_resource type="Texture2D" uid="uid://cd1d0rrkj1uf4" path="res://icons/checkbox-on-w.png" id="1_klomd"]
+[ext_resource type="Texture2D" uid="uid://dswi162jmlxi2" path="res://icons/unchecked-w.png" id="2_4uf5d"]
 [ext_resource type="Texture2D" uid="uid://b4sy1uqtjnwua" path="res://icons/checkbox-off-w.png" id="2_lw8ei"]
 [ext_resource type="FontFile" uid="uid://lnhy5j8s4phh" path="res://fonts/Nexa Bold.otf" id="2_pcump"]
 [ext_resource type="FontFile" uid="uid://cu4pcudiibbm8" path="res://fonts/Roboto-VariableFont_wdth,wght.ttf" id="4_klomd"]
@@ -81,15 +83,7 @@ bg_color = Color(1, 1, 1, 0)
 bg_color = Color(1, 1, 1, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_owg8w"]
-content_margin_left = 10.0
-content_margin_top = 10.0
-content_margin_right = 10.0
-content_margin_bottom = 10.0
-bg_color = Color(1, 0, 0.505882, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
+bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i0ir6"]
 bg_color = Color(1, 1, 1, 1)
@@ -148,9 +142,17 @@ Button/styles/focus = SubResource("StyleBoxFlat_4uf5d")
 Button/styles/hover = SubResource("StyleBoxFlat_75awx")
 Button/styles/normal = SubResource("StyleBoxFlat_lw8ei")
 Button/styles/pressed = SubResource("StyleBoxFlat_tdj1e")
-CheckBox/colors/font_color = Color(0.984314, 0.984314, 0.984314, 1)
+CheckBox/colors/font_color = Color(0.936693, 0.936691, 0.936691, 1)
+CheckBox/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
+CheckBox/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
+CheckBox/colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
+CheckBox/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+CheckBox/colors/font_pressed_color = Color(0.984314, 0.984314, 0.984314, 1)
+CheckBox/icons/checked = ExtResource("1_c5abu")
+CheckBox/icons/checked_disabled = ExtResource("2_4uf5d")
 CheckBox/icons/radio_checked = ExtResource("1_klomd")
 CheckBox/icons/radio_unchecked = ExtResource("2_lw8ei")
+CheckBox/icons/unchecked = ExtResource("2_4uf5d")
 CheckBox/styles/focus = SubResource("StyleBoxFlat_tsfsn")
 CheckBox/styles/hover = SubResource("StyleBoxFlat_i7jnv")
 CheckBox/styles/normal = SubResource("StyleBoxFlat_x6fvb")
