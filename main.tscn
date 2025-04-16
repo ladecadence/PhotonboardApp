@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://minkplpia6po"]
+[gd_scene load_steps=3 format=3 uid="uid://minkplpia6po"]
 
 [ext_resource type="Theme" uid="uid://cc6pd6kgs8ds2" path="res://theme/main.tres" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://dk0tsnybpegvd" path="res://main.gd" id="2_0xm2m"]
 
 [node name="GUI" type="MarginContainer"]
 anchors_preset = 15
@@ -15,3 +16,4 @@ theme_override_constants/margin_left = 0
 theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 0
+script = ExtResource("2_0xm2m")
