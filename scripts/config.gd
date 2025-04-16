@@ -6,6 +6,7 @@ extends MarginContainer
 @onready var huecoRadio = $VBoxContainer/Control/MarginContainer/Scroll/Lista/HBoxContainer2/CheckBoxHueco
 
 func _ready() -> void:
+	$VBoxContainer/Header2.set_title("Config")
 	lineEditIP.text = AppManager.wall_ip
 	if AppManager.grade_system == Grade.GRADE_SYSTEMS.FONT:
 		fontRadio.button_pressed = true
