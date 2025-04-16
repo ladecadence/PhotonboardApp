@@ -2,7 +2,7 @@ extends RefCounted
 
 class_name Problem
 
-#const Hold = preload("res://scripts/Hold.gd")
+const problem_image_background_color = "#262338"
 
 var uid: String
 var wallid: String
@@ -110,7 +110,7 @@ func create_problem_image(wall: Wall):
 	
 	var img = Image.create_empty(200, 200, false, Image.FORMAT_RGB8)
 	img.fill(Color.BLACK)
-	img.fill_rect(Rect2i(1, 1, sizex-2, sizex-2), Color.WHITE)
+	img.fill_rect(Rect2i(1, 1, sizex-2, sizex-2), problem_image_background_color)
 
 	# get wall image size
 	var ratiox = wall.img_w / sizex
