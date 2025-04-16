@@ -15,13 +15,18 @@ var current_wall: Wall
 var problems_list: Array[Problem]
 var last_problem_hscroll: int = Time.get_ticks_msec()
 
+const star_color_active = "#cae00c"
+const star_color_inactive = "00339b"
+
 func _ready() -> void:
 	$Scroll/MarginPrincipal/Lista/MarginImage/WallWidget.change_mode(WallWidget.WALL_MODE.SHOW)
 	$Scroll/MarginPrincipal/Lista/MarginImage/WallWidget.change_offset($Scroll/MarginPrincipal/Lista/MarginImage/WallWidget.global_position)
 	
 	# calculate stars
+	for s in stars:
+		s.add_theme_color_override("font_color", star_color_inactive)
 	for s in current_problem.rating:
-		stars[s].add_theme_color_override("font_color", "#000000")
+		stars[s].add_theme_color_override("font_color", star_color_active)
 	
 	Database.get_problems(
 		AppManager.filter_problem,
@@ -59,10 +64,10 @@ func _on_sends_gui_input(event: InputEvent) -> void:
 func _on_star_1_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		for s in current_problem.rating:
-			stars[s].add_theme_color_override("font_color", "#ebebeb")
+			stars[s].add_theme_color_override("font_color", star_color_inactive)
 		current_problem.rating = 1
 		for s in current_problem.rating:
-			stars[s].add_theme_color_override("font_color", "#000000")
+			stars[s].add_theme_color_override("font_color", star_color_active)
 		Database.upsert_problem(current_problem,
 			func(result: bool):
 				print("problem saved result ", result)
@@ -71,10 +76,10 @@ func _on_star_1_gui_input(event: InputEvent) -> void:
 func _on_star_2_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		for s in current_problem.rating:
-			stars[s].add_theme_color_override("font_color", "#ebebeb")
+			stars[s].add_theme_color_override("font_color", star_color_inactive)
 		current_problem.rating = 2
 		for s in current_problem.rating:
-			stars[s].add_theme_color_override("font_color", "#000000")
+			stars[s].add_theme_color_override("font_color", star_color_active)
 		Database.upsert_problem(current_problem,
 			func(result: bool):
 				print("problem saved result ", result)
@@ -83,10 +88,10 @@ func _on_star_2_gui_input(event: InputEvent) -> void:
 func _on_star_3_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		for s in current_problem.rating:
-			stars[s].add_theme_color_override("font_color", "#ebebeb")
+			stars[s].add_theme_color_override("font_color", star_color_inactive)
 		current_problem.rating = 3
 		for s in current_problem.rating:
-			stars[s].add_theme_color_override("font_color", "#000000")
+			stars[s].add_theme_color_override("font_color", star_color_active)
 		Database.upsert_problem(current_problem,
 			func(result: bool):
 				print("problem saved result ", result)
@@ -95,10 +100,10 @@ func _on_star_3_gui_input(event: InputEvent) -> void:
 func _on_star_4_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		for s in current_problem.rating:
-			stars[s].add_theme_color_override("font_color", "#ebebeb")
+			stars[s].add_theme_color_override("font_color", star_color_inactive)
 		current_problem.rating = 4
 		for s in current_problem.rating:
-			stars[s].add_theme_color_override("font_color", "#000000")
+			stars[s].add_theme_color_override("font_color", star_color_active)
 		Database.upsert_problem(current_problem,
 			func(result: bool):
 				print("problem saved result ", result)
@@ -107,10 +112,10 @@ func _on_star_4_gui_input(event: InputEvent) -> void:
 func _on_star_5_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		for s in current_problem.rating:
-			stars[s].add_theme_color_override("font_color", "#ebebeb")
+			stars[s].add_theme_color_override("font_color", star_color_inactive)
 		current_problem.rating = 5
 		for s in current_problem.rating:
-			stars[s].add_theme_color_override("font_color", "#000000")
+			stars[s].add_theme_color_override("font_color", star_color_active)
 		Database.upsert_problem(current_problem,
 			func(result: bool):
 				print("problem saved result ", result)

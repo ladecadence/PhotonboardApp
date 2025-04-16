@@ -1,17 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://cqosv3jah3jsn"]
+[gd_scene load_steps=6 format=3 uid="uid://cqosv3jah3jsn"]
 
 [ext_resource type="Script" uid="uid://yhyekq8620oh" path="res://scripts/content_problem_new.gd" id="1_iecf6"]
 [ext_resource type="Theme" uid="uid://cc6pd6kgs8ds2" path="res://theme/main.tres" id="2_53mhw"]
-[ext_resource type="FontFile" uid="uid://lnhy5j8s4phh" path="res://fonts/Nexa Bold.otf" id="3_nn6p0"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7ocma"]
-bg_color = Color(1, 1, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3twwc"]
 bg_color = Color(1, 1, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_acnsd"]
-bg_color = Color(0.994083, 0.881678, 0.657324, 1)
+bg_color = Color(1, 0, 0.505882, 1)
 corner_radius_top_left = 20
 corner_radius_top_right = 20
 corner_radius_bottom_right = 20
@@ -21,9 +17,7 @@ shadow_size = 10
 shadow_offset = Vector2(2, 2)
 
 [sub_resource type="LabelSettings" id="LabelSettings_mxhs3"]
-font = ExtResource("3_nn6p0")
 font_size = 50
-font_color = Color(0, 0, 0, 1)
 shadow_size = 10
 shadow_color = Color(0, 0, 0, 0.243137)
 shadow_offset = Vector2(3, 3)
@@ -44,7 +38,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_7ocma")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -172,8 +165,6 @@ offset_right = 41.0
 offset_bottom = 25.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("3_nn6p0")
 theme_override_font_sizes/font_size = 40
 text = "Cancel"
 label_settings = SubResource("LabelSettings_mxhs3")
@@ -184,7 +175,6 @@ vertical_alignment = 1
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_3twwc")
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Scroll/Lista/HBoxContainer7/Panel2"]
 layout_mode = 1
@@ -222,8 +212,6 @@ offset_right = 41.0
 offset_bottom = 25.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("3_nn6p0")
 theme_override_font_sizes/font_size = 40
 text = "Continue"
 label_settings = SubResource("LabelSettings_mxhs3")
