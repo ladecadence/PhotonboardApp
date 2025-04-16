@@ -6,8 +6,6 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bty8r"]
 bg_color = Color(0.994083, 0.881678, 0.657324, 1)
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
 
 [sub_resource type="LabelSettings" id="LabelSettings_roa84"]
 font_size = 60
