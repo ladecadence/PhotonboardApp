@@ -3,6 +3,7 @@ extends Node
 @onready var wall_widget = $VBoxContainer/MarginContainer/WallWidget
 
 func _ready() -> void:
+	$VBoxContainer/Header.set_title("New problem")
 	$VBoxContainer/MarginContainer/WallWidget.change_mode(WallWidget.WALL_MODE.EDIT)
 	$VBoxContainer/MarginContainer/WallWidget.change_offset($VBoxContainer/Header.get_rect().size)
 

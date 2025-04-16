@@ -5,8 +5,10 @@ class_name ProblemView
 #const Problem = preload("res://scripts/Problem.gd")
 var http_request = HTTPRequest.new()
 
+
 func load_data(data):
 	$VBoxContainer/ContentProblem.load_data(data)
+	$VBoxContainer/Header2.set_title(data.name)
 
 func _on_panel_send_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
