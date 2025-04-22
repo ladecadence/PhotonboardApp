@@ -34,6 +34,11 @@ var data_source: DataSource:
 func _ready() -> void:
 	load_config()
 
+	# If we don't have a valid data provider after loading the config
+	# then set it up to the current default value
+	if not Database.data_provider:
+		data_source = _data_source
+
 	# Android system bar
 	SystemBar.set_status_bar_color("#262338")
 	SystemBar.set_navigation_bar_color("#262338")
