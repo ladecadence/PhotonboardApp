@@ -12,6 +12,8 @@ func _ready() -> void:
 func load_data(data: Problem):
 	problem = data
 	$Fondo/HBoxContainer/Descr/Name.text = data.name
+	if len(data.description) > 20:
+		data.description = data.description.substr(0, 20) + "..."
 	$Fondo/HBoxContainer/Descr/Description.text = data.description
 	Database.get_wall(data.wallid,
 		func(wall):

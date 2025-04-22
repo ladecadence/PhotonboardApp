@@ -9,6 +9,8 @@ func _ready() -> void:
 func load_data(data: Wall):
 	wall = data
 	$Fondo/HBoxContainer/Descr/Name.text = data.name
+	if len(data.description) > 20:
+		data.description = data.description.substr(0, 20) + "..."
 	$Fondo/HBoxContainer/Descr/Description.text = data.description
 	if data.adjustable == true:
 		$Fondo/HBoxContainer/Data/MarginContainer/CenterContainer/Panel/Degrees.text = str(data.deg_min) + "-" + str(data.deg_max) + "º"
