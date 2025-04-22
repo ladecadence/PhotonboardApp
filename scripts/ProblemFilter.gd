@@ -52,8 +52,8 @@ func get_order_by_as_string() -> String:
 
 func get_order_dir_as_string() -> String:
 	match (order_dir):
-		ORDER_DIR.ASC: return "ASC"
-		ORDER_DIR.DESC: return "DESC"
+		ORDER_DIR.ASC: return "asc"
+		ORDER_DIR.DESC: return "desc"
 		_: return ""
 
 func has_grade() -> bool:
