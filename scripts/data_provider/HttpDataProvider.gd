@@ -41,7 +41,7 @@ func get_problems(fields: Array[String], page_size: int, page: int, filter: Prob
 		if filter.has_grade():
 			url += "&grade_min=%s&grade_max=%s" % [filter.grade_min, filter.grade_max]
 		if filter.has_order_by():
-			url += "&orderby=%s&order=%s" % [filter.get_order_by_as_string(), filter.get_order_dir_as_string()]
+			url += "&order_by=%s&order_dir=%s" % [filter.get_order_by_as_string(), filter.get_order_dir_as_string()]
 	_request(url, [], HTTPClient.METHOD_GET, "", 
 		func(data):
 			if callback.is_valid():
