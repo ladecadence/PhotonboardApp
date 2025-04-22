@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://ddnfe8q2l6adh"]
 
-[ext_resource type="Script" uid="uid://c6mkqkqlpd85g" path="res://scripts/config.gd" id="1_7d1r7"]
-[ext_resource type="PackedScene" uid="uid://dqbsyjm472g3s" path="res://components/header.tscn" id="2_7d1r7"]
-[ext_resource type="Theme" uid="uid://cc6pd6kgs8ds2" path="res://theme/main.tres" id="3_7d1r7"]
-[ext_resource type="PackedScene" uid="uid://dtcl56kq2beg1" path="res://components/nav_bar.tscn" id="5_236fa"]
+[ext_resource type="Script" uid="uid://c6mkqkqlpd85g" path="res://scripts/config.gd" id="1_d4hfg"]
+[ext_resource type="PackedScene" uid="uid://dqbsyjm472g3s" path="res://components/header.tscn" id="2_5ce7h"]
+[ext_resource type="Theme" uid="uid://cc6pd6kgs8ds2" path="res://theme/main.tres" id="3_bm1gy"]
+[ext_resource type="PackedScene" uid="uid://dtcl56kq2beg1" path="res://components/nav_bar.tscn" id="4_shhe8"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_7d1r7"]
 
@@ -29,12 +29,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_7d1r7")
+script = ExtResource("1_d4hfg")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="Header2" parent="VBoxContainer" instance=ExtResource("2_7d1r7")]
+[node name="Header2" parent="VBoxContainer" instance=ExtResource("2_5ce7h")]
 layout_mode = 2
 
 [node name="Control" type="Control" parent="VBoxContainer"]
@@ -48,7 +48,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("3_7d1r7")
+theme = ExtResource("3_bm1gy")
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Control"]
 layout_mode = 1
@@ -78,13 +78,13 @@ alignment = 1
 
 [node name="LabelIP" type="Label" parent="VBoxContainer/Control/MarginContainer/Scroll/Lista/HBoxContainer"]
 layout_mode = 2
-theme = ExtResource("3_7d1r7")
+theme = ExtResource("3_bm1gy")
 text = "Wall IP"
 
 [node name="LineEditIP" type="LineEdit" parent="VBoxContainer/Control/MarginContainer/Scroll/Lista/HBoxContainer"]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
-theme = ExtResource("3_7d1r7")
+theme = ExtResource("3_bm1gy")
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/Control/MarginContainer/Scroll/Lista"]
 layout_mode = 2
@@ -93,20 +93,40 @@ alignment = 1
 
 [node name="LabelGradeSystem" type="Label" parent="VBoxContainer/Control/MarginContainer/Scroll/Lista/HBoxContainer2"]
 layout_mode = 2
-theme = ExtResource("3_7d1r7")
+theme = ExtResource("3_bm1gy")
 text = "Grade system"
 
 [node name="CheckBoxFont" type="CheckBox" parent="VBoxContainer/Control/MarginContainer/Scroll/Lista/HBoxContainer2"]
 layout_mode = 2
-theme = ExtResource("3_7d1r7")
+theme = ExtResource("3_bm1gy")
 button_group = SubResource("ButtonGroup_7d1r7")
 text = "Font"
 
 [node name="CheckBoxHueco" type="CheckBox" parent="VBoxContainer/Control/MarginContainer/Scroll/Lista/HBoxContainer2"]
 layout_mode = 2
-theme = ExtResource("3_7d1r7")
+theme = ExtResource("3_bm1gy")
 button_group = SubResource("ButtonGroup_7d1r7")
 text = "Hueco (V)"
+
+[node name="HBoxContainerDataSource" type="HBoxContainer" parent="VBoxContainer/Control/MarginContainer/Scroll/Lista"]
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="DataSourceLabel" type="Label" parent="VBoxContainer/Control/MarginContainer/Scroll/Lista/HBoxContainerDataSource"]
+layout_mode = 2
+theme = ExtResource("3_bm1gy")
+text = "Data Source"
+
+[node name="DataSourceOptionButton" type="OptionButton" parent="VBoxContainer/Control/MarginContainer/Scroll/Lista/HBoxContainerDataSource"]
+layout_mode = 2
+alignment = 1
+selected = 0
+item_count = 2
+popup/item_0/text = "Local"
+popup/item_0/id = 0
+popup/item_1/text = "Cloud"
+popup/item_1/id = 1
 
 [node name="HBoxContainer7" type="HBoxContainer" parent="VBoxContainer/Control/MarginContainer/Scroll/Lista"]
 layout_mode = 2
@@ -117,7 +137,7 @@ alignment = 1
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 size_flags_horizontal = 3
-theme = ExtResource("3_7d1r7")
+theme = ExtResource("3_bm1gy")
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Control/MarginContainer/Scroll/Lista/HBoxContainer7/Panel2"]
 layout_mode = 1
@@ -167,12 +187,12 @@ layout_mode = 2
 
 [node name="LabelOk" type="Label" parent="VBoxContainer/Control/MarginContainer/Scroll/Lista/CenterContainer"]
 layout_mode = 2
-theme = ExtResource("3_7d1r7")
+theme = ExtResource("3_bm1gy")
 theme_override_font_sizes/font_size = 30
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="NavBar" parent="VBoxContainer" instance=ExtResource("5_236fa")]
+[node name="NavBar" parent="VBoxContainer" instance=ExtResource("4_shhe8")]
 layout_mode = 2
 
 [connection signal="pressed" from="VBoxContainer/Control/MarginContainer/Scroll/Lista/HBoxContainer2/CheckBoxFont" to="." method="_on_check_box_font_pressed"]
