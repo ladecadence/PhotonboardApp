@@ -1,6 +1,15 @@
 extends Node
 
+# definitions
+
+enum DataSource { LOCAL, CLOUD }
 enum Screen {WALL_LIST, PROBLEM_LIST, CONFIG, WALL_VIEW, PROBLEM_VIEW, WALL_EDIT, WALL_EDIT_HOLDS, PROBLEM_EDIT, PROBLEM_EDIT_HOLDS, PROBLEM_FILTER, TEST_WALLWIDGET}
+
+# private attributes
+
+var _data_source: DataSource = DataSource.LOCAL
+
+# public attributes
 
 var last_data
 var screen_scene: String
@@ -9,9 +18,22 @@ var wall_ip: String = "127.0.0.1"
 var grade_system: Grade.GRADE_SYSTEMS = Grade.GRADE_SYSTEMS.FONT
 var filter_problem: ProblemFilter = ProblemFilter.new()
 
+var data_source: DataSource:
+	get: return _data_source
+	set(source):
+		_data_source = source
+		if _data_source == DataSource.LOCAL:
+			Database.data_provider = CachedDataProvider.new(SQLiteDataProvider.new("user://database.sqlite"))
+		elif _data_source == DataSource.CLOUD:
+			#const BASE_URL := "http://127.0.0.1:8080/api"
+			const BASE_URL := "https://photonboard.ladecadence.net/api"
+			Database.data_provider = CachedDataProvider.new(HttpDataProvider.new(BASE_URL, "testuser", "testpassword", Database))
+		else:
+			push_error("invalid data source provided")
+
 func _ready() -> void:
 	load_config()
-	
+
 	# Android system bar
 	SystemBar.set_status_bar_color("#262338")
 	SystemBar.set_navigation_bar_color("#262338")
@@ -26,7 +48,7 @@ func _deferred_load_screen(s: Screen, data):
 	# main screen router
 	match (s):
 		Screen.CONFIG:
-			screen_scene = "res://screens/Config.tscn"
+			screen_scene = "res://screens/config.tscn"
 		Screen.WALL_LIST: 
 			screen_scene = "res://screens/wall_list.tscn"
 		Screen.PROBLEM_LIST:
@@ -89,7 +111,8 @@ func get_uuid_v4():
 func save_config():
 	var data = {
 		"wall_ip": wall_ip,
-		"grade_system": grade_system
+		"grade_system": grade_system,
+		"data_source": data_source
 	}
 	var config_file = FileAccess.open("user://config.json", FileAccess.WRITE)
 	var json_string = JSON.stringify(data)
@@ -119,3 +142,5 @@ func load_config():
 				wall_ip = node_data[i]
 			if i == "grade_system":
 				grade_system = node_data[i]
+			if i == "data_source":
+				data_source = node_data[i]

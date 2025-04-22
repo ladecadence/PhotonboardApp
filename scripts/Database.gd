@@ -1,13 +1,23 @@
 extends Node
 
-# attributes
+# private attributes
 
-var data_provider: DataProvider = CachedDataProvider.new(SQLiteDataProvider.new())
-# var data_provider: DataProvider = CachedDataProvider.new(HttpDataProvider.new("testuser", "testpassword", self))
+var _data_provider: DataProvider = null
+
+# public attributes
+
+var data_provider: DataProvider:
+	get: return _data_provider
+	set(provider):
+		if _data_provider:
+			_data_provider.destroy()
+			_data_provider = null
+		_data_provider = provider
 
 # public methods
 
 func get_problem(uid: String, callback: Callable) -> void:
+	assert(data_provider, "expected a valid data provider")
 	data_provider.get_wall(uid, ["*"],
 		func(problem_data):
 			if callback.is_valid():
@@ -19,6 +29,7 @@ func get_problem(uid: String, callback: Callable) -> void:
 	)
 
 func get_problems(filter: ProblemFilter, callback: Callable) -> void:
+	assert(data_provider, "expected a valid data provider")
 	data_provider.get_problems(["*"], 25, 0, filter,
 		func(problems_data):
 			if callback.is_valid():
@@ -32,6 +43,7 @@ func get_problems(filter: ProblemFilter, callback: Callable) -> void:
 	)
 
 func get_wall(uid: String, callback: Callable) -> void:
+	assert(data_provider, "expected a valid data provider")
 	data_provider.get_wall(uid, ["*"],
 		func(wall_data):
 			if callback.is_valid():
@@ -47,6 +59,7 @@ func get_wall(uid: String, callback: Callable) -> void:
 	)
 
 func get_walls(callback: Callable) -> void:
+	assert(data_provider, "expected a valid data provider")
 	data_provider.get_walls(["*"], 25, 0,
 		func(walls_data):
 			if callback.is_valid():
@@ -65,6 +78,7 @@ func get_walls(callback: Callable) -> void:
 	)
 
 func get_walls_ids(callback: Callable) -> void:
+	assert(data_provider, "expected a valid data provider")
 	data_provider.get_walls(["uid"], 100, 0,
 		func(walls_data):
 			if callback.is_valid():
@@ -76,6 +90,7 @@ func get_walls_ids(callback: Callable) -> void:
 	)
 
 func upsert_problem(p: Problem, callback: Callable = Callable()) -> void:
+	assert(data_provider, "expected a valid data provider")
 	data_provider.upsert_problem(
 		p.to_dict(),
 		func(result: bool):
@@ -84,6 +99,7 @@ func upsert_problem(p: Problem, callback: Callable = Callable()) -> void:
 	)
 
 func upsert_wall(w: Wall, callback: Callable = Callable()) -> void:
+	assert(data_provider, "expected a valid data provider")
 	data_provider.upsert_wall(
 		w.to_dict(),
 		func(result: bool):

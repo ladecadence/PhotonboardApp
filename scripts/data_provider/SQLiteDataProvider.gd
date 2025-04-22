@@ -1,10 +1,9 @@
 extends DataProvider
 class_name SQLiteDataProvider
 
-# attributes
+# private attributes
 
-const _db_path: String = "user://database.sqlite"
-const _db_verbosity: int = SQLite.QUIET
+var _db_path: String
 var _thread_pool: ThreadPool = null
 
 # public methods
@@ -82,7 +81,7 @@ func upsert_wall(wall_data: Dictionary, callback: Callable = Callable()) -> void
 func _create_connection() -> SQLite:
 	var connection = SQLite.new()
 	connection.path = _db_path
-	connection.verbosity_level = _db_verbosity
+	connection.verbosity_level = SQLite.QUIET
 	return connection
 
 func _create_db() -> void:
@@ -164,7 +163,8 @@ func _create_test_data():
 func _exists_db() -> bool:
 	return FileAccess.file_exists(_db_path)
 
-func _init():
+func _init(db_path: String):
+	_db_path = db_path
 	if not _exists_db():
 		_create_db()
 		_create_test_data()

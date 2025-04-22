@@ -1,10 +1,10 @@
 extends DataProvider
 class_name CachedDataProvider
 
-# attributes
+# private attributes
 
-const TTL_SECONDS := 30.0
-var _provider: DataProvider
+const TTL_SECONDS: float = 30.0
+var _provider: DataProvider = null
 
 var _problem_cache: Dictionary = {} 	# key: uid|fields -> { data, timestamp }
 var _problems_cache: Dictionary = {} 	# key: page_size|page|filter|fields -> { data, timestamp }
@@ -15,7 +15,7 @@ var _walls_cache: Dictionary = {} 		# key: page_size|page|fields -> { data, time
 # public methods
 
 func destroy() -> void:
-	pass
+	_provider.destroy()
 
 func get_problem(uid: String, fields: Array[String], callback: Callable) -> void:
 	var key = _build_key([uid, fields])
@@ -133,6 +133,7 @@ func _build_key(args: Array) -> String:
 	return "|".join(args.map(func(x): return JSON.stringify(x)))
 
 func _init(provider: DataProvider):
+	assert(provider, "expected a valid provider")
 	_provider = provider
 
 func _is_expired(timestamp: float) -> bool:

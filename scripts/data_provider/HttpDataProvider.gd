@@ -1,12 +1,11 @@
 extends DataProvider
 class_name HttpDataProvider
 
-# attributes
+# private attributes
 
-const BASE_URL := "http://127.0.0.1:8080/api"
-#const BASE_URL := "https://photonboard.ladecadence.net/api"
 const MIN_REQUESTS: int = 1
 
+var _base_url: String
 var _user: String
 var _password: String
 
@@ -18,10 +17,13 @@ var _requests: Array[HTTPRequest] = []
 # public methods
 
 func destroy() -> void:
-	pass
+	_queue.clear()
+	for request in _requests:
+		request.cancel_request()
+	_requests.clear()
 
 func get_problem(uid: String, fields: Array[String], callback: Callable) -> void:
-	_request("%s/problem/%s" % [BASE_URL, uid], [], HTTPClient.METHOD_GET, "",
+	_request("%s/problem/%s" % [_base_url, uid], [], HTTPClient.METHOD_GET, "",
 		func(data):
 			if callback.is_valid():
 				var problem_data = {}
@@ -32,7 +34,7 @@ func get_problem(uid: String, fields: Array[String], callback: Callable) -> void
 	)
 
 func get_problems(fields: Array[String], page_size: int, page: int, filter: ProblemFilter, callback: Callable) -> void:
-	var url = "%s/problems?fields=%s&page_size=%d&page=%d" % [BASE_URL, ",".join(fields), page_size, page]
+	var url = "%s/problems?fields=%s&page_size=%d&page=%d" % [_base_url, ",".join(fields), page_size, page]
 	if filter:
 		if filter.has_wall_uid():
 			url += "&wallid=%s" % filter.wall_uid
@@ -52,7 +54,7 @@ func get_problems(fields: Array[String], page_size: int, page: int, filter: Prob
 	)
 
 func get_wall(uid: String, fields: Array[String], callback: Callable) -> void:
-	_request("%s/wall/%s" % [BASE_URL, uid], [], HTTPClient.METHOD_GET, "",
+	_request("%s/wall/%s" % [_base_url, uid], [], HTTPClient.METHOD_GET, "",
 		func(data):
 			if callback.is_valid():
 				var wall_data = {}
@@ -63,7 +65,7 @@ func get_wall(uid: String, fields: Array[String], callback: Callable) -> void:
 	)
 
 func get_walls(fields: Array[String], page_size: int, page: int, callback: Callable) -> void:
-	_request("%s/walls?fields=%s&page_size=%d&page=%d" % [BASE_URL, ",".join(fields), page_size, page], [], HTTPClient.METHOD_GET, "", 
+	_request("%s/walls?fields=%s&page_size=%d&page=%d" % [_base_url, ",".join(fields), page_size, page], [], HTTPClient.METHOD_GET, "", 
 		func(data):
 			if callback.is_valid():
 				var walls_data = []
@@ -76,11 +78,11 @@ func get_walls(fields: Array[String], page_size: int, page: int, callback: Calla
 
 func upsert_problem(problem_data: Dictionary, callback: Callable = Callable()) -> void:
 	_sanitize_problem_data_to_server(problem_data)
-	_request("%s/newproblem" % [BASE_URL], _get_auth_headers(), HTTPClient.METHOD_POST, JSON.stringify(problem_data), callback)
+	_request("%s/newproblem" % [_base_url], _get_auth_headers(), HTTPClient.METHOD_POST, JSON.stringify(problem_data), callback)
 
 func upsert_wall(wall_data: Dictionary, callback: Callable = Callable()) -> void:
 	_sanitize_wall_data_to_server(wall_data)
-	_request("%s/newwall" % [BASE_URL], _get_auth_headers(), HTTPClient.METHOD_POST, JSON.stringify(wall_data), callback)
+	_request("%s/newwall" % [_base_url], _get_auth_headers(), HTTPClient.METHOD_POST, JSON.stringify(wall_data), callback)
 
 # private methods
 
@@ -88,8 +90,9 @@ func _get_auth_headers() -> Array:
 	var encoded = Marshalls.utf8_to_base64("%s:%s" % [_user, _password])
 	return [ "Authorization: Basic %s" % encoded, "Content-Type: application/json" ]
 
-func _init(user: String, password: String, parent_node: Node, max_requests: int = MIN_REQUESTS) -> void:
+func _init(base_url:String, user: String, password: String, parent_node: Node, max_requests: int = MIN_REQUESTS) -> void:
 	print("[Thread: %2s] HttpDataProvider._init { \"max_requests\": %d }" % [OS.get_thread_caller_id(), max_requests])
+	_base_url = base_url
 	_user = user
 	_password = password
 	_max_requests = max(MIN_REQUESTS, max_requests)
