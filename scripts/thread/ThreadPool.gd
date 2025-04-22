@@ -1,7 +1,7 @@
 extends RefCounted
 class_name ThreadPool
 
-# attributes
+# private attributes
 
 const MIN_THREADS: int = 1
 var _queue: Array[Dictionary] = []
@@ -20,7 +20,6 @@ func destroy() -> void:
 	for thread in _threads:
 		thread.wait_to_finish()
 	_threads.clear()
-	free()
 
 func request(task: Callable, args: Array = [], callback: Callable = Callable()) -> void:
 	var work = { "task": task, "args": args, "callback": callback }
