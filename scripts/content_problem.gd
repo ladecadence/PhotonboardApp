@@ -43,7 +43,7 @@ func load_data(data):
 			$Scroll/MarginPrincipal/Lista/MarginImage/WallWidget.load_data(current_wall)
 			$Scroll/MarginPrincipal/Lista/MarginImage/WallWidget.load_problem(current_problem)
 			$Scroll/MarginPrincipal/Lista/HBoxProblemInfo/HBoxContainerNombre/Name.text = data.name
-			if AppManager.grade_system == Grade.GRADE_SYSTEMS.FONT:
+			if AppManager.config.grade_system == Grade.GRADE_SYSTEMS.FONT:
 				$Scroll/MarginPrincipal/Lista/HBoxProblemInfo/HBoxContainerNombre/MarginContainer/CenterContainer/Panel/Grade.text = Grade.GRADES_FONT[data.grade]
 			else:
 				$Scroll/MarginPrincipal/Lista/HBoxProblemInfo/HBoxContainerNombre/MarginContainer/CenterContainer/Panel/Grade.text = Grade.GRADES_HUECO[data.grade]

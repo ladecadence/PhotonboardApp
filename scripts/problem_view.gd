@@ -15,7 +15,7 @@ func _on_panel_send_gui_input(event: InputEvent) -> void:
 		send_problem($VBoxContainer/ContentProblem.current_problem)
 
 func send_problem(p: Problem):
-	var endpoint = "http://" + AppManager.wall_ip + "/load"
+	var endpoint = "http://" + AppManager.config.wall_ip + "/load"
 	print("endpoint: ", endpoint)
 	var data = []
 	for h in p.holds:

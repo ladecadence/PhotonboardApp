@@ -17,48 +17,58 @@ extends MarginContainer
 
 # private methods
 
-func _ready() -> void:
-	$VBoxContainer/Header2.set_title("Config")
-
-	_tabContainer.set_tab_title(0, "Wall")
-	_tabContainer.set_tab_title(1, "Data")
-
-	_ipLineEdit.text = AppManager.wall_ip
-	if AppManager.grade_system == Grade.GRADE_SYSTEMS.FONT:
-		_fontRadio.button_pressed = true
-	else:
-		_huecoRadio.button_pressed = true
-	_setDataSource(AppManager.data_source)
+func _on_option_button_data_source_item_selected(index: int) -> void:
+	_update_connection_container_visibility(index)
 
 func _on_panel_save_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		AppManager.wall_ip = _ipLineEdit.text
-		AppManager.data_source = _dataSourceOptionButton.selected
-		AppManager.save_config()
+		_update_config(AppManager.config)
+		AppManager.config.save()
+		AppManager.update_data_source()
+
 		# show and hide config saved text
 		_okLabel.text = "Config Saved"
 		var timer := Timer.new()
 		add_child(timer)
 		timer.wait_time = 2.0
 		timer.one_shot = true
-		timer.connect("timeout", _on_timer_timeout)
+		timer.connect("timeout", _on_save_timer_timeout)
 		timer.start()
-		
-func _on_timer_timeout() -> void:
+
+func _on_save_timer_timeout() -> void:
 	_okLabel.text = ""
 
-func _on_check_box_font_pressed() -> void:
-	AppManager.grade_system = Grade.GRADE_SYSTEMS.FONT
-	
-func _on_check_box_hueco_pressed() -> void:
-	AppManager.grade_system = Grade.GRADE_SYSTEMS.HUECO
+func _ready() -> void:
+	$VBoxContainer/Header2.set_title("Config")
+	_tabContainer.set_tab_title(0, "Wall")
+	_tabContainer.set_tab_title(1, "Data")
+	_update_screen_data(AppManager.config)
+	_update_connection_container_visibility(AppManager.config.data_source)
 
-func _on_option_button_data_source_item_selected(index: int) -> void:
-	_setDataSource(index)
+func _update_config(config: Config) -> void:
+	config.cloud_url = _urlLineEdit.text
+	config.cloud_user = _userLineEdit.text
+	config.cloud_password = _passwordLineEdit.text
+	config.data_source = _dataSourceOptionButton.selected
+	if _fontRadio.button_pressed:
+		config.grade_system = Grade.GRADE_SYSTEMS.FONT
+	elif _huecoRadio.button_pressed:
+		config.grade_system = Grade.GRADE_SYSTEMS.HUECO
+	config.wall_ip = _ipLineEdit.text
 
-func _setDataSource(data_source: AppManager.DataSource) -> void:
-	_dataSourceOptionButton.selected = data_source
-	if data_source == AppManager.DataSource.LOCAL:
+func _update_connection_container_visibility(data_source: Config.DataSource) -> void:
+	if data_source == Config.DataSource.LOCAL:
 		_connectionContainer.visible = false
-	elif data_source == AppManager.DataSource.CLOUD:
+	elif data_source == Config.DataSource.CLOUD:
 		_connectionContainer.visible = true
+		
+func _update_screen_data(config: Config) -> void:
+	_urlLineEdit.text = config.cloud_url
+	_userLineEdit.text = config.cloud_user
+	_passwordLineEdit.text = config.cloud_password
+	_dataSourceOptionButton.selected = config.data_source
+	if Grade.GRADE_SYSTEMS.FONT == config.grade_system:
+		_fontRadio.button_pressed = true
+	elif Grade.GRADE_SYSTEMS.HUECO == config.grade_system:
+		_huecoRadio.button_pressed = true
+	_ipLineEdit.text = config.wall_ip

@@ -2,52 +2,65 @@ extends Node
 
 # definitions
 
-enum DataSource { LOCAL, CLOUD }
 enum Screen {WALL_LIST, PROBLEM_LIST, CONFIG, WALL_VIEW, PROBLEM_VIEW, WALL_EDIT, WALL_EDIT_HOLDS, PROBLEM_EDIT, PROBLEM_EDIT_HOLDS, PROBLEM_FILTER, TEST_WALLWIDGET}
-
-# private attributes
-
-var _data_source: DataSource = DataSource.LOCAL
 
 # public attributes
 
-var last_data
-var screen_scene: String
+var config: Config = Config.new("user://config.json")
 var current_scene = null
-var wall_ip: String = "127.0.0.1"
-var grade_system: Grade.GRADE_SYSTEMS = Grade.GRADE_SYSTEMS.FONT
 var filter_problem: ProblemFilter = ProblemFilter.new()
+var screen_scene: String
 
-var data_source: DataSource:
-	get: return _data_source
+var data_source: Config.DataSource:
+	get: return config.data_source
 	set(source):
-		_data_source = source
-		if _data_source == DataSource.LOCAL:
+		config.data_source = source
+		if source == Config.DataSource.LOCAL:
 			Database.data_provider = CachedDataProvider.new(SQLiteDataProvider.new("user://database.sqlite"))
-		elif _data_source == DataSource.CLOUD:
-			#const BASE_URL := "http://127.0.0.1:8080/api"
-			const BASE_URL := "https://photonboard.ladecadence.net/api"
-			Database.data_provider = CachedDataProvider.new(HttpDataProvider.new(BASE_URL, "testuser", "testpassword", Database))
+		elif source == Config.DataSource.CLOUD:
+			#const BASE_URL := "https://photonboard.ladecadence.net/api"
+			Database.data_provider = CachedDataProvider.new(HttpDataProvider.new(config.cloud_url, config.cloud_user, config.cloud_password, Database))
 		else:
 			push_error("invalid data source provided")
 
-func _ready() -> void:
-	load_config()
+# public methods
 
-	# If we don't have a valid data provider after loading the config
-	# then set it up to the current default value
-	if not Database.data_provider:
-		data_source = _data_source
+func get_uuid_v4():
+	const BYTE_MASK: int = 0b11111111
+	# 16 random bytes with the bytes on index 6 and 8 modified
+	var b = [
+		randi() & BYTE_MASK, randi() & BYTE_MASK, randi() & BYTE_MASK, randi() & BYTE_MASK,
+		randi() & BYTE_MASK, randi() & BYTE_MASK, ((randi() & BYTE_MASK) & 0x0f) | 0x40, randi() & BYTE_MASK,
+		((randi() & BYTE_MASK) & 0x3f) | 0x80, randi() & BYTE_MASK, randi() & BYTE_MASK, randi() & BYTE_MASK,
+		randi() & BYTE_MASK, randi() & BYTE_MASK, randi() & BYTE_MASK, randi() & BYTE_MASK,
+	]
 
-	# Android system bar
-	SystemBar.set_status_bar_color("#262338")
-	SystemBar.set_navigation_bar_color("#262338")
-	# Initial screen
-	load_screen(Screen.PROBLEM_LIST, null)
+	return '%02x%02x%02x%02x-%02x%02x-%02x%02x-%02x%02x-%02x%02x%02x%02x%02x%02x' % [
+		# low
+		b[0], b[1], b[2], b[3],
+		# mid
+		b[4], b[5],
+		# hi
+		b[6], b[7],
+		# clock
+		b[8], b[9],
+		# clock
+		b[10], b[11], b[12], b[13], b[14], b[15]
+	]
 
 func load_screen(s: Screen, data):
 	# calls the load function AFTER the current one finishes any running code
 	_deferred_load_screen.call_deferred(s, data)
+
+func update_data_source() -> void:
+	if Config.DataSource.LOCAL == config.data_source:
+		Database.data_provider = CachedDataProvider.new(SQLiteDataProvider.new("user://database.sqlite"))
+	elif Config.DataSource.CLOUD == config.data_source:
+		Database.data_provider = CachedDataProvider.new(HttpDataProvider.new(config.cloud_url, config.cloud_user, config.cloud_password, Database))
+	else:
+		push_error("invalid data source provided")
+
+# private methods
 
 func _deferred_load_screen(s: Screen, data):
 	# main screen router
@@ -90,62 +103,16 @@ func _deferred_load_screen(s: Screen, data):
 		scene.load_data(data)
 	GUI.add_child(scene)
 
-func get_uuid_v4():
-	const BYTE_MASK: int = 0b11111111
-	# 16 random bytes with the bytes on index 6 and 8 modified
-	var b = [
-	randi() & BYTE_MASK, randi() & BYTE_MASK, randi() & BYTE_MASK, randi() & BYTE_MASK,
-	randi() & BYTE_MASK, randi() & BYTE_MASK, ((randi() & BYTE_MASK) & 0x0f) | 0x40, randi() & BYTE_MASK,
-	((randi() & BYTE_MASK) & 0x3f) | 0x80, randi() & BYTE_MASK, randi() & BYTE_MASK, randi() & BYTE_MASK,
-	randi() & BYTE_MASK, randi() & BYTE_MASK, randi() & BYTE_MASK, randi() & BYTE_MASK,
-	]
+func _ready() -> void:
+	config.load()
 
-	return '%02x%02x%02x%02x-%02x%02x-%02x%02x-%02x%02x-%02x%02x%02x%02x%02x%02x' % [
-	# low
-	b[0], b[1], b[2], b[3],
-	# mid
-	b[4], b[5],
-	# hi
-	b[6], b[7],
-	# clock
-	b[8], b[9],
-	# clock
-	b[10], b[11], b[12], b[13], b[14], b[15]
-  ]
+	# If we don't have a valid data provider after loading the config
+	# then set it up to the current default value
+	if not Database.data_provider:
+		update_data_source()
 
-func save_config():
-	var data = {
-		"wall_ip": wall_ip,
-		"grade_system": grade_system,
-		"data_source": data_source
-	}
-	var config_file = FileAccess.open("user://config.json", FileAccess.WRITE)
-	var json_string = JSON.stringify(data)
-	config_file.store_string(json_string)
-	
-func load_config():
-	if not FileAccess.file_exists("user://config.json"):
-		return # Error! We don't have a config file to load.
-	# open file
-	var config_file = FileAccess.open("user://config.json", FileAccess.READ)
-	# for each line
-	while config_file.get_position() < config_file.get_length():
-		var json_string = config_file.get_line()
-		# Creates the helper class to interact with JSON.
-		var json = JSON.new()
-
-		# Check if there is any error while parsing the JSON string, skip in case of failure.
-		var parse_result = json.parse(json_string)
-		if not parse_result == OK:
-			print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
-			continue
-
-		# Get the data from the JSON object.
-		var node_data = json.data
-		for i in node_data.keys():
-			if i == "wall_ip":
-				wall_ip = node_data[i]
-			if i == "grade_system":
-				grade_system = node_data[i]
-			if i == "data_source":
-				data_source = node_data[i]
+	# Android system bar
+	SystemBar.set_status_bar_color("#262338")
+	SystemBar.set_navigation_bar_color("#262338")
+	# Initial screen
+	load_screen(Screen.PROBLEM_LIST, null)

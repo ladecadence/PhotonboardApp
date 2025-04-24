@@ -15,7 +15,7 @@ func _ready() -> void:
 				_walls.append(wall)
 			$MarginContainer/Scroll/Lista/HBoxContainer6/OptionWall.select(0)
 			
-			if AppManager.grade_system == Grade.GRADE_SYSTEMS.FONT:
+			if AppManager.config.grade_system == Grade.GRADE_SYSTEMS.FONT:
 				for grade in Grade.GRADES_FONT:
 					$MarginContainer/Scroll/Lista/HBoxContainer4/OptionGrade.add_item(Grade.GRADES_FONT[grade])
 			else:

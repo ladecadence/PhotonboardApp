@@ -68,10 +68,9 @@ theme_override_constants/margin_bottom = 20
 
 [node name="TabContainer" type="TabContainer" parent="VBoxContainer/Control/TopContainer"]
 layout_mode = 2
-current_tab = 1
+current_tab = 0
 
 [node name="WallContainer" type="ScrollContainer" parent="VBoxContainer/Control/TopContainer/TabContainer"]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -128,6 +127,7 @@ button_group = SubResource("ButtonGroup_7d1r7")
 text = "Hueco (V)"
 
 [node name="DataSourceContainer" type="ScrollContainer" parent="VBoxContainer/Control/TopContainer/TabContainer"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 

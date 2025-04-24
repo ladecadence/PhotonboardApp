@@ -26,7 +26,7 @@ func _ready() -> void:
 				optionWall.select(-1)
 				
 			# fill grades
-			if AppManager.grade_system == Grade.GRADE_SYSTEMS.FONT:
+			if AppManager.config.grade_system == Grade.GRADE_SYSTEMS.FONT:
 				for grade in Grade.GRADES_FONT:
 					optionGradeMin.add_item(Grade.GRADES_FONT[grade])
 					optionGradeMax.add_item(Grade.GRADES_FONT[grade])

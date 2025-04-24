@@ -18,7 +18,7 @@ func load_data(data: Problem):
 	Database.get_wall(data.wallid,
 		func(wall):
 			$Fondo/HBoxContainer/Descr/Wall.text = wall.name
-			if AppManager.grade_system == Grade.GRADE_SYSTEMS.FONT:
+			if AppManager.config.grade_system == Grade.GRADE_SYSTEMS.FONT:
 				$Fondo/HBoxContainer/Data/MarginContainer/CenterContainer/Panel/Grade.text = Grade.GRADES_FONT[data.grade]
 			else:
 				$Fondo/HBoxContainer/Data/MarginContainer/CenterContainer/Panel/Grade.text = Grade.GRADES_HUECO[data.grade]
